@@ -1,0 +1,17 @@
+{{ define "main" }}
+<main class="divide-y divide-gray-200">
+  <div class="pt-3 pb-9 space-y-3 md:space-y-5">
+    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-6xl">{{ .Type | humanize }}</h1>
+
+    <p class="text-lg text-gray-500">Here are some of the other projects I've worked on in the past — some still actively maintained, and others retired or on pause.</p>
+  </div>
+
+  <ul class="divide-y divide-gray-200">
+    {{ range .Pages }}
+    <li class="py-7">
+      {{ partial "projects/preview.html" . }}
+    </li>
+    {{ end }}
+  </ul>
+</main>
+{{ end }}

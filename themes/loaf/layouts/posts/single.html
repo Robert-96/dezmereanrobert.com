@@ -1,0 +1,86 @@
+{{ define "main" }}
+<article class="divide-y divide-gray-200">
+  <header class="pt-3 pb-9">
+    <div class="space-y-1">
+      <dl class="space-y-9">
+        <div>
+          <dt class="sr-only">Published on</dt>
+          <dd class="text-base leading-6 font-medium text-gray-500">
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="space-y-9 space-x-3 font-medium">
+        {{ range .Params.tags }}
+          <a class="text-green-600 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+        {{ end }}
+      </div>
+
+      <div>
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-3xl md:text-5xl">{{ .Title | markdownify }}</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="prose prose-green max-w-none pt-6 pb-24">
+    {{ .Content }}
+  </div>
+</article>
+
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ with $related }}
+<div class="text-sm font-medium">
+  <div class="space-y-5 py-7">
+    <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">See also</h2>
+
+    <div class="divide-y divide-gray-100">
+      {{ range . }}
+        <div class="space-y-3 py-5">
+          <h3 class="text-base font-bold leading-5 tracking-wide">
+            <a class="text-base hover:underline" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+          </h3>
+
+          {{ if .Summary }}
+            <div class="prose prose-green max-w-none text-gray-500 text-sm font-normal">
+              <p class="text-gray-500">{{ .Summary }}</p>
+            </div>
+          {{ end }}
+
+          <div class="text-green-600 hover:text-green-500 hover:underline">
+            <a href="{{ .RelPermalink }}">Read more →</a>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ if or .Next .Prev }}
+<div class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
+  <div class="flow-root space-y-7 md:space-y-0 py-7">
+    {{ if .Next }}
+      <div class="md:float-right md:text-right">
+        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Next Article</h2>
+        <div class="text-green-600 hover:text-green-500 hover:underline">
+          <a href="{{ .Next.Permalink | relURL }}">{{ .Next.Title | markdownify }}</a>
+        </div>
+      </div>
+    {{ end }}
+
+    {{ if .Prev }}
+      <div class="md:float-left">
+        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Previous Article</h2>
+        <div class="text-green-600 hover:text-green-500 hover:underline">
+          <a href="{{ .Prev.Permalink | relURL }}">{{ .Prev.Title | markdownify }}</a>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{ partial "base/back.html" }}
+
+{{ end }}

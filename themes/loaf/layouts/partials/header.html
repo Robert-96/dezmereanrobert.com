@@ -1,0 +1,27 @@
+<nav class="flex-col flex-wrap py-7">
+  <a class="text-xl font-extrabold text-gray-900 tracking-tight sm:text-2xl md:text-3xl md:leading-7" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+
+  <ul class="flex flex-wrap py-3 text-gray-500 no-underline uppercase space-x-5">
+    {{ $currentPage := . }}
+
+    {{ range .Site.Menus.main }}
+      <li>
+        <a class="hover:text-green-600 {{if (eq $currentPage.Name .Name) }}text-black{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      </li>
+    {{ end }}
+
+    <li class="text-gray-300 hidden md:inline">//</li>
+
+    <li class="hidden md:inline">
+      <a class="hover:text-blue-600" href="https://www.twitter.com/{{ .Site.Social.twitter }}" target="_blank">Twitter</a>
+    </li>
+
+    <li class="hidden md:inline">
+      <a class="hover:text-blue-600" href="https://www.github.com/{{ .Site.Social.github }}" target="_blank">GitHub</a>
+    </li>
+
+    <li class="hidden md:inline">
+      <a class="hover:text-blue-600" href="https://www.linkedin.com/in/{{ .Site.Social.linkedin }}" target="_blank">LinkedIn</a>
+    </li>
+  </ul>
+</nav>

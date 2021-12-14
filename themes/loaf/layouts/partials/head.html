@@ -1,0 +1,22 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{ if .IsHome }}
+    <title>{{ .Site.Title }}</title>
+  {{ else }}
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+  {{ end }}
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ "/icons/favicon.svg" | relURL }}">
+
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/base.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/components.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@tailwindcss/typography@0.4.x/dist/typography.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/utilities.min.css" />
+
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+</head>

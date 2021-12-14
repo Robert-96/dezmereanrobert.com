@@ -1,0 +1,54 @@
+{{ define "main" }}
+<main class="divide-y divide-gray-200">
+  <header class="pt-3 pb-9 space-y-2 md:space-y-5">
+    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-6xl">
+      {{ if eq .Kind "taxonomy" }}
+        {{ .Name | humanize }}
+      {{ else }}
+        #{{ .Name }}
+      {{ end }}
+    </h1>
+
+    <p class="text-lg text-gray-500">
+      {{ if eq .Kind "taxonomy" }}
+        All the tags from all the blog posts — sorted by most used tags.
+      {{ else }}
+        All the latest blog posts with the <span class="font-medium">{{ .Name }}</span> tag.
+      {{ end }}
+    </p>
+  </header>
+
+  <div>
+    {{ if eq .Kind "taxonomy" }}
+      <ul class="py-6 space-y-1">
+        {{ range $.Site.Taxonomies.tags.ByCount }}
+          <li class="flex">
+            <span class="w-24 text-base font-medium text-gray-500">
+              {{ if eq .Count 1 }}
+                {{ .Count }} Article
+              {{ else }}
+                {{ .Count }} Articles
+              {{ end }}
+            </span>
+
+            <div>
+              <a class="font-medium text-green-600 hover:text-green-500 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name | markdownify }}</a>
+            </div>
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <ul class="divide-y divide-gray-200">
+        {{ range .Pages }}
+          <li class="py-6">
+            {{ partial "posts/preview.html" . }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</main>
+
+{{ partial "base/back.html" }}
+
+{{ end }}
