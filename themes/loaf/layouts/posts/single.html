@@ -37,19 +37,7 @@
     <div class="divide-y divide-gray-100">
       {{ range . }}
         <div class="space-y-3 py-5">
-          <h3 class="text-base font-bold leading-5 tracking-wide">
-            <a class="text-base hover:underline" href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-          </h3>
-
-          {{ if .Summary }}
-            <div class="prose prose-green max-w-none text-gray-500 text-sm font-normal">
-              <p class="text-gray-500">{{ .Summary }}</p>
-            </div>
-          {{ end }}
-
-          <div class="text-green-600 hover:text-green-500 hover:underline">
-            <a href="{{ .RelPermalink }}">Read more →</a>
-          </div>
+          {{ partial "posts/tumbnail.html" . }}
         </div>
       {{ end }}
     </div>

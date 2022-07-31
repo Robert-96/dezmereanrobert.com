@@ -3,10 +3,10 @@
   <header class="pt-3 pb-9 space-y-3 md:space-y-5">
     <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-6xl">{{ .Title | humanize }}</h1>
 
-    <p class="text-lg text-gray-500">{{ .Params.Subtitle }}</p>
+    <p class="text-lg text-gray-500">{{ .Params.Subtitle | markdownify }}</p>
   </header>
 
-  <div class="prose prose-green max-w-none pt-5">
+  <div class="prose prose-green max-w-none pt-9">
     {{ .Content }}
   </div>
 </article>

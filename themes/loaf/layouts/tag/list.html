@@ -20,19 +20,37 @@
 
   <div>
     {{ if eq .Kind "taxonomy" }}
-      <ul class="py-6 space-y-1">
+      <ul class="space-y-6 divide-y divide-gray-200">
         {{ range $.Site.Taxonomies.tags.ByCount }}
-          <li class="flex">
-            <span class="w-24 text-base font-medium text-gray-500">
-              {{ if eq .Count 1 }}
-                {{ .Count }} Article
-              {{ else }}
-                {{ .Count }} Articles
-              {{ end }}
-            </span>
+          <li class="xl:flex xl:flex-row py-6">
+            <div class="xl:flex-shrink-0 xl:w-48 xl:mr-24">
+              <a class="font-base font-medium text-green-600 hover:text-green-500 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name | markdownify }}</a>
+
+              <span class="mx-2 font-medium text-gray-500">·</span>
+
+              <span class="text-base text-gray-500">
+                {{ if eq .Count 1 }}
+                  {{ .Count }} Post
+                {{ else }}
+                  {{ .Count }} Posts
+                {{ end }}
+              </span>
+            </div>
 
             <div>
-              <a class="font-medium text-green-600 hover:text-green-500 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name | markdownify }}</a>
+              <h2 class="text-base leading-5 tracking-wide uppercase text-gray-500">Latest Posts</h2>
+
+              <div class="pt-7 xl:mt-0 space-y-9">
+                {{ range first 3 .Pages }}
+                  <div>
+                    {{ partial "posts/tumbnail.html" . }}
+                  </div>
+                {{ end }}
+              </div>
+
+              <div class="mt-7 font-medium text-green-600 uppercase hover:text-teal-500 hover:underline">
+                <a href="{{ . }}">See more posts →</a>
+              </div>
             </div>
           </li>
         {{ end }}
