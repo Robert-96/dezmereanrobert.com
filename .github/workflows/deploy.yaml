@@ -7,14 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install Hugo
         run: |
-          sudo apt install hugo
+          bew install hugo
 
       - name: Build the Hugo website
         run: |
