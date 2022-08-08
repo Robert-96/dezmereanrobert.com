@@ -1,7 +1,7 @@
 ---
 title: "AltWalker"
 date: 2021-10-17T18:55:19+03:00
-draft: true
+draft: false
 ---
 
 AltWalker is an open source Model-Based Testing framework that supports running
