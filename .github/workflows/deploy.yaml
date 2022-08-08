@@ -15,7 +15,7 @@ jobs:
 
       - name: Install Hugo
         run: |
-          apt-get install hugo
+          sudo apt-get install hugo
 
       - name: Build the Hugo website
         run: |
