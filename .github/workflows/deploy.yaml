@@ -7,15 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container: klakegg/hugo:latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install Hugo
         run: |
-          sudo apt-get install hugo
+          brew install hugo
 
       - name: Build the Hugo website
         run: |
