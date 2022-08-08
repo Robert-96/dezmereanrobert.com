@@ -9,7 +9,7 @@ This article explains how the `.gpl` format works, how to create a `.gpl` palett
 
 > **Note**: The `.gpl` format is also supported by [Aseprite](https://www.aseprite.org/), [Drawpile](https://drawpile.net/), [Krita](https://krita.org/) and [MyPaint](http://mypaint.org/).
 
-----
+<!--more-->
 
 ## GIMP's Palettes Format
 
@@ -49,7 +49,6 @@ Columns: 5
 
 > **Note**: The RGB values don't need to line up.
 
----
 
 ## Importing the palettes
 
