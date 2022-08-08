@@ -19,6 +19,7 @@ jobs:
 
       - name: Build the Hugo website
         run: |
+          hugo version
           hugo
 
       - name: Upload artifact
