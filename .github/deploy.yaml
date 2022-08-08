@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Hugo
+        run: |
+          apt-get install hugo
+
+      - name: Build the Hugo website
+        run: |
+          hugo -D
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@main
+        with:
+          path: "public/"
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
