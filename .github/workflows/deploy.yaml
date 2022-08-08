@@ -19,7 +19,7 @@ jobs:
 
       - name: Build the Hugo website
         run: |
-          hugo -D
+          hugo
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@main
