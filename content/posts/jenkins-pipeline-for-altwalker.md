@@ -3,7 +3,7 @@ title: "Jenkins Pipeline for AltWalker"
 subtitle: Set up your first Jenkins Pipeline for your AltWalker tests.
 date: 2021-10-03T17:35:06+03:00
 tags: [ "altwalker", "jenkins" , "python", "dotnet" ]
-draft: true
+draft: false
 featured: true
 ---
 
