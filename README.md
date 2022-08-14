@@ -2,7 +2,7 @@
 
 My boring personal website.
 
-## Dev
+## Development Setup
 
 ### Prerequisites
 
