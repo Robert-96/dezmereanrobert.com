@@ -18,9 +18,8 @@ jobs:
 
       - name: Build the Hugo website
         run: |
-          echo "$RUNNER_OS"
-          hugo version
           hugo
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@main
         with:
