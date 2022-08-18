@@ -1,8 +1,8 @@
 ---
 title: "Ember.js: Build a Markdown component with ShowdownJs"
-date: 2021-10-18T00:35:40+03:00
+date: 2020-05-30T00:35:40+03:00
 tags: [ "ember.js", "markdown" ]
-draft: true
+draft: false
 ---
 
 With the help of [ShowdownJs](http://showdownjs.com/) and [HighlightJs](https://highlightjs.org/)
