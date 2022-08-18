@@ -1,12 +1,12 @@
 ---
 title: "Meta Tags With HtmlWebpackPlugin"
 subtitle: "Add meta tags for social media with `HtmlWebpackPlugin`."
-date: 2021-10-16T02:33:24+03:00
+date: 2020-10-13T02:33:24+03:00
 tags: [ "webpack", "javascript" ]
 draft: false
 ---
 
-The goal of this guide is to add social media tags to your webpack project.
+This article explains how to add social media tags to your webpack project.
 
 <!--more-->
 
@@ -20,7 +20,7 @@ If you are using [`webpack`](https://webpack.js.org/) you can use the `meta` opt
 // ...
 new HtmlWebpackPlugin({
   meta: {
-    'description': { name: 'description', contnet: '...' },
+    'description': { name: 'description', content: '...' },
     'keyword': { name: 'keywords', content: '...' },
     'og:title': { property: 'og:title', content: '...' },
     'og:description': { property: 'og:description', content: '...' },
