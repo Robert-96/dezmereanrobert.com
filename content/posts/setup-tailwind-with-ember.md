@@ -1,8 +1,8 @@
 ---
 title: "Ember.js: Installing Tailwind CSS"
-date: 2021-10-18T00:02:08+03:00
+date: 2020-05-07T00:02:08+03:00
 tags: [ "ember.js", "tailwind", "css" ]
-draft: true
+draft: false
 ---
 
 This tutorial should help you install and customize [Tailwind CSS](https://tailwindcss.com/) in your Ember.js app.
