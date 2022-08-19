@@ -43,13 +43,13 @@
               <div class="pt-7 xl:mt-0 space-y-9">
                 {{ range first 3 .Pages }}
                   <div>
-                    {{ partial "posts/tumbnail.html" . }}
+                    {{ partial "posts/thumbnail.html" . }}
                   </div>
                 {{ end }}
               </div>
 
               <div class="mt-7 font-medium text-green-600 uppercase hover:text-teal-500 hover:underline">
-                <a href="{{ . }}">See more posts →</a>
+                <a href="/tags{{ .Name | relURL }}">See more posts →</a>
               </div>
             </div>
           </li>
