@@ -45,23 +45,23 @@
 </div>
 {{ end }}
 
-{{ if or .Next .Prev }}
+{{ if or .NextInSection .PrevInSection }}
 <div class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
   <div class="flow-root space-y-7 md:space-y-0 py-7">
-    {{ if .Next }}
+    {{ if .NextInSection }}
       <div class="md:float-right md:text-right">
         <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Next Article</h2>
         <div class="text-green-600 hover:text-green-500 hover:underline">
-          <a href="{{ .Next.Permalink | relURL }}">{{ .Next.Title | markdownify }}</a>
+          <a href="{{ .NextInSection.Permalink | relURL }}">{{ .NextInSection.Title | markdownify }}</a>
         </div>
       </div>
     {{ end }}
 
-    {{ if .Prev }}
+    {{ if .PrevInSection }}
       <div class="md:float-left">
         <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Previous Article</h2>
         <div class="text-green-600 hover:text-green-500 hover:underline">
-          <a href="{{ .Prev.Permalink | relURL }}">{{ .Prev.Title | markdownify }}</a>
+          <a href="{{ .PrevInSection.Permalink | relURL }}">{{ .PrevInSection.Title | markdownify }}</a>
         </div>
       </div>
     {{ end }}
