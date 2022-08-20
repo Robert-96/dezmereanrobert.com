@@ -1,11 +1,12 @@
 ---
 title: "Get Url Parameters With Javascript"
-date: 2021-10-18T00:40:21+03:00
+date: 2020-07-28T00:40:21+03:00
 tags: [ "javascript" ]
-draft: true
+draft: false
+featured: true
 ---
 
-*URL Parameters (Query Parameters)* are a set o key value pars attached to the end of a url. They are used to send small amounts of data from page to page, or from client to server via a URL.
+*URL Parameters* (also known as *Query Parameters* or *Query String*) are a set o key value pairs attached to the end of a URL. They are used to send small amounts of data from page to page, or from client to server via the URL.
 
 <!--more-->
 
@@ -37,7 +38,7 @@ https://example.com/path/to/page?color=purple&size=M&size=L
 
 In this case the query string is `color=purple`.
 
-There are caracters that cannot be part of a URL (for example space) and some other characters have a special meaning in a URL (the character `#`). This types of characters need to be encoded (for example space is encoded as `%20`).
+There are characters that cannot be part of a URL (for example space) and some other characters have a special meaning in a URL (the character `#`). This types of characters need to be encoded (for example space is encoded as `%20`).
 
 ## Get a URL parameter
 
