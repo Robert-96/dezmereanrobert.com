@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="divide-y divide-gray-200">
+<article class="divide-y divide-gray-200 dark:divide-slate-500">
   <header class="pt-3 pb-9">
     <div class="space-y-3">
       {{ if .Params.date }}
@@ -22,7 +22,7 @@
       {{ end }}
 
       <div>
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white racking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
       </div>
     </div>
   </header>

@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="divide-y divide-gray-200">
+<article class="divide-y divide-gray-200 dark:divide-slate-500">
   <header class="pt-3 pb-9">
     <div class="space-y-1">
       <dl class="space-y-9">
@@ -18,12 +18,12 @@
       </div>
 
       <div>
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-3xl md:text-5xl">{{ .Title | markdownify }}</h1>
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-3xl md:text-5xl">{{ .Title | markdownify }}</h1>
       </div>
     </div>
   </header>
 
-  <div class="prose prose-green max-w-none pt-6 pb-24">
+  <div class="prose prose-green dark:prose-invert max-w-none pt-6 pb-24">
     {{ .Content }}
   </div>
 </article>
@@ -34,7 +34,7 @@
   <div class="space-y-5 py-7">
     <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">See also</h2>
 
-    <div class="divide-y divide-gray-100">
+    <div class="divide-y divide-gray-100 dark:divide-slate-700">
       {{ range . }}
         <div class="space-y-3 py-5">
           {{ partial "posts/thumbnail.html" . }}
@@ -46,7 +46,7 @@
 {{ end }}
 
 {{ if or .NextInSection .PrevInSection }}
-<div class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
+<div class="text-sm font-medium divide-y divide-gray-200 dark:divide-slate-500 xl:col-start-1 xl:row-start-2">
   <div class="flow-root space-y-7 md:space-y-0 py-7">
     {{ if .NextInSection }}
       <div class="md:float-right md:text-right">

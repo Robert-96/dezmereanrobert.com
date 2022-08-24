@@ -9,16 +9,16 @@
   <div class="space-y-5">
     <div class="space-y-3">
       <h2 class="text-2xl font-bold tracking-tight">
-        <a class="text-gray-900 hover:underline" href="{{ .RelPermalink | relURL }}">{{ .Title | markdownify }}</a>
+        <a class="text-gray-900 dark:text-white hover:underline" href="{{ .RelPermalink | relURL }}">{{ .Title | markdownify }}</a>
       </h2>
 
-      <div class="prose prose-green max-w-none text-gray-500">
+      <div class="prose prose-green dark:prose-invert max-w-none">
         {{ .Summary  }}
       </div>
     </div>
 
     <div class="text-base font-medium">
-      <a class="text-green-600 hover:text-green-700 hover:underline" aria-label='Read "{{ .Title | markdownify }}"' href="{{ .RelPermalink | relURL }}">Read more →</a>
+      <a class="text-green-600 hover:text-green-500 hover:underline" aria-label='Read "{{ .Title | markdownify }}"' href="{{ .RelPermalink | relURL }}">Read more →</a>
     </div>
   </div>
 </article>

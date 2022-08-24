@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   {{- partial "head.html" . -}}
-  <body class="text-black font-sans leading-tight antialiased">
-    <div class="w-screen h-3 bg-gradient-to-r from-green-500 to-green-700"></div>
+  <body class="bg-white dark:bg-slate-800 text-black dark:text-white font-sans leading-tight antialiased">
+    <div class="w-screen h-3 bg-gradient-to-r from-lime-500 via-green-500 via-emerald-500 to-teal-500"></div>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       {{- partial "header.html" . -}}
 
-      <div class="divide-y divide-gray-200 pb-24">
+      <div class="divide-y divide-gray-200 dark:divide-slate-500 pb-24">
         {{- block "main" . }}{{- end }}
       </div>
 
