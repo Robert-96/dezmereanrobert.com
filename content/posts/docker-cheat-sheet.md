@@ -1,10 +1,9 @@
 ---
-title: "Docker Cheat Sheet"
+title: "Docker CLI Cheat Sheet"
 subtitle: "My docker commands cheat sheet."
-description: "Text about this post."
 date: 2021-10-13T00:00:35+03:00
 tags: [ "docker" ]
-draft: true
+draft: false
 featured: true
 ---
 
@@ -38,31 +37,6 @@ $ docker push username/repository:tag                  # Upload tagged image to 
 
 $ docker system prune                                  # Remove all unused containers, networks and images.
 ```
-
-## Table of contents
-
-* [Build](#build)
-  - [Build an image from a `Dockerfile`](#build-an-image-from-a-dockerfile)
-* [Run](#run)
-  - [Run an image ](#run-an-image)
-  - [Run an image from a registry](#run-an-image-from-a-registry)
-  - [Run a command on an image](#run-a-command-on-an-image)
-  - [Run a command on a running container](#run-a-command-on-a-running-container)
-* [Images](#images)
-  - [List all images](#list-all-images)
-  - [Remove an image](#remove-an-image)
-  - [Remove all images](#remove-all-images)
-* [Containers](#containers)
-  - [List all running containers](#list-all-running-containers)
-  - [List all containers](#list-all-containers)
-  - [Stop a container](#stop-a-container)
-  - [Stop all running containers](#stop-all-running-containers)
-  - [Kill a container](#kill-a-container)
-  - [Kill all running containers](#kill-all-running-containers)
-  - [Remove a container](#remove-a-container)
-  - [Remove all stopped containers](#remove-all-stopped-containers)
-* [Registry](#registry)
-  - [Upload tagged image to registry](#upload-tagged-image-to-registry)
 
 ## Build
 
@@ -175,7 +149,7 @@ Option          | Description
 
 ### Remove an image
 
-```
+```console
 $ docker image rm <image id>
 ```
 
@@ -309,3 +283,25 @@ $ docker logout
 ```
 
 Log out of this CLI session.
+
+## System
+
+### Remove all unused containers, networks and images.
+
+```console
+$ docker system prune
+```
+
+This command remove all unused (dangling) containers, networks and images.
+
+```console
+$ docker system prune --all
+```
+
+This command remove all images unused images not just dangling ones.
+
+Option           | Description
+---------------- | ----------------------------------------------------
+`-a`, `--all`    | Remove all unused images not just dangling ones.
+`--force` , `-f` | Do not prompt for confirmation.
+`--volumes`      | Prune volumes.
