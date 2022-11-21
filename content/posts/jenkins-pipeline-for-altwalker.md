@@ -7,7 +7,7 @@ draft: false
 featured: true
 ---
 
-This tutorial should help you setup a CI/CD pipeline on Jenkins for your [AltWalker](https://altom.gitlab.io/altwalker/altwalker/) tests.
+This tutorial should help you setup a CI/CD pipeline on Jenkins for your [AltWalker](https://altwalker.github.io/altwalker/) tests.
 
 <!--more-->
 
@@ -180,5 +180,5 @@ For a fully working example you can check out:
   * https://www.jenkins.io/doc/pipeline/tour/hello-world/
   * https://www.jenkins.io/doc/book/pipeline/
 * AltWalker:
-  * https://altom.gitlab.io/altwalker/altwalker/
+  * https://altwalker.github.io/altwalker/
   * https://hub.docker.com/r/altwalker/altwalker/

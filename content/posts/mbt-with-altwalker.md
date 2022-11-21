@@ -8,7 +8,7 @@ featured: true
 
 Get started with Model-Based Testing in python using AltWalker.
 
-This tutorial should help you get started with Model-Based Testing using [AltWalker](https://altom.gitlab.io/altwalker/altwalker/).
+This tutorial should help you get started with Model-Based Testing using [AltWalker](https://altwalker.github.io/altwalker/).
 
 <!--more-->
 
