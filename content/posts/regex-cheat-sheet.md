@@ -9,8 +9,6 @@ This regular expression (RegEx) cheat sheet provides a quick overview of all the
 
 <!--more-->
 
-<!--more-->
-
 ## POSIX Character Classes
 
 | Character Class | Description |
