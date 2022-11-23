@@ -34,12 +34,10 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
           - uses: actions/checkout@v3
 
           - name: Install Hugo
-            run: |
-              brew install hugo
+            run: brew install hugo
 
           - name: Build the Hugo website
-            run: |
-              hugo --minify
+            run: hugo --minify
 
           - name: Upload artifact
             uses: actions/upload-pages-artifact@main
