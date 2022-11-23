@@ -42,7 +42,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
           - name: Upload artifact
             uses: actions/upload-pages-artifact@main
             with:
-            path: "public/"
+              path: "public/"
 
       deploy:
         needs: build
