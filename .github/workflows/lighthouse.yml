@@ -1,0 +1,49 @@
+name: Lighthouse
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Hugo
+        run: |
+          brew install hugo
+
+      - name: Build the Hugo website
+        run: |
+          hugo --minify
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: "public/"
+
+  lighthouse:
+    needs: build
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install Lighthouse
+        run: |
+          npm install -g @lhci/cli@0.8.x
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
+      - name: Run Lighthouse
+        run: |
+          lhci autorun
