@@ -70,7 +70,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 
 Your site should now be published! When you push changes to your repository, the GitHub Action will automatically deploy them for you.
 
-Refer to the official documentation for [further information](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
+Refer to the official Hugo documentation for [further information](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
 
 ## Use a custom domains
 
@@ -80,4 +80,4 @@ If you’d like to use a custom domain for your GitHub Pages site, you need to:
 
 1. Create a file `static/CNAME`. Your custom domain name should be the only contents inside `CNAME`. Since it’s inside static, the published site will contain the `CNAME` file at the root of the published site, which is a requirement of GitHub Pages.
 
-Refer to the official documentation for [further information](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
+Refer to the official GitHub documentation for [further information](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
