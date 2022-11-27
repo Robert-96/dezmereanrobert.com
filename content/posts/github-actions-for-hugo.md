@@ -40,7 +40,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
             run: hugo --minify
 
           - name: Upload artifact
-            uses: actions/upload-pages-artifact@main
+            uses: actions/upload-pages-artifact@v1
             with:
               path: "public/"
 
