@@ -43,6 +43,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+          path: 'public/'
 
       - name: Debug
         run: ls -R
