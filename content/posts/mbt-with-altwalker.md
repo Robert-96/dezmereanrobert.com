@@ -12,6 +12,10 @@ This tutorial should help you get started with Model-Based Testing using [AltWal
 
 <!--more-->
 
+## What is Model-Based Testing?
+
+## What is AltWalker?
+
 ## SUT
 
 ## Modeling
