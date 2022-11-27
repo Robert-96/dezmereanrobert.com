@@ -4,6 +4,7 @@ title = "Dezmerean Robert"
 theme = "loaf"
 
 [params]
+  author = "Dezmerean Robert"
   title = "Dezmerean Robert"
   description = "Dezmerean Robert's boring personal website."
   images = ['site-feature-image.jpg']
