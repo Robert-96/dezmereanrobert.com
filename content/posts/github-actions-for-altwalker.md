@@ -3,7 +3,7 @@ title: "GitHub Actions for Altwalker"
 subtitle: "How to crate a GitHub Actions workflow to run your AltWalker tests."
 date: 2022-11-23T23:59:10+02:00
 tags: [ "github", "altwalker" ]
-draft: true
+draft: false
 ---
 
 This tutorial should help you setup a GitHub workflow to automatically run your AltWalker tests.
