@@ -45,9 +45,6 @@ jobs:
           name: build
           path: 'public/'
 
-      - name: Debug
-        run: ls -R
-
       - name: Run Lighthouse
         run: |
           lhci autorun
