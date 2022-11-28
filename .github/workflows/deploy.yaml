@@ -18,7 +18,7 @@ jobs:
 
       - name: Build the Hugo website
         run: |
-          npm build-prod
+          npm run build-prod
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
