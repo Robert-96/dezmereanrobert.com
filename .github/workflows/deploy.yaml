@@ -16,6 +16,15 @@ jobs:
         run: |
           brew install hugo
 
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install npm dependencies
+        run: |
+          npm install
+
       - name: Build the Hugo website
         run: |
           npm run build-prod
