@@ -8,8 +8,10 @@
     "webpack": "webpack",
     "webpack-watch": "webpack --watch",
     "hugo-build": "hugo --cleanDestinationDir",
+    "hugo-build-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server --disableFastRender",
     "build": "npm-run-all webpack hugo-build",
+    "build-prod": "npm-run-all webpack hugo-build-prod",
     "dev": "npm-run-all webpack --parallel webpack-watch hugo-server"
   },
   "repository": {
