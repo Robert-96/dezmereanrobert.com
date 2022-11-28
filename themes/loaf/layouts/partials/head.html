@@ -8,6 +8,14 @@
     <title>{{ .Title }} | {{ .Site.Title }}</title>
   {{ end }}
 
+  {{ if .Page.Description }}
+    <meta name="description" content="{{ .Page.Description }}">
+  {{ else }}
+    <meta name="description" content="{{ .Site.Params.description }}">
+  {{ end }}
+
+  <meta name="author" content="{{ .Site.Params.author }}">
+
   <!-- Favicon -->
   <link rel="icon" href="{{ "/icons/favicon.svg" | relURL }}">
 
@@ -15,7 +23,8 @@
   <script src="https://cdn.tailwindcss.com/3.1.8?plugins=typography"></script>
 
   <!-- Custom JS -->
-  <script src="/js/dark.js"></script>
+  {{ $darkJs := resources.Get "js/dark.js" | minify | fingerprint }}
+  <script src="{{ $darkJs.RelPermalink }}"></script>
 
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
