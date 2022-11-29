@@ -9,7 +9,7 @@
     "tailwind-watch": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css --watch",
     "webpack": "webpack",
     "webpack-watch": "webpack --watch",
-    "hugo-build": "hugo --cleanDestinationDir",
+    "hugo-build": "hugo -D --cleanDestinationDir",
     "hugo-build-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server --disableFastRender",
     "build": "npm-run-all tailwind webpack hugo-build",
