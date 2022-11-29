@@ -5,14 +5,16 @@
   "description": "My boring personal website.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
+    "tailwind-watch": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css --watch",
     "webpack": "webpack",
     "webpack-watch": "webpack --watch",
     "hugo-build": "hugo --cleanDestinationDir",
     "hugo-build-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server --disableFastRender",
-    "build": "npm-run-all webpack hugo-build",
-    "build-prod": "npm-run-all webpack hugo-build-prod",
-    "dev": "npm-run-all webpack --parallel webpack-watch hugo-server"
+    "build": "npm-run-all tailwind webpack hugo-build",
+    "build-prod": "npm-run-all tailwind webpack hugo-build-prod",
+    "dev": "npm-run-all tailwind webpack --parallel tailwind-watch webpack-watch hugo-server"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,9 @@
   },
   "homepage": "https://www.dezmereanrobert.com",
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.8",
     "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.2.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   }

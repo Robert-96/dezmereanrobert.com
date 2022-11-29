@@ -20,11 +20,12 @@
   <link rel="icon" href="{{ "/icons/favicon.svg" | relURL }}">
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com/3.1.8?plugins=typography"></script>
+  {{ $tailwindCSS := resources.Get "css/main.css" | minify | fingerprint }}
+  <link href="{{ $tailwindCSS.RelPermalink }}" rel="stylesheet">
 
   <!-- Custom JS -->
-  {{ $darkJs := resources.Get "js/dark.js" | minify | fingerprint }}
-  <script src="{{ $darkJs.RelPermalink }}"></script>
+  {{ $darkJS := resources.Get "js/dark.js" | minify | fingerprint }}
+  <script src="{{ $darkJS.RelPermalink }}"></script>
 
   {{ template "_internal/opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
