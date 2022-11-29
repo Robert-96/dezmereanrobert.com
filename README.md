@@ -7,13 +7,15 @@ My boring personal website.
 ### Prerequisites
 
 * [hugo](https://gohugo.io/)
+* [node](https://nodejs.org/)
+* [npm](https://www.npmjs.com/)
 
-### Start the Hugo server
+### Start the development server
 
-To start the Hugo server with drafts enabled:
+To start the development server with drafts enabled:
 
 ```bash
-$ hugo serve -D
+$ npm dev
 ```
 
 Navigate to the site at http://localhost:1313/.
@@ -23,15 +25,15 @@ Navigate to the site at http://localhost:1313/.
 To build the static pages run:
 
 ```bash
-$ hugo -D
+$ npm run build
 ```
 
-Output will be in `./public/` directory by default (`-d/--destination` flag to change it).
+Output will be in `./public/` directory.
 
 To build without drafts enabled just call:
 
 ```
-$ hugo
+$ npm run build-prod
 ```
 
 ### Add Some Content
