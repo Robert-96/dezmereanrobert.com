@@ -137,4 +137,4 @@ dist
 themes/loaf/assets/js/*.js
 
 # Tailwind CSS Build
-theme/loaf/assets/css/*.css
+themes/loaf/assets/css/*.css
