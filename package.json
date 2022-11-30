@@ -11,7 +11,7 @@
     "webpack-watch": "webpack --watch",
     "hugo-build": "hugo -D --cleanDestinationDir",
     "hugo-build-prod": "hugo --minify --cleanDestinationDir",
-    "hugo-server": "hugo server --disableFastRender",
+    "hugo-server": "hugo server -D --disableFastRender",
     "build": "npm-run-all tailwind webpack hugo-build",
     "build-prod": "npm-run-all tailwind webpack hugo-build-prod",
     "dev": "npm-run-all tailwind webpack --parallel tailwind-watch webpack-watch hugo-server"
