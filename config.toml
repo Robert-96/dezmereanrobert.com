@@ -1,7 +1,7 @@
 baseURL = "http://www.dezmereanrobert.com/"
-languageCode = "en-us"
 title = "Dezmerean Robert"
 theme = "loaf"
+languageCode = "en"
 
 [params]
   author = "Dezmerean Robert"
