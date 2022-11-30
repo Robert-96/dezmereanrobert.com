@@ -1,15 +1,8 @@
-<article class="xl:flex xl:flex-row">
-  <dl class="xl:flex-shrink-0 xl:w-28 xl:mr-24">
-    <dt class="sr-only">Published on</dt>
-    <dd class="text-base font-medium text-gray-500">
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-    </dd>
-  </dl>
-
+<article>
   <div class="space-y-5">
     <div class="space-y-3">
       <h2 class="text-2xl font-bold tracking-tight">
-        <a class="text-gray-900 dark:text-white hover:underline" href="{{ .RelPermalink | relURL }}">{{ .Title | markdownify }}</a>
+        <a class="text-gray-900 dark:text-white hover:underline" href="{{ .RelPermalink | relURL }}">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</a>
       </h2>
 
       <div class="prose prose-green dark:prose-invert max-w-none">
