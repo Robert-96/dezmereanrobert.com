@@ -15,7 +15,7 @@ My boring personal website.
 To start the development server with drafts enabled:
 
 ```bash
-$ npm dev
+$ npm run dev
 ```
 
 Navigate to the site at http://localhost:1313/.
