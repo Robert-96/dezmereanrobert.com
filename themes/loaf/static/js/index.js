@@ -12,6 +12,6 @@ function updateExternalLinks() {
   });
 };
 
-window.addEventListener("load", function() {
+window.addEventListener('load', function() {
   updateExternalLinks();
 });
