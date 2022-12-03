@@ -1,7 +1,7 @@
 <article class="xl:flex xl:flex-row">
   <dl class="xl:flex-shrink-0 xl:w-28 xl:mr-24">
     <dt class="sr-only">Published on</dt>
-    <dd class="text-base font-medium text-gray-500">
+    <dd class="text-base font-medium text-gray-500 dark:text-gray-400">
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
     </dd>
   </dl>
@@ -9,7 +9,7 @@
   <div class="space-y-5">
     <div>
       {{ range .Params.tags }}
-        <a class="mr-3 font-medium text-green-600 hover:text-green-500 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+        <a class="mr-3 font-medium text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
       {{ end }}
     </div>
 
@@ -24,7 +24,7 @@
     </div>
 
     <div class="text-base font-medium">
-      <a class="text-green-600 hover:text-green-500 hover:underline" aria-label='Read "{{ .Title | markdownify }}"' href="{{ .RelPermalink | relURL }}">Read more →</a>
+      <a class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" aria-label='Read "{{ .Title | markdownify }}"' href="{{ .RelPermalink | relURL }}">Read more →</a>
     </div>
   </div>
 </article>

@@ -5,7 +5,7 @@
       <dl class="space-y-9">
         <div>
           <dt class="sr-only">Published on</dt>
-          <dd class="text-base leading-6 font-medium text-gray-500">
+          <dd class="text-base leading-6 font-medium text-gray-500 dark:text-slate-300">
             <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
           </dd>
         </div>
@@ -13,13 +13,19 @@
 
       <div class="space-y-9 space-x-3 font-medium">
         {{ range .Params.tags }}
-          <a class="text-green-600 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+          <a class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
         {{ end }}
       </div>
 
       <div>
         <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-3xl md:text-5xl">{{ .Title | markdownify }}</h1>
       </div>
+
+      {{ if .Params.subtitle }}
+        <div>
+          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.subtitle }}</span>
+        </div>
+      {{ end }}
     </div>
   </header>
 
@@ -32,7 +38,7 @@
 {{ with $related }}
 <div class="text-sm font-medium">
   <div class="space-y-5 py-7">
-    <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">See also</h2>
+    <h2 class="text-sm leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">See also</h2>
 
     <div class="divide-y divide-gray-100 dark:divide-slate-700">
       {{ range . }}
@@ -50,8 +56,8 @@
   <div class="flow-root space-y-7 md:space-y-0 py-7">
     {{ if .NextInSection }}
       <div class="md:float-right md:text-right">
-        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Next Article</h2>
-        <div class="text-green-600 hover:text-green-500 hover:underline">
+        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Next Article</h2>
+        <div class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
           <a href="{{ .NextInSection.Permalink | relURL }}">{{ .NextInSection.Title | markdownify }}</a>
         </div>
       </div>
@@ -59,8 +65,8 @@
 
     {{ if .PrevInSection }}
       <div class="md:float-left">
-        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Previous Article</h2>
-        <div class="text-green-600 hover:text-green-500 hover:underline">
+        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Previous Article</h2>
+        <div class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
           <a href="{{ .PrevInSection.Permalink | relURL }}">{{ .PrevInSection.Title | markdownify }}</a>
         </div>
       </div>

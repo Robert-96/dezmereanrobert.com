@@ -1,0 +1,48 @@
+{{ define "main" }}
+<article class="divide-y divide-gray-200 dark:divide-slate-500">
+  <header class="pt-3 pb-5">
+    <div class="space-y-3">
+      {{ if .Params.date }}
+        <dl class="space-y-9">
+          <div>
+            <dt class="sr-only">Published on</dt>
+            <dd class="text-base text-gray-500 leading-6 font-medium">
+              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            </dd>
+          </div>
+        </dl>
+      {{ end }}
+
+      {{ if .Params.tags }}
+        <div class="space-y-9 spcae-x-3">
+          {{ range .Params.tags }}
+            <a class="font-medium text-green-700 hover:text-green-600 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <div>
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
+      </div>
+
+      {{ if .Params.subtitle }}
+        <div>
+          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.subtitle }}</span>
+        </div>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="prose prose-green dark:prose-invert max-w-none pt-9 pb-24">
+    {{ .Content }}
+  </div>
+</article>
+
+<div class="text-sm text-gray-500 dark:text-slate-300 font-medium divide-gray-200 dark:divide-slate-500 xl:col-start-1 xl:row-start-2">
+  <div class="space-y-7 py-7">
+    <p>
+      You can find the rest of my projects in the <a class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/projects/" | relURL}}">projects</a> section.
+    </p>
+  </div>
+</div>
+{{ end }}

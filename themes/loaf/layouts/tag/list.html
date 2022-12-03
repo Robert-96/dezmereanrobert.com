@@ -23,12 +23,12 @@
       <ul class="space-y-6 divide-y divide-gray-200 dark:divide-slate-500">
         {{ range $.Site.Taxonomies.tags.ByCount }}
           <li class="xl:flex xl:flex-row py-6">
-            <div class="xl:flex-shrink-0 xl:w-48 xl:mr-24">
-              <a class="font-base font-medium text-green-600 hover:text-green-500 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name | markdownify }}</a>
+            <div class="xl:flex-shrink-0 xl:w-48 xl:mr-24 mb-3">
+              <a class="font-base font-medium text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name | markdownify }}</a>
 
               <span class="mx-2 font-medium text-gray-500">·</span>
 
-              <span class="text-base text-gray-500">
+              <span class="text-base text-gray-500 dark:text-slate-300">
                 {{ if eq .Count 1 }}
                   {{ .Count }} Post
                 {{ else }}
@@ -38,9 +38,7 @@
             </div>
 
             <div>
-              <h2 class="text-base leading-5 tracking-wide uppercase text-gray-500">Latest Posts</h2>
-
-              <div class="pt-7 xl:mt-0 space-y-9">
+              <div class="xl:mt-0 space-y-9">
                 {{ range first 3 .Pages }}
                   <div>
                     {{ partial "posts/thumbnail.html" . }}
@@ -48,9 +46,13 @@
                 {{ end }}
               </div>
 
-              <div class="mt-7 font-medium text-green-600 uppercase hover:text-teal-500 hover:underline">
-                <a href="/tags{{ .Name | relURL }}">See more posts →</a>
+              {{ if gt .Count 3 }}
+              <div class="mt-7 text-gray-500 dark:text-slate-300 font-medium">
+                <p>
+                  See all post with the <a class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="/tags{{ .Name | relURL }}">#{{ .Name }}</a> tag.
+                </p>
               </div>
+              {{ end }}
             </div>
           </li>
         {{ end }}

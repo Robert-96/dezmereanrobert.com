@@ -3,21 +3,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{ if .IsHome }}
-    <title>{{ .Site.Title }}</title>
+    <title>{{ .Site.Params.Title }}</title>
   {{ else }}
-    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <title>{{ .Title }} | {{ .Site.Params.Title }}</title>
   {{ end }}
 
   {{ if .Page.Description }}
     <meta name="description" content="{{ .Page.Description }}">
   {{ else }}
-    <meta name="description" content="{{ .Site.Params.description }}">
+    <meta name="description" content="{{ .Site.Params.Description }}">
   {{ end }}
 
-  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="author" content="{{ .Site.Params.Author }}">
 
   <!-- Favicon -->
   <link rel="icon" href="{{ "/icons/favicon.svg" | relURL }}">
+
+  <!-- Metadata -->
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
 
   <!-- Tailwind CSS -->
   {{ $tailwindCSS := resources.Get "css/main.css" | minify | fingerprint }}
@@ -26,7 +30,4 @@
   <!-- Custom JS -->
   {{ $darkJS := resources.Get "js/dark.js" | minify | fingerprint }}
   <script src="{{ $darkJS.RelPermalink }}"></script>
-
-  {{ template "_internal/opengraph.html" . }}
-  {{ template "_internal/twitter_cards.html" . }}
 </head>
