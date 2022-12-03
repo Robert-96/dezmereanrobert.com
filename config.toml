@@ -5,8 +5,8 @@ languageCode = "en"
 
 [params]
   author = "Dezmerean Robert"
-  title = "Dezmerean Robert"
-  description = "Dezmerean Robert's boring personal website."
+  title = "Dezmerean Robert's Blog"
+  description = "Dezmerean Robert's boring blog. Focus on Programming, Python, JavaScript, and more!"
   images = ['site-feature-image.jpg']
 
 [social]
