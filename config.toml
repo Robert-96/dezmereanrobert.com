@@ -7,7 +7,7 @@ languageCode = "en"
   author = "Dezmerean Robert"
   title = "Dezmerean Robert's Blog"
   description = "Dezmerean Robert's boring blog. Focus on Programming, Python, JavaScript, and more!"
-  images = ['site-feature-image.jpg']
+  images = ['img/thumbnail.png']
 
 [social]
   twitter = "dezmereanrobert"
