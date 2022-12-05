@@ -8,6 +8,7 @@ function updateExternalLinks() {
 
     if(!regex.test(anchor.href)) {
       anchor.setAttribute('target', '_blank');
+      anchor.setAttribute('rel', 'noopener');
     }
   });
 };
