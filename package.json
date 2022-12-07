@@ -7,13 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
     "tailwind-watch": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css --watch",
-    "webpack": "webpack",
-    "webpack-watch": "webpack --watch",
+    "webpack": "webpack --mode=development",
+    "webpack-prod": "webpack --mode=production",
+    "webpack-watch": "webpack --watch --mode=development",
     "hugo-build": "hugo -D --cleanDestinationDir",
     "hugo-build-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server -D --disableFastRender",
     "build": "npm-run-all tailwind webpack hugo-build",
-    "build-prod": "npm-run-all tailwind webpack hugo-build-prod",
+    "build-prod": "npm-run-all tailwind webpack-prod hugo-build-prod",
     "dev": "npm-run-all tailwind webpack --parallel tailwind-watch webpack-watch hugo-server"
   },
   "repository": {
