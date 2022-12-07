@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
+    "tailwind-prod": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css --minify",
     "tailwind-watch": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css --watch",
     "webpack": "webpack --mode=development",
     "webpack-prod": "webpack --mode=production",
@@ -14,7 +15,7 @@
     "hugo-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server -D --disableFastRender",
     "build": "npm-run-all tailwind webpack hugo",
-    "build-prod": "npm-run-all tailwind webpack-prod hugo-prod",
+    "build-prod": "npm-run-all tailwind-prod webpack-prod hugo-prod",
     "dev": "npm-run-all tailwind webpack --parallel tailwind-watch webpack-watch hugo-server"
   },
   "repository": {
