@@ -10,11 +10,11 @@
     "webpack": "webpack --mode=development",
     "webpack-prod": "webpack --mode=production",
     "webpack-watch": "webpack --watch --mode=development",
-    "hugo-build": "hugo -D --cleanDestinationDir",
-    "hugo-build-prod": "hugo --minify --cleanDestinationDir",
+    "hugo": "hugo -D --cleanDestinationDir",
+    "hugo-prod": "hugo --minify --cleanDestinationDir",
     "hugo-server": "hugo server -D --disableFastRender",
-    "build": "npm-run-all tailwind webpack hugo-build",
-    "build-prod": "npm-run-all tailwind webpack-prod hugo-build-prod",
+    "build": "npm-run-all tailwind webpack hugo",
+    "build-prod": "npm-run-all tailwind webpack-prod hugo-prod",
     "dev": "npm-run-all tailwind webpack --parallel tailwind-watch webpack-watch hugo-server"
   },
   "repository": {
