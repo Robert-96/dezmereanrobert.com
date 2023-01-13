@@ -1,7 +1,7 @@
 ---
 title: "Ember.js: Build a Markdown component with ShowdownJs"
 date: 2020-05-30T00:35:40+03:00
-tags: [ "ember.js", "markdown" ]
+tags: [ "ember.js", "javascript", "markdown" ]
 draft: false
 ---
 
@@ -17,11 +17,6 @@ both client side (browser) or server side (with nodejs).
 Let's build component for rendering markdown with ShowdownJs and HighlightJs.
 
 <!--more-->
-
-## Table of contents
-
-* [Create a `MarkdownView` component](#create-a-markdownview-component)
-* [Add syntax highlighting using HighlightJs *(Optional)*](#add-syntax-highlighting-using-highlightjs-optional)
 
 ## Create a `MarkdownView` component
 
