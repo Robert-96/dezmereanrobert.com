@@ -2,7 +2,7 @@
 title: "Meta Tags With HtmlWebpackPlugin"
 subtitle: "Add meta tags for social media with `HtmlWebpackPlugin`."
 date: 2020-10-13T02:33:24+03:00
-tags: [ "webpack", "javascript" ]
+tags: [ "webpack", "javascript", "snippet" ]
 draft: false
 ---
 
