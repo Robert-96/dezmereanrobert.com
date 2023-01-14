@@ -1,6 +1,6 @@
 ---
 title: "AltWalker"
-date: 2021-10-17T18:55:19+03:00
+subtitle: "AltWalker is an open source Model-Based Testing framework that supports running tests written in Python3 and .NET/C#."
 draft: false
 ---
 
@@ -10,7 +10,9 @@ and AltWalker generates test cases from your graph (using [GraphWalker](http://g
 
 <!--more-->
 
-### Model-Based Testing
+{{< figure src="./screenshot.png" alt="Screenshot of a Model from Model-Editor." >}}
+
+## Model-Based Testing
 
 [Model-Based Testing](https://en.wikipedia.org/wiki/Model-based_testing) is a testing
 technique which offers a way of generating test cases based on models that describe the behavior
@@ -29,7 +31,7 @@ Why use Model-Based Testing:
 * dynamically generates multiple test scripts based on different conditions (like coverage or length)
 * allows for a large number of tests to be created which results in a larger part of the system under test to be covered.
 
-### AltWalker
+## AltWalker
 
 AltWalker is a test execution tool, which  aims to make it easy to write and run your model-based tests. AltWalker uses GraphWalker to generate a path through the models.
 
