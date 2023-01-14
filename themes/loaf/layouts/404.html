@@ -1,11 +1,15 @@
 {{ define "main"}}
-<main class="divide-y divide-gray-200 dark:divide-slate-500">
-  <header class="pt-3 pb-9 space-y-2 md:space-y-5">
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Name | humanize }}</h1>
+<main class="divide-y divide-gray-200 dark:divide-slate-500 mb-12">
+  <header class="pt-3 pb-9 space-y-3 md:space-y-5">
+    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Name | humanize | title }}</h1>
+
+    <p class="text-lg text-gray-500 dark:text-slate-300">The page you are looking for does not exists. Unless your are looking for the 404 page, If that's the case, it definitely exists, and you definitely found it.</p>
   </header>
 
-  <div>
-    <h1><a href="{{ "/" | relURL }}">Go Home</a></h1>
+  <div class="prose prose-green dark:prose-invert max-w-none pt-9">
+    <p>You can find all my blog post on the <a href="{{ "/posts" | relURL }}">posts</a> section.</p>
+
+    <p>Or you can check out my <a href="{{ "/projects" | relURL }}">projects</a> page for a full list of all the software I working/worked on.</p>
   </div>
 </main>
 
