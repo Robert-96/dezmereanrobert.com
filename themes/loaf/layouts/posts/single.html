@@ -13,7 +13,7 @@
 
       <div class="space-y-9 space-x-3 font-medium">
         {{ range .Params.tags }}
-          <a class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+          <a class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
         {{ end }}
       </div>
 
@@ -57,7 +57,7 @@
     {{ if .NextInSection }}
       <div class="md:float-right md:text-right">
         <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Next Article</h2>
-        <div class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
+        <div class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
           <a href="{{ .NextInSection.Permalink | relURL }}">{{ .NextInSection.Title | markdownify }}</a>
         </div>
       </div>
@@ -66,7 +66,7 @@
     {{ if .PrevInSection }}
       <div class="md:float-left">
         <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Previous Article</h2>
-        <div class="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
+        <div class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
           <a href="{{ .PrevInSection.Permalink | relURL }}">{{ .PrevInSection.Title | markdownify }}</a>
         </div>
       </div>

@@ -16,7 +16,7 @@
       {{ if .Params.tags }}
         <div class="space-y-9 spcae-x-3">
           {{ range .Params.tags }}
-            <a class="font-medium text-green-700 hover:text-green-600 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+            <a class="font-medium text-green-700 hover:text-green-500 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
           {{ end }}
         </div>
       {{ end }}
