@@ -12,5 +12,5 @@
   /* domains to exclude */
   [href*="//dezmereanrobert.com"],
 )) {
-  @apply text-blue-400;
+  @apply text-blue-600;
 }
