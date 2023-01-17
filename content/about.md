@@ -13,6 +13,6 @@ You can also find my open-source projects on [GitHub](https://github.com/Robert-
 
 Over the years I’ve published a few dozen articles, some more noteworthy than others. You can find all my blog post on the [posts](/posts/) section.
 
-### Where you can found me?
+## Where you can found me?
 
 [GitHub](https://github.com/Robert-96) • [Twitter](https://twitter.com/dezmereanrobert) • [LinkedIn](https://www.linkedin.com/in/robert-dezmerean) • [DEV.to](https://dev.to/robert96) • [StackOverflow](https://stackoverflow.com/users/19676423/robert-96)
