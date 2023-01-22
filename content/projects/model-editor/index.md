@@ -1,7 +1,7 @@
 ---
 title: "Model-Editor"
 subtitle: "A web based editor and visualizer for models written using the GraphWalker JSON format."
-draft: true
+draft: false
 ---
 
 An open source web based editor for AltWalker and GraphWalker models. The web applications allows you to visually build and edit your models.
