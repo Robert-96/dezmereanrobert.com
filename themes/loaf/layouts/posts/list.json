@@ -6,7 +6,10 @@
       {{- if $index -}} , {{- end }}
       {
         "url": {{ .Permalink | jsonify }},
-        "title": {{ .Title | jsonify }}
+        "title": {{ .Title | jsonify }},
+        "subtitle": {{ .Params.Subtitle | jsonify }},
+        "data": {{ .Date | jsonify }},
+        "tags": {{ .Params.Tags | jsonify }}
       }
     {{- end }}
   ]
