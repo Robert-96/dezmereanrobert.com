@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {{- $posts := where .Site.RegularPages "Section" "posts" -}}
+    {{- $posts := where $posts ".Draft" false -}}
+    {{- range $index, $post := $posts }}
+      {{- if $index -}} , {{- end }}
+      {
+        "url": {{ .Permalink | jsonify }},
+        "title": {{ .Title | jsonify }}
+      }
+    {{- end }}
+  ]
+}
