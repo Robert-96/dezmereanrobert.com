@@ -1,6 +1,9 @@
 version: 2
+
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    assignees:
+      - "Robert-96"
     schedule:
       interval: "weekly"
