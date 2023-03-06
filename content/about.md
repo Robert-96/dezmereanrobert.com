@@ -4,7 +4,7 @@ subtitle: "**TL;DR**: Hi there! I'm Dezmerean Robert, a software developer based
 layout: "about"
 ---
 
-I'm a big fan of open source. My work is focused on developing tools that help developers and testers be more productive.
+I am a problem solver at heart and a software developer by profession. With a strong background in Python and JavaScript, I specialize in building high-performance, scalable, and secure applications using modern web frameworks such as Flask and Django. I am passionate about staying up-to-date with the latest developments in the software industry and exploring new technologies to solve complex problems. In my free time, I enjoy contributing to open-source projects and sharing my knowledge with the developer community.
 
 Right now I'm working on [AltWalker](/projects/altwalker/). Curious about my projects?
 Check out my [projects](/projects/) page for a full list of all the software I working/worked on.
