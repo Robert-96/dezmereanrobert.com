@@ -238,7 +238,7 @@ This command will force shutdown of the specified container.
 $ docker container kill $(docker ps -q)
 ```
 
-This command will force shutdown all runnning containers. The command `docker ps -q` will return all running container IDs and pass them to the kill command which will force shutdown them.
+This command will force shutdown all running containers. The command `docker ps -q` will return all running container IDs and pass them to the kill command which will force shutdown them.
 
 ### Remove a container
 
