@@ -2,19 +2,17 @@
 title: "Ember.js: Build a Markdown component with ShowdownJs"
 date: 2020-05-30T00:35:40+03:00
 tags: [ "ember.js", "javascript", "markdown" ]
+keywords: [ "ember.js", "showdown.js", "highlight.js", "javascript", "html", "markdown" ]
 draft: false
 ---
 
-With the help of [ShowdownJs](http://showdownjs.com/) and [HighlightJs](https://highlightjs.org/)
-you can build an Markdown component with syntax highlighting.
+With the help of [ShowdownJs](http://showdownjs.com/) and [HighlightJs](https://highlightjs.org/),
+you can easily build a Markdown component with syntax highlighting.
 
-**ShowdownJs** is an easy to use Markdown to HTML converter, it can be used in
-both client side (browser) or server side (with nodejs).
+**ShowdownJs** is an easy-to-use Markdown to HTML converter, it can be used in both client side (browser) or server side (with nodejs).
 
 **HighlightJs** is an JavaScript library for syntax highlighting on the web. It supports
 189 languages and 94 styles.
-
-Let's build component for rendering markdown with ShowdownJs and HighlightJs.
 
 <!--more-->
 
@@ -151,3 +149,7 @@ module.exports = function(defaults) {
 ```
 
 You can found [here](https://highlightjs.org/static/demo/) a list of all Highlight.js themes and languages.
+
+## Conclusion
+
+In this tutorial we have seen how to build a Markdown component with syntax highlighting using ShowdownJs and HighlightJs.
