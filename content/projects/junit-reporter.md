@@ -1,6 +1,5 @@
 ---
 title: "Junit-Reporter"
-date: 2021-10-26T00:42:24+03:00
 draft: true
 ---
 
