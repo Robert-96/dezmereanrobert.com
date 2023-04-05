@@ -120,7 +120,7 @@ for(const entry of entries) {
 
 ## For Internet Explorer
 
-The `URLSearchParams` is not suported on IE, so you will need to parse the URL and get the query parameters.
+The `URLSearchParams` is not supported on IE, so you will need to parse the URL and get the query parameters.
 
 ```js
 function getParameterByName(name) {
