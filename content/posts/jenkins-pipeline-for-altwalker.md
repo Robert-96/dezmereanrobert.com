@@ -11,15 +11,6 @@ This tutorial should help you setup a CI/CD pipeline on Jenkins for your [AltWal
 
 <!--more-->
 
-## Table Of Contents
-
-* [Create your first Pipeline ](#create-your-first-pipeline)
-* [Quick Start Examples](#quick-start-examples)
-* [Setup XML Reports](#setup-xml-reports)
-* [Using a `Dockerfile`](#using-a-raw-dockerfile-endraw-)
-* [Examples](#examples)
-* [Resources](#resources)
-
 ## Create your first Pipeline
 
 1. Copy one of the examples below into your repository and name it `Jenkinsfile`. Try modifying the `sh` command to run the same command you would run on your local machine.
@@ -167,18 +158,18 @@ pipeline {
 
 The agent `{ dockerfile true }` syntax supports a number of other options which are described in more detail in the [Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/#agent) section.
 
-## Examples
+## Useful Links and Resources
 
-For a fully working example you can check out:
+For fully working examples of using AltWalker with Jenkins, you can check out the following repositories:
 
-* for Python: https://github.com/Robert-96/altwalker-jenkins-example
-* for .NET: https://github.com/Robert-96/altwalker-jenkins-dotnet-example
+* Python: https://github.com/Robert-96/altwalker-jenkins-example
+* .NET: https://github.com/Robert-96/altwalker-jenkins-dotnet-exampleResources
 
-## Resources
+If you're new to Jenkins or need to brush up on your knowledge, check out these resources:
 
-* Jenkins:
-  * https://www.jenkins.io/doc/pipeline/tour/hello-world/
-  * https://www.jenkins.io/doc/book/pipeline/
-* AltWalker:
-  * https://altwalker.github.io/altwalker/
-  * https://hub.docker.com/r/altwalker/altwalker/
+* Jenkins documentation:
+    * Pipeline Tour: https://www.jenkins.io/doc/pipeline/tour/hello-world/
+    * Pipeline User Handbook: https://www.jenkins.io/doc/book/pipeline/
+* AltWalker documentation:
+    * Official documentation: https://altwalker.github.io/altwalker/
+    * Docker Hub: https://hub.docker.com/r/altwalker/altwalker/
