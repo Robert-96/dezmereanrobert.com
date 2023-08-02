@@ -1,8 +1,20 @@
-name: Lighthouse
+name: Main
 
 on: [push]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+
+      - name: Lint code base
+        uses: super-linter/super-linter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     runs-on: macos-latest
 
