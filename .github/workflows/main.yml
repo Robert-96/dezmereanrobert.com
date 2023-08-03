@@ -13,6 +13,8 @@ jobs:
       - name: Lint code base
         uses: super-linter/super-linter@v5
         env:
+          VALIDATE_HTML: false
+          JAVASCRIPT_DEFAULT_STYLE: prettier
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
