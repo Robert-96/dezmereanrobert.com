@@ -1,19 +1,19 @@
 ---
-title: "RegEx Cheat Sheet"
+title: "Regular Expression Cheat Sheet"
 date: 2021-10-18T00:49:37+03:00
 tags: [ "bash" ]
 draft: false
 ---
 
-Regular expressions (RegEx) are powerful tools for text processing, search, and validation. They are used in a wide range of applications, from web development to data science. RegEx may seem intimidating at first, but with practice, they can become an essential tool in your toolbox.
+Regular expressions are powerful tools for text processing, search, and validation. They are used in a wide range of applications, from web development to data science. Regular expressions may seem intimidating at first, but with practice, they can become an essential tool in your toolbox.
 
-This regular expression (RegEx) cheat sheet provides a quick overview of all the basic syntax. It can’t cover every edge case, so if you need more information about any of these elements, refer to the documentation.
+This regular expression cheat sheet provides a quick overview of all the basic syntax. It can’t cover every edge case, so if you need more information about any of these elements, refer to the documentation.
 
 <!--more-->
 
 ## Basic syntax
 
-The basic syntax of a RegEx pattern consists of literal characters and special characters, also known as metacharacters. Here are some of the most common ones:
+The basic syntax of a regular expression pattern consists of literal characters and special characters, also known as metacharacters. Here are some of the most common ones:
 
 * `.` Matches any single character except a newline character.
 * `[]` Matches any character in the specified set of characters.
