@@ -17,6 +17,7 @@ GIMP palettes are stored using a special file format, in plain text files with t
 
 Every palette must have the following structure:
 
+<!-- markdownlint-disable-next-line MD040 -->
 ```
 GIMP Palette
 Name: <name>
@@ -31,10 +32,11 @@ Columns: <number>
 * `Name: <name>` - sets the name of the color palette.
 * `Columns: <number>` - is just an indication for displaying the palette inside GIMP.
 * `# <comment>` - comments must start with a `#`. All comments are ignored by GIMP.
-* `  0    0    0  Black` - RGB values for the color followed by the color name.
+* `  0    0    0  Black` - RGB values for the color followed by the color name.  <!-- markdownlint-disable-line MD038 -->
 
 Here is an simple example:
 
+<!-- markdownlint-disable-next-line MD040 -->
 ```
 GIMP Palette
 Name: Example

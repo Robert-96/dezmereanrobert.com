@@ -9,7 +9,7 @@ draft: false
 With the help of [ShowdownJs](http://showdownjs.com/) and [HighlightJs](https://highlightjs.org/),
 you can easily build a Markdown component with syntax highlighting.
 
-**ShowdownJs** is an easy-to-use Markdown to HTML converter, it can be used in both client side (browser) or server side (with nodejs).
+**ShowdownJs** is an easy-to-use Markdown to HTML converter, it can be used in both client-side (browser) or server-side (with nodejs).
 
 **HighlightJs** is an JavaScript library for syntax highlighting on the web. It supports
 189 languages and 94 styles.
@@ -28,10 +28,10 @@ $ npm install showdown --save-dev
 $ yarn add showdown --dev
 ```
 
-Now you need create a `<MarkdownView />` component, and use ShowdownJs to convert the markdown into HTML:
+Now you need create a `<MarkdownView />` component, and use ShowdownJs to convert the Markdown into HTML:
 
 ```console
-$ ember g component markdown-view -gc
+ember g component markdown-view -gc
 ```
 
 ```js
@@ -56,7 +56,7 @@ export default class MarkdownViewComponent extends Component {
 {{html}}
 ```
 
-You can easily pass in the markdown from one of your routes.
+You can easily pass in the Markdown from one of your routes.
 
 ```js
 // app/routes/post.js
@@ -81,7 +81,7 @@ Let's add syntax highlighting to the `<MarkdownView />` component using [Highlig
 
 Install the HighlightJs library from `npm` or `yarn`:
 
-```
+```console
 # Using npm
 $ npm install highlight.js --save-dev
 
@@ -113,9 +113,9 @@ showdown.extension('highlight', function () {
 
         if (lang && hljs.getLanguage(lang)) {
           return left + hljs.highlight(lang, match).value + right;
-	} else {
+  } else {
           return wholeMatch;
-	}
+  }
       };
 
       return showdown.helper.replaceRecursiveRegExp(text, replacement, left, right, flags);

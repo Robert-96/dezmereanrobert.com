@@ -9,10 +9,10 @@ A Python3 package that generates test results in the standard JUnit XML format f
 
 ## Installation
 
-Use the following command to install ``junit-reporter``:
+Use the following command to install `junit-reporter`:
 
-```
-$ pip install junit-reporter
+```console
+pip install junit-reporter
 ```
 
 ## Quickstart

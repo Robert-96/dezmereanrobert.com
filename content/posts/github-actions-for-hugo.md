@@ -14,7 +14,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 
 1. Set `baseURL` in `config.toml` with the value `https://<USERNAME>.github.io` for your user repository or `https://<USERNAME>.github.io/<REPOSITORY_NAME>` for a project repository.
 
-    Unless this is present in your `config.toml`, your website won’t work.
+    Unless this is present in your `config.toml`, your site won’t work.
 
 1. Create a new file in your project at `.github/workflows/deploy.yml` and paste in the YAML below.
 
@@ -36,7 +36,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
           - name: Install Hugo
             run: brew install hugo
 
-          - name: Build the Hugo website
+          - name: Build the Hugo site
             run: hugo --minify
 
           - name: Upload artifact

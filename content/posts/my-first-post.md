@@ -6,9 +6,11 @@ tags: ["markdown"]
 draft: true
 ---
 
+<!-- markdownlint-disable -->
+
 **Note**: *This post should remain a draft.*
 
-This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/) from https://www.markdownguide.org.
+This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/) from <https://www.markdownguide.org>.
 
 <!-- This is an test post that uses all the markdown features. The purpose of this post is to test the markdown render. -->
 
@@ -16,7 +18,7 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 > Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. Created by [John Gruber](https://daringfireball.net/projects/markdown/) in 2004, Markdown is now one of the world’s most popular markup languages.
 >
-> - https://www.markdownguide.org/getting-started/#whats-markdown
+> - <https://www.markdownguide.org/getting-started/#whats-markdown>
 
 ## Headers
 

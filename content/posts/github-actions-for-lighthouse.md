@@ -35,7 +35,7 @@ The project Lighthouse CI makes it easy to run Lighthouse Audits with GitHub Act
 
     Set `staticDistDir` to the build directory where your HTML files to run Lighthouse on are located (e.g. `public`, `dist`, `build`, `out`, etc.).
 
-    For more details about all the configuration options and features like asserting on specific audits and urls, refer to the official Lighthouse CI documentation for [further information](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md).
+    For more details about all the configuration options and features like asserting on specific audits and URLs, refer to the official Lighthouse CI documentation for [further information](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md).
 
 1. Create a new file in your project at `.github/workflows/lighthouse.yml` and paste in the YAML below.
 
@@ -59,7 +59,7 @@ The project Lighthouse CI makes it easy to run Lighthouse Audits with GitHub Act
         - name: Install npm dependencies
           run: npm install
 
-        - name: Build your static website
+        - name: Build your static site
           run: npm run build
 
         - name: Upload artifact

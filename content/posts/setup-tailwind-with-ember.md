@@ -14,11 +14,11 @@ The goal is to make your Ember.js app integrate with [PostCSS](https://postcss.o
 ## TL;DR
 
 ```console
-$ ember install ember-cli-postcss                   # Install ember-cli-postcss
-$ npm install --save-dev tailwindcss                # Install tailwindcss
+ember install ember-cli-postcss                   # Install ember-cli-postcss
+npm install --save-dev tailwindcss                # Install tailwindcss
 
-$ npx tailwind init app/styles/tailwind.config.js   # Optional: Generate a Tailwind config file for your project
-$ npm install -save-dev postcss-import              # Optional: If you want to use the @import statement
+npx tailwind init app/styles/tailwind.config.js   # Optional: Generate a Tailwind config file for your project
+npm install -save-dev postcss-import              # Optional: If you want to use the @import statement
 ```
 
 ```css
@@ -55,14 +55,14 @@ module.exports = function(defaults) {
 
 > **Tailwind CSS** is a highly customizable, low-level CSS framework that gives you all of the building blocks you need to build bespoke designs without any annoying opinionated styles you have to fight to override.
 >
-> - https://tailwindcss.com/
+> - <https://tailwindcss.com/>
 
 The goal is to make your Ember.js app integrate with [PostCSS](https://postcss.org/) and use [Tailwind](https://tailwindcss.com/) as a plugin.
 
 > **PostCSS** is a tool for CSS syntax transformations.
 > It allows you to define custom CSS like syntax that could be understandable and transformed by plugins.
 >
-> - https://github.com/postcss/postcss/blob/master/docs/architecture.md#overview
+> - <https://github.com/postcss/postcss/blob/master/docs/architecture.md#overview>
 
 There is a huge number of plugins, Tailwind been one of them.
 
@@ -73,7 +73,7 @@ The first step is making your app integrate with [PostCSS](https://postcss.org/)
 You can use an add-on that helps you integrate PostCSS with Ember.js, `ember-cli-postcss`:
 
 ```console
-$ ember install ember-cli-postcss
+ember install ember-cli-postcss
 ```
 
 For more about `ember-cli-postcss` check out the [documentation](https://jeffjewiss.github.io/ember-cli-postcss/).
@@ -111,7 +111,7 @@ Tailwind will swap these directives out at build time with all of its generated 
 If you'd like to customize your Tailwind installation, you can generate a config file for your project using the Tailwind CLI.
 
 ```console
-$ npx tailwind init app/styles/tailwind.config.js
+npx tailwind init app/styles/tailwind.config.js
 ```
 
 For more about the Tailwind Configuration check out the [documentation](https://tailwindcss.com/docs/configuration/).

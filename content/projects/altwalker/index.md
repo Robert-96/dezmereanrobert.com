@@ -47,50 +47,50 @@ Now it supports running tests written in .NET/C# and Python3.
 AltWalker has the following components:
 
 * __Model__: a directed graph, supplied by the user as a json or graphml file.
-    A graph is composed from a list of vertices and a list of edges.
+  A graph is composed from a list of vertices and a list of edges.
 
 * __Generator__ and __Stop Condition__: used to specify how to generate a
-    path and to decide when a path is complete.
+  path and to decide when a path is complete.
 
 * __Test Code__: the implementation of the model(s) as code. Each model is mapped to a
-    class and each vertex and edge is mapped to a method.
+  class and each vertex and edge is mapped to a method.
 
 * __Planner__: uses the _model(s)_ and a pair of _generator_ and _stop condition_
-    to provide a path (a sequence of steps) through the model(s).
+  to provide a path (a sequence of steps) through the model(s).
 
-    Currently AltWalker provides two planners:
+  Currently AltWalker provides two planners:
 
-    * Online Planner
-    * Offline Planner
+  * Online Planner
+  * Offline Planner
 
 * __Reporter__: reports the output of the tests, the reporter is called on
-    each event (e.g. `step_start`, `step_end`, ...).
+  each event (e.g. `step_start`, `step_end`, ...).
 
 * __Executor__: for each step in the plan it looks up and calls the named method
-    from the _test code_. In addition to the step methods, it also calls
-    fixture methods if present (e.g. `setUpModel`, `tearDownModel` ...).
+  from the _test code_. In addition to the step methods, it also calls
+  fixture methods if present (e.g. `setUpModel`, `tearDownModel` ...).
 
-    Currently AltWalker provides three executors:
+  Currently AltWalker provides three executors:
 
-    * Python Executor
-    * .NET Executor
+  * Python Executor
+  * .NET Executor
 
-    And an __Http Executor__ that allows you to hook up your own executor via HTTP. You can read
-    more about the Http Executor on the [How to: Write your own executor](https://altwalker.github.io/altwalker/how-tos/custom-executor.html)
-    page.
+  And an __Http Executor__ that allows you to hook up your own executor via HTTP. You can read
+  more about the Http Executor on the [How to: Write your own executor](https://altwalker.github.io/altwalker/how-tos/custom-executor.html)
+  page.
 
 * __Walker__: the test runner. Coordinates the execution of a test asking the `Planner`
-    for the next step, executing the step using the `Executor` and reporting the progress
-    using the `Reporter`.
+  for the next step, executing the step using the `Executor` and reporting the progress
+  using the `Reporter`.
 
 
 There are two ways to run your tests:
 
 * __Online Mode__ (using the Online Planner): Generate one step and then execute
-    the step, until the path is complete.
+  the step, until the path is complete.
 
 * __Offline Mode__ (using the Offline Planner): Run a path from a sequence of steps.
-    Usually the path is generated using the `offline` command.
+  Usually the path is generated using the `offline` command.
 
 ## Installation
 
@@ -107,7 +107,7 @@ Prerequisites:
 
 To install GraphWalker on:
 
-* **Linux/MacOS** you can run the following command:
+* __Linux/macOS__ you can run the following command:
 
   ```console
   $ wget -q -O - https://raw.githubusercontent.com/altwalker/graphwalker-installer/main/install-graphwalker.py
@@ -122,7 +122,7 @@ To install GraphWalker on:
   $ python install-graphwalker.py
   ```
 
-* **Windows** you can run the following commands:
+* __Windows__ you can run the following commands:
 
   ```console
   > git clone https://github.com/altwalker/graphwalker-installer.git
@@ -132,30 +132,30 @@ To install GraphWalker on:
 
 After running the command check that you correctly installed GraphWalker by running:
 
-```
-$ gw --version
+```console
+gw --version
 ```
 
 ### Install AltWalker
 
 Use the following command to install AltWalker:
 
-```
-$ pip3 install altwalker
+```console
+pip3 install altwalker
 ```
 
 AltWalker is now installed. Check that you correctly installed AltWalker by running:
 
-```
-$ altwalker --version
+```console
+altwalker --version
 ```
 
 #### Living on the edge
 
 If you want to work with the latest code before it’s released, install or update the code from the `develop` branch:
 
-```
-$ pip install -U git+https://github.com/altwalker/altwalker
+```console
+pip install -U git+https://github.com/altwalker/altwalker
 ```
 
 For a more detailed tutorial read the [Installation](https://altwalker.github.io/altwalker/installation.html) section from the documentation.
@@ -164,7 +164,7 @@ For a more detailed tutorial read the [Installation](https://altwalker.github.io
 
 Make a sample project and run the tests.
 
-```
+```console
 $ altwalker init test-project -l python
 $ cd test-project
 $ altwalker online tests -m models/default.json "random(vertex_coverage(100))"

@@ -14,6 +14,8 @@ This tutorial should help you get started with Model-Based Testing using [AltWal
 
 ## What is Model-Based Testing?
 
+Model-based testing (MBT) is a software testing technique that uses models of the system under test (SUT) to generate test cases. MBT helps to improve the quality and efficiency of testing by automating the test case generation process and by providing a systematic approach to testing. AltWalker is an MBT tool that uses graph theory and graph databases to model and test complex systems. In this post, we will introduce AltWalker and demonstrate how it can be used for MBT.
+
 ## What is AltWalker?
 
 ## SUT

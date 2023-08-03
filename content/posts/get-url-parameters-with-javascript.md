@@ -6,7 +6,7 @@ draft: false
 featured: true
 ---
 
-*URL Parameters* (also known as *Query Parameters* or *Query String*) are a set o key value pairs attached to the end of a URL. They are used to send small amounts of data from page to page, or from client to server via the URL.
+*URL Parameters* (also known as *Query Parameters* or *Query String*) are a set o key-value pairs attached to the end of a URL. They are used to send small amounts of data from page to page, or from client to server via the URL.
 
 <!--more-->
 
@@ -26,12 +26,14 @@ urlParams.getAll('size')   // ['M', 'L']
 
 The query parameters are separate from URL path with a `?` (question mark):
 
+<!-- markdownlint-disable-next-line MD040 -->
 ```
 https://example.com/path/to/page?color=purple
 ```
 
 Each parameter after the first one is joined with an `&` (ampersand):
 
+<!-- markdownlint-disable-next-line MD040 -->
 ```
 https://example.com/path/to/page?color=purple&size=M&size=L
 ```
@@ -108,7 +110,7 @@ for (const value of values) {
 }
 ```
 
-Iterate through all key/value pairs:
+Iterate through all key-value pairs:
 
 ```js
 const entries = urlParams.entries();

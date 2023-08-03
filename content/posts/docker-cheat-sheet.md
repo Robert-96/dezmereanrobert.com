@@ -15,28 +15,27 @@ This Docker CLI cheat sheet is a comprehensive guide to the essential commands f
 ## TL;DR
 
 ```console
-$ docker build -t my-image .                           # Create image using this directory's Dockerfile
+docker build -t my-image .                           # Create image using this directory's Dockerfile
 
-$ docker run -p 4200:80 my-image                       # Run "my-image" mapping port 4200 to 80
-$ docker run -d -p 4200:80 my-image                    # Same thing, but in detached mode
-$ docker run username/repository:tag                   # Run image from a registry
+docker run -p 4200:80 my-image                       # Run "my-image" mapping port 4200 to 80
+docker run -d -p 4200:80 my-image                    # Same thing, but in detached mode
+docker run username/repository:tag                   # Run image from a registry
 
-$ docker image ls -a                                   # List all images on this machine
-$ docker image rm <image id>                           # Remove specified image from this machine
-$ docker image rm $(docker image ls -a -q)             # Remove all images from this machine
+docker image ls -a                                   # List all images on this machine
+docker image rm <image id>                           # Remove specified image from this machine
+docker image rm $(docker image ls -a -q)             # Remove all images from this machine
 
-$ docker container ls                                  # List all running containers
-$ docker container ls -a                               # List all containers, even those not running
-$ docker container stop <hash>                         # Gracefully stop the specified container
-$ docker container kill <hash>                         # Force shutdown of the specified container
-$ docker container rm <hash>                           # Remove specified container from this machine
-$ docker container rm $(docker container ls -a -q)     # Remove all containers
+docker container ls                                  # List all running containers
+docker container ls -a                               # List all containers, even those not running
+docker container stop <hash>                         # Gracefully stop the specified container
+docker container kill <hash>                         # Force shutdown of the specified container
+docker container rm <hash>                           # Remove specified container from this machine
+docker container rm $(docker container ls -a -q)     # Remove all containers
 
-$ docker login                                         # Log in this CLI session using your Docker credentials
-$ docker tag <image> username/repository:tag           # Tag <image> for upload to registry
-$ docker push username/repository:tag                  # Upload tagged image to registry
-
-$ docker system prune                                  # Remove all unused containers, networks and images.
+docker login                                         # Log in this CLI session using your Docker credentials
+docker tag <image> username/repository:tag           # Tag <image> for upload to registry
+docker push username/repository:tag                  # Upload tagged image to registry
+docker system prune                                  # Remove all unused containers, networks and images.
 ```
 
 ## Build
@@ -46,13 +45,13 @@ $ docker system prune                                  # Remove all unused conta
 To build an image using a `Dockerfile`, you can use the `docker build` command. By default, it uses the `Dockerfile` located in the current directory and the current directory as the build context:
 
 ```console
-$ docker build -t my-image .
+docker build -t my-image .
 ```
 
 To use a different `Dockerfile`, you can use the `-f` or `--file` option followed by the path to the `Dockerfile`:
 
 ```console
-$ docker build -f Dockerfile.dev -t my-image .
+docker build -f Dockerfile.dev -t my-image .
 ```
 
 This command will create a image using this directory's `Dockerfile.dev` and the current directory as the context.
@@ -346,7 +345,7 @@ The Docker registry is a central place to store and distribute Docker images. To
 1. Log in to your Docker account using the `docker login` command. This command will prompt you to enter your Docker credentials:
 
     ```console
-    $ docker login
+    docker login
     ```
 
 1. Tag your local Docker image with a name that includes the Docker registry username, repository name, and version tag:
@@ -387,7 +386,7 @@ For more information about the Docker registry and how to use it, see the [Docke
 
 ## System
 
-### Remove all unused containers, networks and images.
+### Remove all unused containers, networks and images
 
 To remove all unused containers, networks, and images, use the following command:
 

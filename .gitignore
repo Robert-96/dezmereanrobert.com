@@ -130,7 +130,7 @@ dist
 ## Custom
 ## ------
 
-# MacOS
+# macOS
 .DS_Store
 
 # Webpack Build

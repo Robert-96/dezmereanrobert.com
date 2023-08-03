@@ -15,7 +15,7 @@ This tutorial should help you setup a CI/CD pipeline on Jenkins for your [AltWal
 
 1. Copy one of the examples below into your repository and name it `Jenkinsfile`. Try modifying the `sh` command to run the same command you would run on your local machine.
 
-    ```
+    ```groovy
     pipeline {
         agent {
             docker {
@@ -47,7 +47,7 @@ Below are some easily copied and pasted examples of a simple Pipeline for Python
 
 ### Python
 
-```
+```groovy
 pipeline {
     agent {
         docker {
@@ -67,7 +67,7 @@ pipeline {
 
 ### .NET
 
-```
+```groovy
 pipeline {
     agent {
         docker {
@@ -95,13 +95,13 @@ After you setup for first pipeline:
 
 2. Inside the `Jenkinsfile` after the `online` or `walk` command add the following line:
 
-    ```
+    ```groovy
     junit 'report.xml'
     ```
 
 For a python project the `Jenkinsfile` should look like this:
 
-```
+```groovy
 pipeline {
     agent {
         docker {
@@ -126,7 +126,7 @@ For projects which require a more customized execution environment, Pipeline als
 
 1. Copy one of the examples below into your repository and name it `Dockerfile`:
 
-    ```
+    ```Dockerfile
     FROM altwalker/altwalker:latest
 
     # Install your specific requirements
@@ -138,7 +138,7 @@ In contrast to the previous approach of using an *"off-the-shelf"* container, us
 
 For a python project the `Jenkinsfile` should look like this:
 
-```
+```groovy
 pipeline {
         agent {
             docker {
@@ -162,14 +162,14 @@ The agent `{ dockerfile true }` syntax supports a number of other options which 
 
 For fully working examples of using AltWalker with Jenkins, you can check out the following repositories:
 
-* Python: https://github.com/Robert-96/altwalker-jenkins-example
-* .NET: https://github.com/Robert-96/altwalker-jenkins-dotnet-exampleResources
+* Python: <https://github.com/Robert-96/altwalker-jenkins-example>
+* .NET: <https://github.com/Robert-96/altwalker-jenkins-dotnet-exampleResources>
 
 If you're new to Jenkins or need to brush up on your knowledge, check out these resources:
 
 * Jenkins documentation:
-    * Pipeline Tour: https://www.jenkins.io/doc/pipeline/tour/hello-world/
-    * Pipeline User Handbook: https://www.jenkins.io/doc/book/pipeline/
+  * Pipeline Tour: <https://www.jenkins.io/doc/pipeline/tour/hello-world/>
+  * Pipeline User Handbook: <https://www.jenkins.io/doc/book/pipeline/>
 * AltWalker documentation:
-    * Official documentation: https://altwalker.github.io/altwalker/
-    * Docker Hub: https://hub.docker.com/r/altwalker/altwalker/
+  * Official documentation: <https://altwalker.github.io/altwalker/>
+  * Docker Hub: <https://hub.docker.com/r/altwalker/altwalker/>

@@ -31,7 +31,7 @@ The Arrange, Act, and Assert pattern is a structured approach to writing unit te
 
 ## Using the AAA Pattern with `pytest`
 
-Let's illustrate the AAA pattern with two examples: a simple test case for the [`split`](https://docs.python.org/3/library/stdtypes.html#str.split) string method and a more complex test case for a [FastAPI](https://fastapi.tiangolo.com/) endpoint from an URL Shortener app. We'll use the [`pytest`](https://docs.pytest.org) framework for both examples.
+Let's illustrate the AAA pattern with two examples: a simple test case for the [`split`](https://docs.python.org/3/library/stdtypes.html#str.split) string method and a more complex test case for a [FastAPI](https://fastapi.tiangolo.com/) endpoint from a URL Shortener app. We'll use the [`pytest`](https://docs.pytest.org) framework for both examples.
 
 ### Example 1: Testing the `split` String Method
 
@@ -90,10 +90,10 @@ Explanation of the unit test:
 * **Act**: We make a POST request to the `/url` endpoint with the `target_url` as JSON data. The response is stored in the `response` variable, and we extract the JSON payload using `response.json()`.
 
 * **Assert**: We use assert statements to verify the following:
-    * The `response.status_code` should be 200, indicating a successful request.
-    * The `payload["target_url"]` in the response should match the target_url we provided.
-    * The `payload["is_active"]` should be True, indicating that the shortened URL is active.
-    * The `payload["clicks"]` should be 0, as the URL is newly created and has not been clicked yet.
+  * The `response.status_code` should be 200, indicating a successful request.
+  * The `payload["target_url"]` in the response should match the target_url we provided.
+  * The `payload["is_active"]` should be True, indicating that the shortened URL is active.
+  * The `payload["clicks"]` should be 0, as the URL is newly created and has not been clicked yet.
 
 ## Conclusion
 
