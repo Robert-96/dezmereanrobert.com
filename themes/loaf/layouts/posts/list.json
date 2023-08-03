@@ -1,4 +1,3 @@
-/* eslint-disable */
 {
   "posts": [
     {{- $posts := where .Site.RegularPages "Section" "posts" -}}
