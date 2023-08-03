@@ -5,7 +5,7 @@ module.exports = {
       maxAutodiscoverUrls: 10
     },
     upload: {
-      target: 'temporary-public-storage',
-    },
-  },
-};
+      target: 'temporary-public-storage'
+    }
+  }
+}

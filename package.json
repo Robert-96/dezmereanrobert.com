@@ -2,7 +2,7 @@
   "name": "dezmereanrobert.com",
   "author": "Dezmerean Robert",
   "version": "1.0.0",
-  "description": "My boring personal website.",
+  "description": "My boring personal blog.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",

@@ -110,24 +110,24 @@ To install GraphWalker on:
 * __Linux/macOS__ you can run the following command:
 
   ```console
-  $ wget -q -O - https://raw.githubusercontent.com/altwalker/graphwalker-installer/main/install-graphwalker.py
-  $ python install-graphwalker.py
+  wget -q -O - https://raw.githubusercontent.com/altwalker/graphwalker-installer/main/install-graphwalker.py
+  python install-graphwalker.py
   ```
 
   or
 
   ```console
-  $ git clone https://github.com/altwalker/graphwalker-installer.git
-  $ cd graphwalker-installer
-  $ python install-graphwalker.py
+  git clone https://github.com/altwalker/graphwalker-installer.git
+  cd graphwalker-installer
+  python install-graphwalker.py
   ```
 
 * __Windows__ you can run the following commands:
 
   ```console
-  > git clone https://github.com/altwalker/graphwalker-installer.git
-  > cd graphwalker-installer
-  > python install-graphwalker.py
+  git clone https://github.com/altwalker/graphwalker-installer.git
+  cd graphwalker-installer
+  python install-graphwalker.py
   ```
 
 After running the command check that you correctly installed GraphWalker by running:

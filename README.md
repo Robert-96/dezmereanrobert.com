@@ -1,6 +1,6 @@
 # Robert-96.github.io
 
-My boring personal website.
+My boring personal blog.
 
 ## Development Setup
 
@@ -18,7 +18,7 @@ To start the development server with drafts enabled:
 npm run dev
 ```
 
-Navigate to the site at http://localhost:1313/.
+Navigate to the site at <http://localhost:1313/>.
 
 ### Build
 

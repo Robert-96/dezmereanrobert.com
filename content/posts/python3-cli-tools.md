@@ -219,7 +219,7 @@ This command will extract all files from `archive.tar` into the current director
 
 To list the files in a TAR archive, use the `-l` option:
 
-```
+```console
 python -m tarfile -l archive.tar
 ```
 
