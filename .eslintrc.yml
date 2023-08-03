@@ -1,1 +1,1 @@
-ignorePatterns: 'themes/loaf/layouts/**/*.js'
+ignorePatterns: ['themes/loaf/layouts/**/*.json']
