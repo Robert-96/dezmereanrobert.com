@@ -9,6 +9,11 @@ module.exports = {
     '**/node_modules/.*',
     '**/themes/loaf/layouts/**/*.json'
   ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: module
+  },
   overrides: [
     {
       files: ['*.json'],
