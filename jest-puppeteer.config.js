@@ -2,7 +2,7 @@ module.exports = {
   server: {
     command: 'npm run dev',
     port: 1313,
-    launchTimeout: 10000
+    launchTimeout: 100000
   },
   launch: {
     headless: false
