@@ -1,8 +1,14 @@
 module.exports = {
   env: {
-    browser: true
+    browser: true,
+    es6: true,
+    jest: true
   },
-  ignorePatterns: ['**/themes/loaf/layouts/**/*.json'],
+  ignorePatterns: [
+    '!.*',
+    '**/node_modules/.*',
+    '**/themes/loaf/layouts/**/*.json'
+  ],
   overrides: [
     {
       files: ['*.json'],
