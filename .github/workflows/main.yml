@@ -19,6 +19,27 @@ jobs:
           JAVASCRIPT_ES_CONFIG_FILE: '.eslintrc.js'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Hugo
+        run: |
+          brew install hugo
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install npm dependencies
+        run: |
+          npm install
+
+      - name: Run jest tests
+        run: |
+          npm test
+
   build:
     runs-on: macos-latest
 
