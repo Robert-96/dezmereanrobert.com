@@ -2,8 +2,16 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'archetypes/**'
+      - 'content/**'
+      - 'static/**'
+      - 'themes/**'
+      - 'config.toml'
+      - 'package-lock.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'webpack.config.js'
 
 jobs:
   build:
@@ -37,6 +45,8 @@ jobs:
   deploy:
     needs: build
     runs-on: macos-latest
+
+    if: github.ref == 'refs/heads/main'
 
     permissions:
       pages: write
