@@ -6,7 +6,8 @@
   "ignore": [
     "**/__snapshots__/**",
     "**/*.md",
-    "**/*.yaml"
+    "**/*.yaml",
+    "**/*.yml"
   ],
   "absolute": true
 }
