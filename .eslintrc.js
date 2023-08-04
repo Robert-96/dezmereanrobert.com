@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2016: true,
+    node: true,
     jest: true,
   },
   ignorePatterns: [
@@ -10,6 +10,7 @@ module.exports = {
     '**/themes/loaf/layouts/**/*.json'
   ],
   parserOptions: {
+    ecmaVersion: '2020',
     sourceType: 'module'
   },
   overrides: [
