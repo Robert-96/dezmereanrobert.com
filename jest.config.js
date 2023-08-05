@@ -6,6 +6,6 @@
 module.exports = {
   preset: 'jest-puppeteer',
   globals: {
-    PATH: 'http://127.0.0.1:1313/'
+    PATH: 'http://localhost:1313/'
   }
 };
