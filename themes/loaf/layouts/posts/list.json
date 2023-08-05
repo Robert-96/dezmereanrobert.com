@@ -8,7 +8,7 @@
         "url": {{ .Permalink | jsonify }},
         "title": {{ .Title | jsonify }},
         "subtitle": {{ .Params.Subtitle | jsonify }},
-        "data": {{ .Date | jsonify }},
+        "date": {{ .Date | jsonify }},
         "tags": {{ .Params.Tags | jsonify }}
       }
     {{- end }}
