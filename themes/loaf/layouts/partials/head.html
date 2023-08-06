@@ -5,7 +5,7 @@
   {{ if .IsHome }}
     <title>{{ .Site.Params.Title }}</title>
   {{ else }}
-    <title>{{ .Title }} | {{ .Site.Params.Title }}</title>
+    <title>{{ if .Draft }}DRAFT: {{end}}{{ .Title }} | {{ .Site.Params.Title }}</title>
   {{ end }}
 
   {{ if .Params.Description }}
