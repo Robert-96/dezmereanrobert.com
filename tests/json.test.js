@@ -1,4 +1,4 @@
-describe('JSON', () => {
+describe('JSON Posts', () => {
   let payload;
 
   beforeAll(async () => {

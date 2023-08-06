@@ -1,3 +1,6 @@
+const data = require('./data.js')
+const post = data.post;
+
 describe('Posts Page', () => {
   beforeAll(async () => {
     await page.goto(`${PATH}/posts`);
@@ -17,6 +20,15 @@ describe('Posts Page', () => {
   });
 
   it('should be at least one post', async () => {
-    // TODO
+    const postTitles = await page.$$eval('h2', elements => elements.map(el => el.innerText));
+
+    expect(Array.isArray(postTitles)).toBe(true);
+    expect(postTitles.length).toBeGreaterThan(0);
+  });
+
+  it(`should contain the "${post.title}"`, async () => {
+    const postTitles = await page.$$eval('h2', elements => elements.map(el => el.innerText));
+
+    expect(postTitles).toContain(post.title);
   });
 });

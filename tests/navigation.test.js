@@ -1,6 +1,6 @@
 const data = require('./data.js')
 
-describe('Footer', () => {
+describe('Navigation', () => {
   data.urls.forEach(url => {
     describe(url.title, () => {
       beforeAll(async () => {

@@ -17,6 +17,9 @@ describe('Projects Page', () => {
   });
 
   it('should be at least one project', async () => {
-    // TODO
+    const projectTitles = await page.$$eval('h2', elements => elements.map(el => el.innerText));
+
+    expect(Array.isArray(projectTitles)).toBe(true);
+    expect(projectTitles.length).toBeGreaterThan(0);
   });
 });
