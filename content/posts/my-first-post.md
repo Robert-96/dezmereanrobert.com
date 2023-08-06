@@ -2,7 +2,8 @@
 title: "My First Post"
 subtitle: "This is an test post that uses all the markdown features. This post should always remain a draft."
 date: 2000-08-24T03:12:30+03:00
-tags: ["markdown"]
+tags: ["test", "markdown", "hugo", "github"]
+featured: true
 draft: true
 ---
 
