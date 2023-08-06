@@ -4,47 +4,69 @@ My boring personal blog.
 
 ## Development Setup
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
 ### Prerequisites
+
+Before you get started, make sure you have the following installed on your machine:
 
 * [hugo](https://gohugo.io/)
 * [node](https://nodejs.org/)
 * [npm](https://www.npmjs.com/)
 
+### Setup
+
+Follow these steps to set up the project:
+
+```bash
+git clone https://github.com/Robert-96/dezmereanrobert.com.git
+cd dezmereanrobert.com
+npm install
+```
+
 ### Start the development server
 
-To start the development server with drafts enabled:
+To launch the development server with drafts enabled, use the following command:
 
 ```bash
 npm run dev
 ```
 
-Navigate to the site at <http://localhost:1313/>.
+You can then access the development site at <http://localhost:1313/>.
 
 ### Build
 
-To build the static pages run:
+To generate the static pages for the blog, run:
 
 ```bash
 npm run build
 ```
 
-Output will be in `./public/` directory.
+The output will be generated in the `./public/` directory.
 
-To build without drafts enabled just call:
+For building without drafts enabled, use:
 
 ```bash
 npm run build-prod
 ```
 
-### Add Some Content
+### Run Tests
 
-To create a new post run:
+To run the tests, execute the following command:
+
+```bash
+npm test
+```
+
+### Add Content
+
+To create a new blog post, use the following command:
 
 ```bash
 hugo new posts/my-first-post.md
 ```
 
-To create a new project run:
+For creating a new project page, use:
 
 ```bash
 hugo new project/my-first-project.md
