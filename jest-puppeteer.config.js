@@ -1,7 +1,7 @@
 module.exports = {
   server: {
-    command: 'npm run dev',
-    port: 1313,
+    command: 'npm run test:server',
+    port: 1414,
     launchTimeout: 100000
   },
   launch: {

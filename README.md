@@ -29,7 +29,7 @@ npm install
 To launch the development server with drafts enabled, use the following command:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 You can then access the development site at <http://localhost:1313/>.
@@ -47,7 +47,7 @@ The output will be generated in the `./public/` directory.
 For building without drafts enabled, use:
 
 ```bash
-npm run build-prod
+npm run pack
 ```
 
 ### Run Tests
