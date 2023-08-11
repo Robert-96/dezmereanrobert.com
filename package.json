@@ -3,6 +3,7 @@
   "author": "Dezmerean Robert",
   "version": "1.0.0",
   "description": "My boring personal blog.",
+  "private": true,
   "scripts": {
     "build:tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
     "pack:tailwind": "npm run build:tailwind -- --minify",
@@ -36,5 +37,8 @@
     "tailwindcss": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "anchor-js": "^5.0.0"
   }
 }
