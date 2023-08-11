@@ -9,10 +9,9 @@ anchors.options.class = 'no-underline';
 
 function updateExternalLinks() {
   const anchors = document.querySelectorAll('a');
+  const regex = new RegExp(`/${window.location.host}/`, 'i');
 
   anchors.forEach((anchor) => {
-    const regex = new RegExp('/' + window.location.host + '/');
-
     if (!regex.test(anchor.href)) {
       anchor.setAttribute('target', '_blank');
       anchor.setAttribute('rel', 'noopener');
@@ -21,9 +20,6 @@ function updateExternalLinks() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  updateExternalLinks()
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+  updateExternalLinks();
   anchors.add('.prose h2, .prose h3, .prose h4, .prose h5, .prose h6, .prose h7, .prose h8');
 });
