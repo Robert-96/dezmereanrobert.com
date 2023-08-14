@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 
+/* Style all links except the anchors added by AnchorJS. */
+.prose a:not(:where(
+  [aria-label="Anchor"]
+)) {
+  @apply no-underline text-black dark:text-white border-b-2 border-green-600 dark:border-green-500 hover:border-b-4 !important;
+}
+
 /* Style external links. */
 .prose a[href]:not(:where(
   /* exclude hash only links */
@@ -12,5 +19,5 @@
   /* domains to exclude */
   [href*="//dezmereanrobert.com"],
 )) {
-  @apply no-underline text-black dark:text-white border-b-2 border-blue-600 dark:border-blue-500 hover:border-b-4 !important;
+  @apply border-b-2 border-blue-600 dark:border-blue-500 hover:border-b-4 !important;
 }

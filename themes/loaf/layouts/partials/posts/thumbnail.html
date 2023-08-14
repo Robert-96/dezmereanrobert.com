@@ -1,6 +1,6 @@
 <article>
   <h3 class="text-base font-bold leading-5 tracking-wide">
-    <a class="text-base hover:underline" href="{{ .RelPermalink }}">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</a>
+    <a class="text-base hover:border-b-4 hover:border-green-500" href="{{ .RelPermalink }}">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</a>
   </h3>
 
   {{ if .Summary }}
