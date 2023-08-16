@@ -1,5 +1,5 @@
 ---
-title: "AltWalker"
+title: "AltWalker - A Model-Based Testing Framework"
 subtitle: "AltWalker is an open source Model-Based Testing framework that supports running tests written in Python3 and .NET/C#."
 draft: false
 ---
