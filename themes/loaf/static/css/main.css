@@ -21,3 +21,32 @@
 )) {
   @apply border-b-2 border-blue-600 dark:border-blue-500 hover:border-b-4 !important;
 }
+
+/* Style gh-blockquote shortcode. */
+.gh-blockquote {
+  @apply border-l-4;
+}
+
+.gh-important {
+  @apply border-purple-600 dark:border-purple-500;
+}
+
+.gh-important span {
+  @apply text-purple-500;
+}
+
+.gh-note {
+  @apply border-purple-600 dark:border-blue-500;
+}
+
+.gh-note span {
+  @apply text-blue-500;
+}
+
+.gh-warning {
+  @apply border-purple-600 dark:border-yellow-500;
+}
+
+.gh-warning span {
+  @apply text-yellow-500;
+}

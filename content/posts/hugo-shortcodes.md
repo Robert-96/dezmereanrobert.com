@@ -10,8 +10,33 @@ draft: true
 
 **Note**: *This post should remain a draft.*
 
-This blog post provides a quick overview of all the Hugo Shortcodes.
-
-Refer to the official Hugo documentation for [further information](https://gohugo.io/content-management/shortcodes/).
+This blog post provides a quick overview of all the Hugo Shortcodes and custom Shotcodes created for this project. Refer to the official Hugo documentation for [further information](https://gohugo.io/content-management/shortcodes/).
 
 <!--more-->
+
+## Custom Shortcodes
+
+### GitHub Style Blockquotes
+
+{{<gh-blockquote type="warning">}}
+This is an **warning** blockquote.
+{{</gh-blockquote>}}
+
+{{<gh-blockquote type="note">}}
+This is an **note** blockquote.
+{{</gh-blockquote>}}
+
+{{<gh-blockquote type="important">}}
+This is an **important** blockquote.
+{{</gh-blockquote>}}
+
+{{<gh-blockquote type="note">}}
+Blockquote *can* contain **markdown**, `code`, and [links](./).
+
+It can also contain multiple lines and code blocks:
+
+```py
+def test_split():
+  assert False
+```
+{{</gh-blockquote>}}
