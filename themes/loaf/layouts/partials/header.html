@@ -6,7 +6,7 @@
 
     {{ range .Site.Menus.main }}
       <li>
-        <a class="hover:text-green-400 {{if (eq $currentPage.Name .Name) }}text-gray-900 dark:text-slate-200{{end}}" href="{{ .URL }}" title="{{ .Title | markdownify }}">{{ .Name }}</a>
+        <a class="hover:text-green-400 {{ if (in $currentPage.Name .Name) }}text-gray-900 dark:text-slate-200{{end}}" href="{{ .URL }}" title="{{ .Title | markdownify }}">{{ .Name }}</a>
       </li>
     {{ end }}
 
