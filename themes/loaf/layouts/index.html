@@ -16,10 +16,10 @@
 
   <div>
     <ul class="divide-y divide-gray-200 dark:divide-slate-500">
-      {{ range (where .Site.RegularPages "Section" "posts") }}
-        {{ if .Params.featured }}
+      {{ range $index, $post := (where .Site.RegularPages "Section" "posts") }}
+        {{ if (or (eq $index 0) ($post.Params.featured)) }}
           <li class="py-6">
-            {{ partial "posts/preview.html" . }}
+            {{ partial "posts/preview.html" $post }}
           </li>
         {{ end }}
       {{ end }}
