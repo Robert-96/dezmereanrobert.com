@@ -3,6 +3,8 @@ title = "Dezmerean Robert"
 theme = "loaf"
 languageCode = "en"
 
+enableGitInfo = true
+
 [params]
   author = "Dezmerean Robert"
   title = "Dezmerean Robert's Blog"
