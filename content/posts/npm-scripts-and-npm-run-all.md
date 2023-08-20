@@ -1,6 +1,6 @@
 ---
 title: "Streamlining Your Development Workflow with `npm` Scripts and `npm-run-all`"
-subtitle: ""
+subtitle: "An Introduction to `npm` Scripts and `npm-run-all`"
 description: ""
 date: 2023-08-16T18:15:44+03:00
 tags: ["npm", "node", "javascript"]
