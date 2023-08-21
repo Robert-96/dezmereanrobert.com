@@ -252,7 +252,7 @@ In this case, `npm run start` runs all sub scripts of start: `start:backend` and
 }
 ```
 
-### Run with arguments
+### Add arguments to scripts
 
 To add arguments to a script name or pattern (e.g, `build:**`) enclosed it in quest and add the arguments after `--`:
 

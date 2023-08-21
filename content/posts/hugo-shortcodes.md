@@ -31,12 +31,12 @@ This is an **important** blockquote.
 {{</gh-blockquote>}}
 
 {{<gh-blockquote type="note">}}
-Blockquote *can* contain **markdown**, `code`, and [links](./).
+Blockquote *can* contain **Markdown**, `code`, and [links](./).
 
 It can also contain multiple lines and code blocks:
 
-```py
-def test_split():
-  assert False
+```python
+def test_upper():
+  assert 'foo'.upper() == 'FOO'
 ```
 {{</gh-blockquote>}}
