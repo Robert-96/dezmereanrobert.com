@@ -10,7 +10,7 @@ describe('Footer', () => {
       it('should have the footer', async () => {
         const footerText = await page.$eval('footer', el => el.innerText);
 
-        expect(footerText).toMatch('Copyright Dezmerean Robert');
+        expect(footerText).toMatch('Copyright © Dezmerean Robert');
       })
     })
   });
