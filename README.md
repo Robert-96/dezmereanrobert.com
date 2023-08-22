@@ -24,9 +24,9 @@ cd dezmereanrobert.com
 npm install
 ```
 
-### Start the development server
+### Launch the Development Server
 
-To launch the development server with drafts enabled, use the following command:
+To start the development server with drafts enabled, simply use the following command:
 
 ```bash
 npm run start
@@ -34,7 +34,7 @@ npm run start
 
 You can then access the development site at <http://localhost:1313/>.
 
-### Build
+### Build the Blog
 
 To generate the static pages for the blog, run:
 
@@ -50,7 +50,7 @@ For building without drafts enabled, use:
 npm run pack
 ```
 
-### Run Tests
+### Testing
 
 To run the tests, execute the following command:
 
@@ -58,7 +58,15 @@ To run the tests, execute the following command:
 npm test
 ```
 
-### Add Content
+### Code Linting
+
+Lint the code by running:
+
+```bash
+npm run lint
+```
+
+### Adding Content
 
 To create a new blog post, use the following command:
 

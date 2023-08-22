@@ -18,6 +18,7 @@
     "pack": "npm-run-all pack:**",
     "start": "npm-run-all build:tailwind build:webpack --parallel start:**",
     "test:server": "npm-run-all build:tailwind build:webpack \"start:hugo -- --port 1414\"",
+    "lint": "docker run --rm -e RUN_LOCAL=true --env-file \".github/super-linter.env\" -v \"$PWD\":/tmp/lint ghcr.io/super-linter/super-linter:v5",
     "test": "jest"
   },
   "repository": {
