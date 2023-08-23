@@ -77,5 +77,5 @@ hugo new posts/my-first-post.md
 For creating a new project page, use:
 
 ```bash
-hugo new project/my-first-project.md
+hugo new projects/my-first-project.md
 ```
