@@ -15,6 +15,13 @@ const post = {
   tags: ['test', 'markdown', 'hugo', 'github']
 }
 
+const project = {
+  url: `${PATH}/projects/my-first-project`,
+  title: 'DRAFT: My First Project',
+  subtitle: 'This is an test project. This project should always remain a draft.',
+  tags: ['test', 'markdown', 'hugo', 'github']
+}
+
 module.exports = {
   urls: urls,
   post: post
