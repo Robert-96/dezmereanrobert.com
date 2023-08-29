@@ -12,5 +12,5 @@ repos:
         name: Run Unit Tests
         language: system
         entry: npm test
-        files: ^(themes|tests)/.*$
+        files: ^(themes|tests|content)/.*$
         pass_filenames: false
