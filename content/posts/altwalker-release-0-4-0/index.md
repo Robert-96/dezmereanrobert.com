@@ -1,11 +1,10 @@
 ---
 title: "Exploring AltWalker 0.4.0: What's New?"
 subtitle: "Support for Python 3.12, new fixtures, and the LiveViewer release"
-description: ""
 date: 2023-11-04T21:24:59Z
-tags: []
-keywords: []
-draft: true
+tags: [ "altwalker", "python", "testing" ]
+keywords: [ "altwalker", "python", "python3.12", "testing", "model-based-testing" ]
+draft: false
 ---
 
 In this article, we'll dive into the latest features and enhancements that have been introduced in AltWalker 0.4.0, including support for Python 3.12, the introduction of new fixtures, and the highly anticipated LiveViewer release.
