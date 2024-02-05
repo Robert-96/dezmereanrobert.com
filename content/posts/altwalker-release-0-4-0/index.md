@@ -21,7 +21,7 @@ The `load_module()` method has been deprecated and is scheduled for removal in P
 
 ## Introducing New Fixtures
 
-One of the major highlights in AltWalker 0.4.0 is the introduction on two two new fixtures:
+One of the major highlights in AltWalker 0.4.0 is the introduction on two new fixtures:
 
 * `beforeStep`: Will be executed before every step.
 * `afterStep`: Will be executed after every step.
