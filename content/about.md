@@ -18,10 +18,10 @@ Over the years I’ve published a few dozen articles, some more noteworthy than 
 My work is focused on developing tools that help developers and testers be more productive.
 
 Right now I'm working on [AltWalker](/projects/altwalker/). Curious about my projects?
-Check out my [projects](/projects/) page for a full list of all the software I working/worked on.
+Check out my [projects](/projects/) page  for a full list of all the software I'm currently working on or have previously worked on.
 
 You can also find my open-source projects on [GitHub](https://github.com/Robert-96?tab=repositories).
 
-### Where you can found me?
+### Where can you found me?
 
 [GitHub](https://github.com/Robert-96) • [Twitter](https://twitter.com/dezmereanrobert) • [LinkedIn](https://www.linkedin.com/in/robert-dezmerean) • [DEV.to](https://dev.to/robert96) • [Stack Overflow](https://stackoverflow.com/users/19676423/robert-96)
