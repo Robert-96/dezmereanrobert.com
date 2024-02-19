@@ -13,6 +13,8 @@ on:
       - 'package-lock.json'
       - 'webpack.config.js'
 
+permissions: read-all
+
 jobs:
   build:
     runs-on: macos-latest
