@@ -2,6 +2,8 @@ name: Main
 
 on: [push]
 
+permissions: read-all
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -9,13 +11,15 @@ jobs:
     steps:
       - name: Get the code
         uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
 
       - name: Load super-linter env variables
         run: |
           cat .github/super-linter.env >> "$GITHUB_ENV"
 
       - name: Lint code base
-        uses: super-linter/super-linter@v5
+        uses: super-linter/super-linter@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
