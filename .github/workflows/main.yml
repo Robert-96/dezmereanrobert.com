@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Get the code
         uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
 
       - name: Load super-linter env variables
         run: |
