@@ -1,0 +1,44 @@
+{
+  "socials": [
+    {
+      "name": "Email",
+      "username": "dezmereanrobert@gmail.com",
+      "link": "mailto:dezmereanrobert@gmail.com"
+    },
+    {
+      "name": "Website",
+      "username": "www.dezmereanrobert.com",
+      "link": "https://www.dezmereanrobert.com"
+    },
+    {
+      "name": "Resume",
+      "username": null,
+      "link": "https://resume.dezmereanrobert.com"
+    },
+    {
+      "name": "GitHub",
+      "username": "Robert-96",
+      "link": "https://github.com/Robert-96"
+    },
+    {
+      "name": "LinkedIn",
+      "username": "robert-dezmerean",
+      "link": "https://www.linkedin.com/in/robert-dezmerean"
+    },
+    {
+      "name": "Twitter",
+      "username": "dezmereanrobert",
+      "link": "https://twitter.com/dezmereanrobert"
+    },
+    {
+      "name": "DEV.to",
+      "username": "robert96",
+      "link": "https://dev.to/robert96"
+    },
+    {
+      "name": "StackOverflow",
+      "username": "robert-96",
+      "link": "https://stackoverflow.com/users/19676423/robert-96"
+    }
+  ]
+}

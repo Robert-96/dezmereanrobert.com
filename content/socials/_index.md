@@ -1,0 +1,4 @@
+---
+title: "Socials"
+outputs: [ "json" ]
+---
