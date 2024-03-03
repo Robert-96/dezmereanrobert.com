@@ -1,6 +1,7 @@
 ---
 title: "Junit-Reporter"
 draft: true
+date: 2020-10-24
 ---
 
 A Python3 package that generates test results in the standard JUnit XML format for use with Jenkins and other build integration servers.
