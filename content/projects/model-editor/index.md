@@ -1,6 +1,11 @@
 ---
-title: "Model-Editor"
+title: "Model-Editor - A web-based editor for MBT models"
 subtitle: "A web based editor and visualizer for models written using the GraphWalker JSON format."
+date: 2022-10-24
+keywords: []
+tech: [ "javascript", "ember.js", "d3" ]
+website: ""
+source: ""
 draft: false
 ---
 
