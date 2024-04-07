@@ -50,3 +50,8 @@
 .gh-warning span {
   @apply text-yellow-500;
 }
+
+/* Code Highlight */
+.prose .highlight pre {
+  @apply dark:bg-slate-800/50 bg-slate-800 !important;
+}
