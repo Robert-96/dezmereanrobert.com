@@ -1,12 +1,12 @@
 {{ define "main" }}
-<article class="divide-y divide-gray-200 dark:divide-slate-500">
+<article class="divide-y divide-slate-200 dark:divide-slate-200/5">
   <header class="pt-3 pb-9">
     <div class="space-y-5">
       <div>
         <dl class="space-y-9">
           <div>
             <dt class="sr-only">Published on</dt>
-            <dd class="text-base leading-6 font-medium text-gray-500 dark:text-slate-300">
+            <dd class="text-base leading-6 font-medium text-gray-500 dark:text-slate-300 mb-1.5">
               <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
             </dd>
           </div>
@@ -54,7 +54,7 @@
 {{ end }}
 
 {{ if or .NextInSection .PrevInSection }}
-<div class="text-sm font-medium divide-y divide-gray-200 dark:divide-slate-500 xl:col-start-1 xl:row-start-2">
+<div class="text-sm font-medium divide-y divide-slate-200 dark:divide-slate-200/5 xl:col-start-1 xl:row-start-2">
   <div class="flow-root space-y-7 md:space-y-0 py-7">
     {{ if .NextInSection }}
       <div class="md:float-right md:text-right">

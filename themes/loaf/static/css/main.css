@@ -53,5 +53,13 @@
 
 /* Code Highlight */
 .prose .highlight pre {
-  @apply dark:bg-slate-800/50 bg-slate-800 !important;
+  @apply dark:bg-slate-800/50 bg-slate-800 border border-slate-200 dark:border-slate-200/5 !important;
+}
+
+.prose figure {
+  @apply dark:bg-slate-800/50 bg-slate-100/50 border rounded-md border-slate-200 dark:border-slate-200/5 !important;
+}
+
+.prose figure figcaption {
+  @apply ml-5;
 }

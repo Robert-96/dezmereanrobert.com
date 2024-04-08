@@ -1,12 +1,12 @@
 {{ define "main" }}
-<main class="divide-y divide-gray-200 dark:divide-slate-500">
+<main class="divide-y divide-slate-200 dark:divide-slate-200/5">
   <div class="pt-3 pb-9 space-y-3 md:space-y-5">
     <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
 
     <p class="text-lg text-gray-500 dark:text-slate-300">{{ .Params.Subtitle | markdownify }}</p>
   </div>
 
-  <ul class="divide-y divide-gray-200 dark:divide-slate-500">
+  <ul class="divide-y divide-slate-200 dark:divide-slate-200/5">
     {{ range .Pages }}
     <li class="py-7">
       {{ partial "projects/preview.html" . }}
@@ -15,7 +15,7 @@
   </ul>
 </main>
 
-<div class="text-normal text-gray-500 dark:text-slate-300 font-medium divide-gray-200 dark:divide-slate-500 xl:col-start-1 xl:row-start-2">
+<div class="text-normal text-gray-500 dark:text-slate-300 font-medium divide-slate-200 dark:divide-slate-200/5 xl:col-start-1 xl:row-start-2">
   <div class="space-y-7 py-7">
     <p>
       You can find the rest of my open-source project on <a class="text-blue-700 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 hover:underline" href="https://github.com/Robert-96?tab=repositories">GitHub ↗</a>.

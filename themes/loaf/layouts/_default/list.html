@@ -1,10 +1,10 @@
 {{ define "main" }}
-<main class="divide-y divide-gray-200 dark:divide-slate-500">
+<main class="divide-y divide-slate-200 dark:divide-slate-200/5">
   <div class="pt-3 pb-9 space-y-2 md:space-y-5">
     <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Type | humanize }}</h1>
   </div>
 
-  <ul class="divide-y divide-gray-200 dark:divide-slate-500">
+  <ul class="divide-y divide-slate-200 dark:divide-slate-200/5">
     {{ range .Pages }}
     <li class="py-5">
       {{ partial "posts/preview.html" . }}
