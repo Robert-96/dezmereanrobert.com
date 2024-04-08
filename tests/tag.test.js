@@ -10,7 +10,7 @@ describe('Tag Page', () => {
     const pageTitle = await page.title();
 
     expect(pageTitle).toMatch('Dezmerean Robert\'s Blog');
-    expect(pageTitle).toMatch('test');
+    expect(pageTitle).toMatch('Test');
   });
 
   it('should have the correct heading', async () => {
