@@ -1,6 +1,13 @@
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC (Flash of Unstyled Content).
-if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
-}
+document.addEventListener('DOMContentLoaded', function() {
+  let toggleButton = document.getElementById("toggle-dark-mode-button");
+
+  toggleButton.addEventListener('click', function () {
+    document.documentElement.classList.toggle('dark');
+
+    if (localStorage.theme === 'dark') {
+      localStorage.setItem('theme', 'light');
+    } else {
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+})
