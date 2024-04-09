@@ -53,7 +53,11 @@
 
 /* Code Highlight */
 .prose .highlight pre {
-  @apply dark:bg-slate-800/50 bg-slate-800 border border-slate-200 dark:border-slate-200/5 !important;
+  @apply dark:bg-slate-800/50 bg-slate-800 !important;
+}
+
+.prose pre {
+  @apply border border-slate-200 dark:border-slate-200/5 !important;
 }
 
 .prose figure {
