@@ -39,9 +39,6 @@
     }
   </script>
 
-  {{ $darkJS := resources.Get "js/dark.js" | minify | fingerprint }}
-  <script src="{{ $darkJS.RelPermalink }}"></script>
-
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
     {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}

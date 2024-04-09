@@ -2,12 +2,13 @@ const path = require('path')
 
 let config = {
   target: 'web',
-  entry: {
-    app: './themes/loaf/static/js/index.js',
-    dark: './themes/loaf/static/js/dark.js'
-  },
+  entry: [
+    './themes/loaf/static/js/anchor.js',
+    './themes/loaf/static/js/dark.js',
+    './themes/loaf/static/js/copy.js',
+  ],
   output: {
-    filename: '[name].js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'themes', 'loaf', 'assets', 'js')
   }
 }

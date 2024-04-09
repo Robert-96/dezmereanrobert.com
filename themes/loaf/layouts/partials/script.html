@@ -1,2 +1,2 @@
-{{ $js := resources.Get "js/app.js" | minify | fingerprint }}
-<script src="{{ $js.RelPermalink }}"></script>
+{{ $appJS := resources.Get "js/app.js" | minify | fingerprint }}
+<script src="{{ $appJS.RelPermalink }}"></script>

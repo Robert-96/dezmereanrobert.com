@@ -51,7 +51,16 @@
   @apply text-yellow-500;
 }
 
-/* Code Highlight */
+/* Style Copy Button */
+.copy-button {
+  @apply absolute right-2 top-2 p-1 size-8 border rounded hover:bg-slate-600/50;
+}
+
+.checked-copy-button {
+  @apply text-green-400 border-green-400 focus:border-green-400 focus:outline-none;
+}
+
+/* Style Code Highlights */
 .prose .highlight pre {
   @apply dark:bg-slate-800/50 bg-slate-800 !important;
 }
