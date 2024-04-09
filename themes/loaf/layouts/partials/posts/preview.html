@@ -1,22 +1,24 @@
-<article class="xl:flex xl:flex-row">
-  <dl class="xl:flex-shrink-0 xl:w-28 xl:mr-24">
+<article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+  <dl>
     <dt class="sr-only">Published on</dt>
-    <dd class="text-base font-medium text-gray-500 dark:text-gray-400 mb-1.5">
+    <dd class="text-base font-medium text-gray-500 dark:text-gray-400 mb-3">
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
     </dd>
   </dl>
 
-  <div class="space-y-5">
-    <div>
-      {{ range .Params.tags }}
-        <a class="mr-3 font-medium text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
-      {{ end }}
-    </div>
+  <div class="space-y-5 xl:col-span-3">
+    <div class="space-y-6">
+      <div class="space-y-2">
+        <h2 class="text-2xl font-bold tracking-tight">
+          <a class="text-gray-900 dark:text-white hover:border-b-4 hover:border-green-500" href="{{ .RelPermalink | relURL }}">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</a>
+        </h2>
 
-    <div class="space-y-3">
-      <h2 class="text-2xl font-bold tracking-tight">
-        <a class="text-gray-900 dark:text-white hover:border-b-4 hover:border-green-500" href="{{ .RelPermalink | relURL }}">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</a>
-      </h2>
+        <div class="flex flex-wrap">
+          {{ range .Params.tags }}
+            <a class="mr-3 font-medium text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+          {{ end }}
+        </div>
+      </div>
 
       <div class="prose prose-green dark:prose-invert max-w-none ">
         {{ .Summary  }}
