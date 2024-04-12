@@ -2,21 +2,10 @@
 <article class="divide-y divide-slate-200 dark:divide-slate-200/5">
   <header class="pt-3 pb-5">
     <div class="space-y-3">
-      {{ if .Params.date }}
-        <dl class="space-y-9">
-          <div>
-            <dt class="sr-only">Published on</dt>
-            <dd class="text-base text-gray-500 leading-6 font-medium">
-              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-            </dd>
-          </div>
-        </dl>
-      {{ end }}
-
-      {{ if .Params.tags }}
-        <div class="space-y-9 spcae-x-3">
-          {{ range .Params.tags }}
-            <a class="font-medium text-green-700 hover:text-green-600 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+      {{ if .Params.Tech }}
+        <div class="flex flex-wrap">
+          {{ range .Params.Tech }}
+            <span class="mr-3 font-medium text-green-700 dark:text-green-500">{{ . }}</span>
           {{ end }}
         </div>
       {{ end }}
@@ -25,11 +14,34 @@
         <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
       </div>
 
-      {{ if .Params.subtitle }}
+      {{ if .Params.Subtitle }}
         <div>
-          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.subtitle }}</span>
+          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.Subtitle | markdownify }}</span>
         </div>
       {{ end }}
+
+      <div class="pt-5 space-y-3">
+        {{ if .Params.Website }}
+        <div>
+          <span class="dark:text-white font-bold">Website:</span>
+          <a class="text-blue-700 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 hover:underline" href="{{ .Params.Website }}">{{ .Params.Website }} ↗</a>
+        </div>
+        {{ end }}
+
+        {{ if .Params.Source }}
+        <div>
+          <span class="dark:text-white font-bold">Source Code:</span>
+          <a class="text-blue-700 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 hover:underline" href="{{ .Params.Source }}">{{ .Params.Source }} ↗</a>
+        </div>
+        {{ end }}
+
+        {{ if .Params.Documentation }}
+        <div>
+          <span class="dark:text-white font-bold">Documentation:</span>
+          <a class="text-blue-700 dark:text-blue-500 hover:text-blue-500 dark:hover:text-blue-400 hover:underline" href="{{ .Params.Documentation }}">{{ .Params.Documentation }} ↗</a>
+        </div>
+        {{ end }}
+      </div>
     </div>
   </header>
 
