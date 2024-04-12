@@ -6,6 +6,7 @@ date: {{ .Date }}
 tags: []
 keywords: []
 draft: true
+featured: false
 ---
 
 <!--more-->
