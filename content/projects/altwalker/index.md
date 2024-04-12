@@ -3,9 +3,9 @@ title: "AltWalker - A Model-Based Testing Framework"
 subtitle: "AltWalker is an open source **Model-Based Testing** framework that supports running tests written in **Python3** and **.NET**."
 date: 2024-01-01
 keywords: [ "python", "java", "graphwalker", "model-based-testing", "testing" ]
-tags: [ "Python", "Java", "GraphWalker", ".NET" ]
+tech: [ "Python", "Java", "GraphWalker", ".NET" ]
 website: "https://pypi.org/project/altwalker"
-sourceCode: "https://github.com/altwalker/altwalker"
+source: "https://github.com/altwalker/altwalker"
 documentation: "https://altwalker.github.io/altwalker"
 draft: false
 featured: true
