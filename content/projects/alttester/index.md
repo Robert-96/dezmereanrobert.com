@@ -16,7 +16,7 @@ AltTester has made a significant impact, assisting over **5,000 users** in testi
 
 <!--more-->
 
-## Features
+## Key Features
 
 1. **Instrumentation for End-to-End Test Automation**:
 
