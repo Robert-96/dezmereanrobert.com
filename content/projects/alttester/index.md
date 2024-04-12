@@ -9,7 +9,8 @@ draft: false
 featured: true
 ---
 
-During the period from 2021 to 2024, I worked on AltTester, an innovative **UI-driven test automation tool** designed specifically for **Unity** applications and games. AltTester empowers developers to streamline their testing processes by effortlessly identifying and interacting with objects within their Unity projects using tests written in **C#**, **Python**, or **Java**. Whether running tests on real devices such as **mobile phones** and **PCs** or within the **Unity Editor** itself, AltTester offers a comprehensive solution for ensuring the reliability and functionality of Unity projects.
+During the period from 2021 to 2024, I worked on AltTester, an innovative **UI-driven test automation tool** designed specifically for **Unity** applications and games. AltTester empowers developers to streamline their testing processes by effortlessly identifying and interacting with objects within their Unity projects using tests written in **C#**, **Python**, or **Java**. Whether running tests
+on real devices such as **mobile phones** and **PCs** or within the **Unity Editor** itself, AltTester offers a comprehensive solution for ensuring the reliability and functionality of Unity projects.
 
 AltTester has made a significant impact, assisting over **5,000 users** in testing their games effectively.
 
@@ -44,4 +45,5 @@ AltTester has made a significant impact, assisting over **5,000 users** in testi
 
 ## My Role
 
-During my tenure with AltTester, I served as a **Software Developer** within a dynamic team comprising 6 to 10 members. My responsibilities spanned across various facets of the project, with a primary focus on enhancing the **WebSocket Server** functionality, implementing support for **WebGL**, and integrating with cloud platforms such as **BrowserStack** and **BitBar**. Additionally, I contributed to enhancing the **Python package**, ensuring its seamless integration within the AltTester ecosystem.
+During my tenure with AltTester, I served as a **Software Developer** within a dynamic team comprising 6 to 10 members. My responsibilities spanned across various facets of the project, with a primary focus on enhancing the **WebSocket Server** functionality, implementing support for **WebGL**, and integrating with cloud platforms such as **BrowserStack** and **BitBar**. Additionally, I
+contributed to enhancing the **Python package**, ensuring its seamless integration within the AltTester ecosystem.
