@@ -15,7 +15,7 @@ describe('Main Page', () => {
   it('should have the correct heading', async () => {
     const pageHeading = await page.$eval('h1', el => el.innerText);
 
-    expect(pageHeading).toBe('Featured Posts');
+    expect(pageHeading).toBe('Hi, I\'m Dezmerean Robert');
   });
 
   it('should be at least one feature post', async () => {

@@ -6,6 +6,7 @@ let config = {
     './themes/loaf/static/js/anchor.js',
     './themes/loaf/static/js/dark.js',
     './themes/loaf/static/js/copy.js',
+    './themes/loaf/static/js/art.js',
   ],
   output: {
     filename: 'app.js',
