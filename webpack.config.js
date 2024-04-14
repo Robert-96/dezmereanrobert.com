@@ -7,6 +7,7 @@ let config = {
     './themes/loaf/static/js/dark.js',
     './themes/loaf/static/js/copy.js',
     './themes/loaf/static/js/art.js',
+    './themes/loaf/static/js/scroll.js',
   ],
   output: {
     filename: 'app.js',

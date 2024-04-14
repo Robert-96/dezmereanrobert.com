@@ -11,6 +11,14 @@
         {{- block "main" . }}{{- end }}
       </div>
 
+      <div id="scroll-to-top-wrapper" class="hidden fixed bottom-8 right-8 md:flex">
+        <button id="scroll-to-top-button" aria-label="Scroll To Top" class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+          </svg>
+        </button>
+      </div>
+
       {{- partial "footer.html" . -}}
 
       {{- partial "base/debug.html" . -}}
