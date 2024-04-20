@@ -1,0 +1,34 @@
+{{ if hugo.IsServer }}
+<button id="container-button" onclick="toggleContainerArea()" class="size-9 p-2 mb-3 block rounded-full border border-slate-300/10 text-white text-sm font-semibold pointer-events-auto">
+  <span>C</span>
+</button>
+
+<div id="container-area" class="fixed inset-0 top-0 -z-50 container mx-auto h-full bg-red-200 bg-opacity-25 pointer-events-none hidden">
+</div>
+
+<script>
+  function toggleContainerArea(showContainerArea) {
+    const containerArea = document.getElementById("container-area");
+    if (showContainerArea === undefined) {
+      showContainerArea = containerArea.classList.contains("hidden") ? true : false
+    }
+
+    if (containerArea.classList.contains("hidden") == showContainerArea) {
+      containerArea.classList.toggle("hidden");
+    }
+
+    const containerButton = document.getElementById("container-button");
+    containerButton.classList.toggle('bg-slate-700', showContainerArea);
+    containerButton.classList.toggle('bg-slate-500', !showContainerArea);
+
+    sessionStorage.setItem("showContainerArea", showContainerArea);
+  }
+
+  function setUpContainerArea() {
+    const showContainerArea = sessionStorage.getItem("showContainerArea") === "true";
+    toggleContainerArea(showContainerArea);
+  }
+
+  window.onload = setUpContainerArea();
+</script>
+{{ end }}

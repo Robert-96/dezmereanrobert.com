@@ -1,0 +1,7 @@
+{{ if hugo.IsServer }}
+<div class="fixed inset-y-1/4 right-8 z-50">
+  {{- partial "dev/size-indicator.html" . -}}
+  {{- partial "dev/container-indicator.html" . -}}
+  {{- partial "dev/parameters.html" . -}}
+</div>
+{{ end }}
