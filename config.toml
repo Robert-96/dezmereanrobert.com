@@ -11,6 +11,13 @@ enableGitInfo = true
   description = "Dezmerean Robert's boring blog. Focus on Programming, Python, JavaScript, and more!"
   images = ['img/thumbnail.png']
 
+  [params.social]
+  twitter = "https://twitter.com/dezmereanrobert"
+  github = "https://github.com/Robert-96"
+  linkedin = "https://www.linkedin.com/in/robert-dezmerean"
+  devto = "https://dev.to/robert96"
+  stackoverflow = "https://stackoverflow.com/users/19676423/robert-96"
+
 [social]
   twitter = "dezmereanrobert"
   github = "Robert-96"

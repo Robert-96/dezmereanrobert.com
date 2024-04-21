@@ -1,3 +1,19 @@
 <footer class="text-center py-6 text-sm text-gray-500 dark:text-slate-300 font-medium">
-  <small>Copyright © {{ .Site.Params.author }} 2021-{{now.Format "2006"}}</small>
+  <div class="flex flex-wrap justify-center text-gray-500 dark:text-slate-400 no-underline uppercase space-x-5">
+    <ul>
+      <li>
+        <a class="hover:border-b-2 hover:border-blue-500" href="{{ "/index.xml" | relURL }}" type="application/rss+xml" target="_blank">RSS Feed</a>
+      </li>
+    </ul>
+
+    {{ range $key, $value := .Site.Params.Social }}
+      <li>
+        <a class="hover:border-b-2 hover:border-blue-500" href="{{ $value }}">{{ $key }}</a>
+      </li>
+    {{ end }}
+  </div>
+
+  <div class="mt-5">
+    <small>Copyright © {{ .Site.Params.author }} 2021-{{now.Format "2006"}}</small>
+  </div>
 </footer>
