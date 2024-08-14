@@ -1,7 +1,7 @@
 // Temporary workaround for "TypeError: global.context.isIncognito is not a function" error.
 // Remove after the issue https://github.com/argos-ci/jest-puppeteer/issues/586 is resolved.
 
-import { TestEnvironment } from 'jest-environment-puppeteer';
+const TestEnvironment = require("jest-environment-puppeteer").TestEnvironment;
 
 class CustomEnvironment extends TestEnvironment {
   async setup() {
@@ -13,4 +13,4 @@ class CustomEnvironment extends TestEnvironment {
   }
 }
 
-export default CustomEnvironment;
+module.exports = CustomEnvironment;
