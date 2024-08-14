@@ -7,5 +7,6 @@ module.exports = {
   launch: {
     headless: process.env.PUPPETEER_HEADLESS || 'new'
   },
-  browser: process.env.PUPPETEER_BROWSER || 'chromium'
+  browser: process.env.PUPPETEER_BROWSER || 'chromium',
+  testEnvironment: "./custom-environment.js"
 }
