@@ -32,8 +32,6 @@ describe('Tags Page', () => {
   });
 
   it(`should contain the "${post.title}"`, async () => {
-    const postTitles = await page.$$eval('h3', elements => elements.map(el => el.innerText));
-
-    expect(postTitles).toContain(post.title);
+    await helpers.assertTitlesContain(post.title, tag = 'h3');
   });
 });

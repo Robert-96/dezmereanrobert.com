@@ -5,6 +5,13 @@ async function assertTitlesExist(tag = 'h1') {
   expect(titles.length).toBeGreaterThan(0);
 }
 
+async function assertTitlesContain(value, tag = 'h1') {
+  const postTitles = await page.$$eval(tag, elements => elements.map(el => el.innerText));
+
+  expect(postTitles).toContain(value);
+}
+
 module.exports = {
-  assertTitlesExist
+  assertTitlesExist,
+  assertTitlesContain
 }
