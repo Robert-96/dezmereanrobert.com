@@ -1,4 +1,5 @@
 const helpers = require('./helpers.js');
+const project = require('./data.js').project;
 
 describe('Projects Page', () => {
   beforeAll(async () => {
@@ -20,5 +21,9 @@ describe('Projects Page', () => {
 
   it('should be at least one project', async () => {
     await helpers.assertTitlesExist('h2');
+  });
+
+  it(`should contain the "${project.title}" project`, async () => {
+    await helpers.assertTitlesContain(project.title, tag = 'h2');
   });
 });

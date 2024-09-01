@@ -9,7 +9,7 @@ website: ""
 documentation: ""
 source: ""
 draft: true
-featured: false
+featured: true
 ---
 
 **Note**: *This project should remain a draft.*

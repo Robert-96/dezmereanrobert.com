@@ -1,6 +1,7 @@
 const data = require('./data.js');
 const helpers = require('./helpers.js');
 const post = data.post;
+const project = data.project;
 
 describe('Main Page', () => {
   beforeAll(async () => {
@@ -21,6 +22,14 @@ describe('Main Page', () => {
 
   it('should be at least one feature post', async () => {
     await helpers.assertTitlesExist('h2');
+  });
+
+  it(`should contain the "${project.title}" featured project`, async () => {
+    await helpers.assertTitlesContain(project.title, tag = 'h2');
+  });
+
+  it(`should contain the "${post.title}" featured post`, async () => {
+    await helpers.assertTitlesContain(post.title, tag = 'h2');
   });
 
   it(`should contain the "${post.title}"`, async () => {

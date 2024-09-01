@@ -24,5 +24,6 @@ const project = {
 
 module.exports = {
   urls: urls,
-  post: post
+  post: post,
+  project: project
 }
