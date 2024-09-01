@@ -1,0 +1,5 @@
+<h2 class="text-2xl font-bold tracking-tight">
+  <a class="text-gray-900 dark:text-white hover:border-b-4 hover:border-green-500" href="{{ .RelPermalink | relURL }}">
+    {{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}
+  </a>
+</h2>

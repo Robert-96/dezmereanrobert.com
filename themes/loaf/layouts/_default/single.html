@@ -15,14 +15,12 @@
 
       {{ if .Params.tags }}
         <div class="space-y-9 spcae-x-3">
-          {{ range .Params.tags }}
-            <a class="font-medium text-green-700 hover:text-green-500 hover:underline" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
-          {{ end }}
+          {{ partial "base/tags" .Params.tags }}
         </div>
       {{ end }}
 
       <div>
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
+        {{ partial "base/title.html" . }}
       </div>
 
       {{ if .Params.subtitle }}

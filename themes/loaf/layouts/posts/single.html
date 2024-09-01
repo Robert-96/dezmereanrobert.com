@@ -18,7 +18,7 @@
       </div>
 
       <div>
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-3xl md:text-5xl">{{ if .Draft }}DRAFT: {{end}}{{ .Title | markdownify }}</h1>
+        {{ partial "base/title.html" . }}
       </div>
 
       {{ if .Params.subtitle }}
