@@ -1,3 +1,5 @@
+const helpers = require('./helpers.js');
+
 describe('Projects Page', () => {
   beforeAll(async () => {
     await page.goto(`${PATH}/projects`);
@@ -17,9 +19,6 @@ describe('Projects Page', () => {
   });
 
   it('should be at least one project', async () => {
-    const projectTitles = await page.$$eval('h2', elements => elements.map(el => el.innerText));
-
-    expect(Array.isArray(projectTitles)).toBe(true);
-    expect(projectTitles.length).toBeGreaterThan(0);
+    await helpers.assertTitlesExist('h2');
   });
 });

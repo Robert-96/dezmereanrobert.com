@@ -1,4 +1,4 @@
-const data = require('./data.js')
+const data = require('./data.js');
 
 describe('Footer', () => {
   data.urls.forEach(url => {

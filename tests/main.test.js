@@ -1,4 +1,5 @@
-const data = require('./data.js')
+const data = require('./data.js');
+const helpers = require('./helpers.js');
 const post = data.post;
 
 describe('Main Page', () => {
@@ -19,10 +20,7 @@ describe('Main Page', () => {
   });
 
   it('should be at least one feature post', async () => {
-    const postTitles = await page.$$eval('h2', elements => elements.map(el => el.innerText));
-
-    expect(Array.isArray(postTitles)).toBe(true);
-    expect(postTitles.length).toBeGreaterThan(0);
+    await helpers.assertTitlesExist('h2');
   });
 
   it(`should contain the "${post.title}"`, async () => {
