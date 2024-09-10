@@ -22,10 +22,11 @@
       </div>
 
       {{ if .Params.subtitle }}
-        <div>
-          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.subtitle }}</span>
-        </div>
+      <div>
+        {{ partial "base/subtitle" .Params.subtitle }}
+      </div>
       {{ end }}
+
     </div>
   </header>
 

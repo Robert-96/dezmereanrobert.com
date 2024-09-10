@@ -8,10 +8,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
     steps:
       - name: Get the code
         uses: actions/checkout@v4
-        with: 
+        with:
           fetch-depth: 0
 
       - name: Load super-linter env variables
