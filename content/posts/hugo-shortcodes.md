@@ -14,6 +14,17 @@ This blog post provides a quick overview of all the Hugo Shortcodes and custom S
 
 <!--more-->
 
+## Highlight Shortcode
+
+{{< highlight python "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
+def test_upper():
+    assert 'foo'.upper() == 'FOO'
+
+
+def test_lower():
+    assert 'FOO'.lower() == 'foo'
+{{< / highlight >}}
+
 ## Custom Shortcodes
 
 ### GitHub Style Blockquotes
@@ -37,6 +48,6 @@ It can also contain multiple lines and code blocks:
 
 ```python
 def test_upper():
-  assert 'foo'.upper() == 'FOO'
+    assert 'foo'.upper() == 'FOO'
 ```
 {{</gh-blockquote>}}

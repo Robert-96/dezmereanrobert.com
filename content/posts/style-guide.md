@@ -13,13 +13,18 @@ draft: true
 
 ### Headings
 
-| Heading | Light | Dark |
-| ------- | ----- | ---- |
-| `h1`    |       |      |
-| `h2`    |       |      |
-| `h3`    |       |      |
-| `h4`    |       |      |
-| `h5`    |       |      |
-| `h6`    |       |      |
+| Heading | CSS |
+| ------- | --- |
+| `h1`    | `text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14` |
+| `h2`    |       |
+| `h3`    |       |
+| `h4`    |       |
+| `h5`    |       |
+| `h6`    |       |
+| `body`  |       |
 
 ## Colors
+
+## Spacing
+
+## Links
