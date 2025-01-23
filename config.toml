@@ -12,7 +12,7 @@ enableGitInfo = true
   images = ['img/thumbnail.png']
 
   [params.social]
-  twitter = "https://twitter.com/dezmereanrobert"
+  bluesky = "https://bsky.app/profile/robert-96.bsky.social"
   github = "https://github.com/Robert-96"
   linkedin = "https://www.linkedin.com/in/robert-dezmerean"
   devto = "https://dev.to/robert96"
