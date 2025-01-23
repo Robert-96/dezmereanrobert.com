@@ -19,16 +19,14 @@
 
     <li class="text-gray-300 hidden md:inline">//</li>
 
-    <li class="hidden md:inline">
-      <a class="hover:text-blue-400" href="https://bsky.app/profile/{{ .Site.Params.Social.bluesky }}" target="_blank">Bluesky</a>
-    </li>
+    {{ $toDisplay := slice "bluesky" "linkedin" "github" }}
 
-    <li class="hidden md:inline">
-      <a class="hover:text-blue-400" href="https://www.github.com/{{ .Site.Params.Social.github }}" target="_blank">GitHub</a>
-    </li>
-
-    <li class="hidden md:inline">
-      <a class="hover:text-blue-400" href="https://www.linkedin.com/in/{{ .Site.Params.Social.linkedin }}" target="_blank">LinkedIn</a>
-    </li>
+    {{ range $key, $value := .Site.Params.Social }}
+      {{ if in $toDisplay $key }}
+        <li class="hidden md:inline">
+          <a class="hover:text-blue-400" href="{{$value}}" target="_blank">{{$key}}</a>
+        </li>
+      {{ end }}
+    {{ end }}
   </ul>
 </nav>

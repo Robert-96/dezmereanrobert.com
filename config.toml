@@ -18,11 +18,6 @@ enableGitInfo = true
   devto = "https://dev.to/robert96"
   stackoverflow = "https://stackoverflow.com/users/19676423/robert-96"
 
-[social]
-  twitter = "dezmereanrobert"
-  github = "Robert-96"
-  linkedin = "robert-dezmerean"
-
 [taxonomies]
   tag = 'tags'
 
