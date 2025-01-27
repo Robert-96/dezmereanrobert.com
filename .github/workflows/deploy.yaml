@@ -15,6 +15,9 @@ on:
 
 permissions: read-all
 
+env:
+  NODE_VERSION: '18.x'
+
 jobs:
   build:
     runs-on: macos-latest
@@ -26,10 +29,10 @@ jobs:
         run: |
           brew install hugo
 
-      - name: Setup Node.js 16.x
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install npm dependencies
         run: |
