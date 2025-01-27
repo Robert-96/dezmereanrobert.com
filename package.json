@@ -5,7 +5,7 @@
   "description": "My boring personal blog.",
   "private": true,
   "scripts": {
-    "build:tailwind": "@tailwindcss/cli -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
+    "build:tailwind": "npx @tailwindcss/cli -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
     "pack:tailwind": "npm run build:tailwind -- --minify",
     "start:tailwind": "npm run build:tailwind -- --watch",
     "build:webpack": "webpack --mode=development",
