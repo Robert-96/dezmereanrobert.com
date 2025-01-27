@@ -2,7 +2,7 @@
 <html {{ with site.LanguageCode | default site.Language.Lang }} lang="{{ . }}"{{ end }}>
   {{- partial "head.html" . -}}
   <body class="bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 font-sans leading-tight antialiased">
-    <div class="w-screen h-3 bg-gradient-to-r from-lime-500 via-green-500 via-emerald-500 to-teal-500"></div>
+    <div class="w-screen h-3 bg-linear-to-r from-lime-500 via-green-500 via-emerald-500 to-teal-500"></div>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
       {{- partial "header.html" . -}}

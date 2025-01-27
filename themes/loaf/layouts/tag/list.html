@@ -23,7 +23,7 @@
       <ul class="space-y-6 divide-y divide-slate-200 dark:divide-slate-200/5">
         {{ range $.Site.Taxonomies.tags.ByCount }}
           <li class="xl:flex xl:flex-row py-6">
-            <div class="xl:flex-shrink-0 xl:w-48 xl:mr-24 mb-5">
+            <div class="xl:shrink-0 xl:w-48 xl:mr-24 mb-5">
               <h2 class="inline">
                 {{ partial "base/tag" .Name }}
               </h2>
