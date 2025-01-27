@@ -5,7 +5,7 @@
   "description": "My boring personal blog.",
   "private": true,
   "scripts": {
-    "build:tailwind": "tailwindcss -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
+    "build:tailwind": "@tailwindcss/cli -i ./themes/loaf/static/css/main.css -o ./themes/loaf/assets/css/main.css",
     "pack:tailwind": "npm run build:tailwind -- --minify",
     "start:tailwind": "npm run build:tailwind -- --watch",
     "build:webpack": "webpack --mode=development",
@@ -30,6 +30,7 @@
   },
   "homepage": "https://www.dezmereanrobert.com",
   "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
     "@tailwindcss/typography": "^0.5.16",
     "jest": "^29.7.0",
     "jest-puppeteer": "^11.0.0",
