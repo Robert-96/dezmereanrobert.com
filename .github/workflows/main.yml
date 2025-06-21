@@ -46,9 +46,26 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: List the state of node modules
+        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
+        continue-on-error: true
+        run: npm list
+
       - name: Install npm dependencies
         run: |
-          npm install
+          npm ci
 
       - name: Run jest tests
         run: |
@@ -69,9 +86,26 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: List the state of node modules
+        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
+        continue-on-error: true
+        run: npm list
+
       - name: Install npm dependencies
         run: |
-          npm install
+          npm ci
 
       - name: Build the Hugo site
         run: |
