@@ -30,7 +30,7 @@
   },
   "homepage": "https://www.dezmereanrobert.com",
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.8",
+    "@tailwindcss/cli": "^4.1.10",
     "@tailwindcss/typography": "^0.5.16",
     "jest": "^30.0.2",
     "jest-puppeteer": "^11.0.0",
