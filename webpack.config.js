@@ -1,6 +1,6 @@
 const path = require('path')
 
-let config = {
+const config = {
   target: 'web',
   entry: [
     './themes/loaf/static/js/anchor.js',
@@ -15,7 +15,7 @@ let config = {
   }
 }
 
-module.exports = function(env, argv) {
+module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config.devtool = 'inline-source-map';
   }
