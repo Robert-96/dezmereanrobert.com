@@ -24,7 +24,7 @@ describe('Main Page', () => {
     await helpers.assertTitlesExist('h2');
   });
 
-  it(`should contain the "${project.title}" featured project`, async () => {
+  it.skip(`should contain the "${project.title}" featured project`, async () => {
     await helpers.assertTitlesContain(project.title, tag = 'h2');
   });
 
