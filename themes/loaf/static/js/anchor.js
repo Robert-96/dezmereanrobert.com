@@ -1,5 +1,3 @@
-'use strict'
-
 import AnchorJS from 'anchor-js';
 
 const anchors = new AnchorJS();
@@ -19,7 +17,7 @@ function updateExternalLinks() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   updateExternalLinks();
   anchors.add('.prose h2, .prose h3, .prose h4, .prose h5, .prose h6, .prose h7, .prose h8');
 });
