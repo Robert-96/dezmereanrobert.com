@@ -1,5 +1,3 @@
-'use strict'
-
 const clipboard_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>';
 const checked_clipboard_svg = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>';
 
@@ -10,7 +8,7 @@ function createCopyButton(content) {
 
   let timeoutId = null;
 
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     if (timeoutId != null) {
       clearTimeout(timeoutId);
       timeoutId = null;
@@ -30,20 +28,20 @@ function createCopyButton(content) {
   return button;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  let elements = document.querySelectorAll('.prose pre');
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('.prose pre');
   for (const element of elements) {
     const content = element.textContent;
 
-    let button = createCopyButton(content);
+    const button = createCopyButton(content);
     element.appendChild(button);
 
     element.classList.add('relative');
 
-    element.addEventListener('mouseenter', function () {
+    element.addEventListener('mouseenter', () => {
       button.classList.remove('hidden');
     });
-    element.addEventListener('mouseleave', function () {
+    element.addEventListener('mouseleave', () => {
       button.classList.add('hidden');
     });
   }
