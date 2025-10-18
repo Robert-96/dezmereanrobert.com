@@ -1,9 +1,7 @@
-'use strict'
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const toggleButton = document.getElementById("toggle-dark-mode-button");
 
-  toggleButton.addEventListener('click', function () {
+  toggleButton.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
 
     if (localStorage.theme === 'dark') {
