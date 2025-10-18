@@ -1,5 +1,3 @@
-'use strict'
-
 // Inspired by: https://generativeartistry.com/tutorials/piet-mondrian/
 
 function splitOnX(squares, square, splitAt) {
@@ -125,7 +123,7 @@ function draw(canvas, context) {
   colourSquares(context, squares);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('art-canvas');
   if (canvas == null) {
     return;
@@ -144,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   draw(canvas, context);
 
   const toggleButton = document.getElementById('toggle-dark-mode-button');
-  toggleButton.addEventListener('click', function () {
+  toggleButton.addEventListener('click', () => {
     draw(canvas, context);
   });
 
@@ -152,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const note = document.getElementById('art-note');
   let timeoutId = null;
 
-  tooltip.addEventListener('mouseenter', function () {
+  tooltip.addEventListener('mouseenter', () => {
     if (timeoutId != null) {
       clearTimeout(timeoutId);
       timeoutId = null;
@@ -161,24 +159,24 @@ document.addEventListener('DOMContentLoaded', function() {
     note.classList.remove('hidden');
   });
 
-  tooltip.addEventListener('mouseleave', function () {
-    timeoutId = setTimeout(function () {
+  tooltip.addEventListener('mouseleave', () => {
+    timeoutId = setTimeout(() => {
       note.classList.add('hidden');
     }, 1500)
   });
 
-  note.addEventListener('mouseenter', function () {
+  note.addEventListener('mouseenter', () => {
     if (timeoutId != null) {
       clearTimeout(timeoutId);
       timeoutId = null;
     }
   });
 
-  note.addEventListener('mouseleave', function () {
+  note.addEventListener('mouseleave', () => {
     note.classList.add('hidden');
   });
 
-  canvas.addEventListener('click', function () {
+  canvas.addEventListener('click', () => {
     note.classList.add('hidden');
     draw(canvas, context);
   });
