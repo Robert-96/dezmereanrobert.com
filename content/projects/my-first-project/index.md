@@ -15,3 +15,8 @@ featured: true
 **Note**: *This project should remain a draft.*
 
 <!--more-->
+
+{{< image-gallery gallery_dir="./gallery" >}}
+
+
+---
