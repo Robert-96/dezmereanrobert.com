@@ -17,7 +17,7 @@ AltWalker has garnered substantial attention, accumulating **over 46K downloads*
 
 <!--more-->
 
-{{< figure src="./pypi-screenshot.png" alt="Screenshot of the AltWalker PyPi page." >}}
+{{< figure src="./screenshots/pypi-screenshot.png" alt="Screenshot of the AltWalker PyPi page." >}}
 
 ## What is Model-Based Testing?
 
