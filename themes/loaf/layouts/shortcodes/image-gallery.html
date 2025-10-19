@@ -1,0 +1,18 @@
+{{ $dir := string (.Get "gallery_dir") }}
+{{ $class := string (.Get "class") | default "" }}
+
+<div class="mt-9 {{ $class }}">
+  <div class="image-gallery columns-1 xl:columns-2 gap-4">
+    {{ $currentPage := .Page }}
+    {{ $contentDir := path.Join "content" $currentPage.File.Dir $dir }}
+    {{ range (readDir $contentDir) }}
+      {{- $imagePath := path.Join $dir .Name -}}
+      {{- $imageTitle := index (split .Name ".") 0 -}}
+
+      <div class="break-inside-avoid mb-8 mt-0">
+        <img class="h-auto max-w-full rounded-lg mt-0 mb-3" src="{{ $imagePath }}" alt="{{ $imageTitle }}" />
+        <span class="text-sm ml-1">{{ $imageTitle | humanize }}</span>
+      </div>
+    {{ end }}
+  </div>
+</div>
