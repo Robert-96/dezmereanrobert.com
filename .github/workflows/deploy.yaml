@@ -56,6 +56,8 @@ jobs:
           npm ci
 
       - name: Build the Hugo site
+        env:
+          HUGO_PARAMS_AZURE_APPINSIGHTSKEY: ${{ secrets.HUGO_PARAMS_AZURE_APPINSIGHTSKEY }}
         run: |
           npm run pack
 
