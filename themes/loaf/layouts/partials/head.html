@@ -8,6 +8,8 @@
     <title>{{ if .Draft }}DRAFT: {{end}}{{ .Title }} | {{ .Site.Params.Title }}</title>
   {{ end }}
 
+
+
   {{ if .Params.Description }}
     <meta name="description" content="{{ .Params.Description }}">
   {{ else if .Params.Subtitle }}
@@ -38,6 +40,9 @@
       document.documentElement.classList.remove('dark')
     }
   </script>
+
+  <!-- App Insights -->
+  {{ partial "appinsights.html" . }}
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
