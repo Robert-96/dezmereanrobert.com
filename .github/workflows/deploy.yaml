@@ -58,7 +58,7 @@ jobs:
 
       - name: Build the Hugo site
         env:
-          HUGO_PARAMS_AZURE_APPINSIGHTSKEY: ${{ secrets.HUGO_PARAMS_AZURE_APPINSIGHTSKEY }}
+          HUGO_PARAMS_AZURE_APPINSIGHTSCONNECTIONSTR: ${{ secrets.HUGO_PARAMS_AZURE_APPINSIGHTSCONNECTIONSTR }}
         run: |
           npm run pack
 
