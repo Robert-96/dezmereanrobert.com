@@ -1,12 +1,12 @@
 ---
 title: "About Me"
-subtitle: "**TL;DR**: I'm a **Software Developer** with **6 years of experience**, proficient in **Python** and **JavaScript**, specializing in **Flask** and **Fast API** for constructing high-performance applications."
+subtitle: "**TL;DR**: Software Developer with **7+ years of experience**, proficient in **Python** and **JavaScript**, specializing in **Flask** and **FastAPI** for high-performance applications. Currently at **Microsoft**, building internal tools for Azure sovereign cloud automation, data visualization, and infrastructure-as-code adoption."
 layout: "about"
 ---
 
 ### Who am I?
 
-My name is **Dezmerean Robert**. I am a problem solver at heart and a **software developer** with **6 years of experience**. With a strong background in Python and JavaScript, I specialize in building high-performance, scalable, and secure applications using modern web frameworks such as **Flask** and **FAST API**.
+My name is **Dezmerean Robert**. I am a problem solver at heart and a **software developer** with **7+ years of experience**. With a strong background in Python and JavaScript, I specialize in building high-performance, scalable, and secure applications using modern web frameworks such as **Flask** and **FAST API**.
 
 I am passionate about staying up-to-date with the latest developments in the software industry and exploring new technologies to solve complex
 problems. In my free time, I enjoy **contributing to open-source** projects and **sharing my knowledge** with the developer community.
