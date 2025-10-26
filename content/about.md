@@ -17,7 +17,8 @@ Over the years I’ve published a few dozen articles, some more noteworthy than 
 
 My work is focused on **developing tools** that help developers and testers be more productive.
 
-Right now I'm working on [AltWalker](/projects/altwalker/) and [AltTester](https://alttester.com/). Curious about my projects?
+Currently at Microsoft, I'm building internal tools that enhance automation capabilities for Azure sovereign cloud deployments, creating data visualizations through Azure Data Explorer and PowerBI, and driving infrastructure-as-code adoption.
+
 Check out my [projects](/projects/) page  for a full list of all the software I'm currently working on or have previously worked on.
 
 You can also find my open-source projects on [GitHub](https://github.com/Robert-96?tab=repositories).
