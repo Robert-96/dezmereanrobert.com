@@ -9,7 +9,7 @@ draft: false
 featured: false
 ---
 
-This tutorial should help you setup and deploy an Hugo site to GitHub Pages by using GitHub Actions to automatically build and deploy your site. Additionally, you'll learn how to integrate Azure Application Insights to monitor user behaviour, track page views, analyze performance metrics, and gain valuable insights into how visitors interact with your static website.
+This tutorial should help you setup and deploy an Hugo site to GitHub Pages by using GitHub Actions to automatically build and deploy your site. Additionally, you'll learn how to integrate Azure Application Insights to monitor user behaviour, track page views, analyze performance metrics, and gain valuable insights into how visitors interact with your static site.
 
 <!--more-->
 
@@ -17,7 +17,11 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 
 1. The first step involves creating an Azure Application Insights resource from the portal.
 
+{{< figure src="./screenshots/screenshot-01.png" alt="Create Application Insights Resource" >}}
+
 2. Next, obtain the Connection String from the Application Insights resource overview page.
+
+{{< figure src="./screenshots/screenshot-02.png" alt="Application Insights Resource Overview" >}}
 
 3. In your Hugo site's configuration file (`config.toml`, `config.yaml` or as an environment variable), add the Application Insights Connection String:
 
@@ -84,6 +88,9 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
     Check the [official Application Insights JavaScript SDK documentation](https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript) for more configuration options.
 
 6. Finally, build and deploy your Hugo site. Application Insights will now start collecting data on user interactions, page views, and performance metrics.
+
+{{< figure src="./screenshots/screenshot-03.png" alt="Application Insights > Usage > Users" >}}
+
 
 ## Using GitHub Actions for Deployment
 
@@ -168,4 +175,4 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 
 ## Conclusion
 
-By following these steps, you can successfully integrate Azure Application Insights into your Hugo static website and deploy it using GitHub Actions. This setup will provide you with valuable insights into user behaviour, performance metrics, and overall site usage, helping you optimize your website for a better user experience.
+By following these steps, you can successfully integrate Azure Application Insights into your Hugo static site and deploy it using GitHub Actions. This setup will provide you with valuable insights into user behaviour, performance metrics, and overall site usage, helping you optimize your site for a better user experience.
