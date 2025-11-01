@@ -41,7 +41,7 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
-Here you can find all the options available for generating PDFs with Puppeteer: https://pptr.dev/api/puppeteer.pdfoptions
+Here you can find all the options available for generating PDFs with Puppeteer: <https://pptr.dev/api/puppeteer.pdfoptions>
 
 ## Setup
 
@@ -145,7 +145,7 @@ await page.pdf({
 });
 ```
 
-Here you can found a list of all supported formats: https://pptr.dev/api/puppeteer.paperformat#remarks
+Here you can found a list of all supported formats: <https://pptr.dev/api/puppeteer.paperformat#remarks>
 
 ### Set Custom Width and Height
 
