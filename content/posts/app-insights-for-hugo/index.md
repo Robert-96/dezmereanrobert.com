@@ -19,7 +19,7 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 
 {{< figure src="./screenshots/screenshot-01.png" alt="Create Application Insights Resource" >}}
 
-2. Next, obtain the Connection String from the Application Insights resource overview page.
+2. Next, obtain the **Connection String** from the Application Insights resource overview page.
 
 {{< figure src="./screenshots/screenshot-02.png" alt="Application Insights Resource Overview" >}}
 
@@ -90,6 +90,8 @@ This tutorial should help you setup and deploy an Hugo site to GitHub Pages by u
 6. Finally, build and deploy your Hugo site. Application Insights will now start collecting data on user interactions, page views, and performance metrics.
 
 {{< figure src="./screenshots/screenshot-03.png" alt="Application Insights > Usage > Users" >}}
+
+  Click on **View More Insights** to explore detailed analytics and reports.
 
 
 ## Using GitHub Actions for Deployment
