@@ -54,7 +54,7 @@ print("Link:", link)
 
 This function generates a link to a Kusto query in Azure Data Explorer by compressing and encoding the query string. The resulting link can be used to directly open the query in the specified cluster and database.
 
-The url format is as follows:
+The URL format is as follows:
 
 ```markdown
 https://dataexplorer.azure.com/clusters/<Cluster Name>/<Database Name>?query=<Encoded Query>
