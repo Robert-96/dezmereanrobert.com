@@ -34,7 +34,7 @@ def generate_kusto_query_link(cluster: str, database: str, query: str) -> str:
     encoded_bytes = gzip.compress(query.encode('utf-8'))
     encoded_query = base64.b64encode(encoded_bytes).decode('utf-8')
 
-    return f"https://dataexplorer.azure.com/clusters/{cluster}/{database}?query={encoded_query}"
+    return f"https://dataexplorer.azure.com/clusters/{cluster}/databases/{database}?query={encoded_query}"
 
 ```
 
@@ -47,7 +47,7 @@ kusto_query = "nyc_taxi | take 100"
 
 link = generate_kusto_query_link(cluster_name, database_name, kusto_query)
 print("Link:", link)
-# Link: https://dataexplorer.azure.com/clusters/help/Samples?query=H4sIAHjFBmkC/8urTI4vSazIVKhRKEnMTlUwNDAAAG/ThhgTAAAA
+# Link: https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAHjFBmkC/8urTI4vSazIVKhRKEnMTlUwNDAAAG/ThhgTAAAA
 ```
 
 ## Explanation
@@ -57,7 +57,7 @@ This function generates a link to a Kusto query in Azure Data Explorer by compre
 The URL format is as follows:
 
 ```markdown
-https://dataexplorer.azure.com/clusters/<Cluster Name>/<Database Name>?query=<Encoded Query>
+https://dataexplorer.azure.com/clusters/<Cluster Name>/databases/<Database Name>?query=<Encoded Query>
 ```
 
 Where `<Encoded Query>` is the base64-encoded gzip-compressed version of the original query string (`base64(gzip(text))`).
