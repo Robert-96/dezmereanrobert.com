@@ -131,7 +131,7 @@ jobs:
           npm install -g @lhci/cli@0.14.x
 
       - name: Download artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build
           path: 'public/'
