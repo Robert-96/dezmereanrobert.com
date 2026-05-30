@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          
+
       - name: Load super-linter env variables
         run: |
           cat .github/super-linter.env >> "$GITHUB_ENV"
