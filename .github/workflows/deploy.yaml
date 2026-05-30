@@ -16,9 +16,6 @@ on:
 
 permissions: {}
 
-env:
-  NODE_VERSION: '18.x'
-
 jobs:
   build:
     runs-on: macos-latest
@@ -31,6 +28,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Load env variables
+        run: |
+          cat .github/common.env >> "$GITHUB_ENV"
+          
       - name: Install Hugo
         run: |
           brew install hugo
