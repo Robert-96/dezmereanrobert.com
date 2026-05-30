@@ -4,9 +4,6 @@ on: [push, workflow_dispatch]
 
 permissions: {}
 
-env:
-  NODE_VERSION: '18.x'
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -22,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-
+          
       - name: Load super-linter env variables
         run: |
           cat .github/super-linter.env >> "$GITHUB_ENV"
@@ -40,6 +37,10 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Load env variables
+        run: |
+          cat .github/common.env >> "$GITHUB_ENV"
+          
       - name: Install Hugo
         run: |
           brew install hugo
@@ -76,6 +77,10 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+
+      - name: Load env variables
+        run: |
+          cat .github/common.env >> "$GITHUB_ENV"
 
       - name: Install Hugo
         run: |
@@ -120,6 +125,10 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+
+      - name: Load env variables
+        run: |
+          cat .github/common.env >> "$GITHUB_ENV"
 
       - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v6
