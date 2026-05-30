@@ -40,7 +40,7 @@ jobs:
       - name: Load env variables
         run: |
           cat .github/common.env >> "$GITHUB_ENV"
-          
+
       - name: Install Hugo
         run: |
           brew install hugo
