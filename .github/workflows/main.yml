@@ -149,6 +149,15 @@ jobs:
         run: |
           lhci autorun
 
+      - name: Upload Lighthouse results artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-results
+          path: '.lighthouseci/**'
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Publish Lighthouse summary
         if: always()
         run: |
