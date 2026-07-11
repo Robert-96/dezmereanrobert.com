@@ -1,13 +1,13 @@
 {
   "threshold": 0,
-  "reporters": [
-    "consoleFull"
-  ],
+  "reporters": ["consoleFull"],
   "ignore": [
     "**/__snapshots__/**",
     "**/*.md",
     "**/*.yaml",
-    "**/*.yml"
+    "**/*.yml",
+    "package-lock.json",
+    "package.json"
   ],
   "absolute": true
 }
