@@ -8,7 +8,7 @@
 
   <ul class="divide-y divide-slate-200 dark:divide-slate-200/5">
     {{ range sort .Pages "Params.Featured" "desc" }}
-    <li class="py-7">
+    <li class="py-2">
       {{ partial "projects/preview.html" . }}
     </li>
     {{ end }}

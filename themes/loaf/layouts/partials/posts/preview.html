@@ -1,26 +1,21 @@
-<article class="space-y-3 xl:grid xl:grid-cols-4 xl:items-start xl:gap-x-6 xl:space-y-0">
-  <dl>
-    <dt class="sr-only">Published on</dt>
-    <dd class="site-meta mb-2">
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-    </dd>
-  </dl>
+<article class="site-feed-row">
+  <div class="site-meta pt-0.5">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+  </div>
 
-  <div class="space-y-4 xl:col-span-3">
-    <div class="space-y-4">
-      <div class="space-y-3">
-        {{ partial "base/preview-title" . }}
+  <div class="space-y-3">
+    {{ partial "base/preview-title" . }}
 
-        <div class="flex flex-wrap gap-x-3 gap-y-1">
-          {{ partial "base/tags" .Params.tags }}
-        </div>
-      </div>
-
-      <div class="prose prose-green dark:prose-invert max-w-none site-body-muted">
-        {{ .Summary  }}
-      </div>
+    <div class="prose prose-green dark:prose-invert max-w-none site-body-muted">
+      {{ .Summary  }}
     </div>
 
-    {{ partial "base/read-more" . }}
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <div class="flex flex-wrap gap-x-3 gap-y-1">
+        {{ partial "base/tags" .Params.tags }}
+      </div>
+      <span aria-hidden="true" class="text-slate-300 dark:text-slate-600">/</span>
+      {{ partial "base/read-more" . }}
+    </div>
   </div>
 </article>

@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="divide-y divide-slate-200 dark:divide-slate-200/5">
-  <header class="pt-3 pb-9 space-y-2 md:space-y-5">
-    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">
+  <header class="pt-3 pb-9 space-y-3 md:space-y-5">
+    <h1 class="site-page-title">
       {{ if eq .Kind "taxonomy" }}
         {{ .Name | humanize }}
       {{ else }}
@@ -9,7 +9,7 @@
       {{ end }}
     </h1>
 
-    <p class="text-lg text-gray-500 dark:text-slate-300">
+    <p class="site-subtitle">
       {{ if eq .Kind "taxonomy" }}
         All the tags from all the blog posts — sorted by most used tags.
       {{ else }}
@@ -62,7 +62,7 @@
     {{ else }}
       <ul class="divide-y divide-slate-200 dark:divide-slate-200/5">
         {{ range .Pages }}
-          <li class="py-6">
+          <li class="py-2">
             {{ partial "posts/preview.html" . }}
           </li>
         {{ end }}
