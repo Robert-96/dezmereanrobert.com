@@ -120,7 +120,7 @@
   }
 
   .site-social-link {
-    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-green-700 dark:text-slate-400 dark:hover:text-green-300;
+    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300;
     font-family: var(--font-terminal);
   }
 
@@ -164,7 +164,7 @@
   /* domains to exclude */
   [href*="//dezmereanrobert.com"],
 )) {
-  @apply decoration-green-700! dark:decoration-green-300!;
+  @apply decoration-blue-600! dark:decoration-blue-400!;
 }
 
 /* Style gh-blockquote shortcode. */
