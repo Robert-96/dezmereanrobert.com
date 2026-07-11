@@ -146,6 +146,37 @@ function getReportCell(linkData) {
   return `<${safeUrl}>`;
 }
 
+function canonicalizeUrl(input) {
+  const raw = String(input || '').trim();
+  if (!raw) {
+    return 'unknown';
+  }
+
+  try {
+    const parsed = new URL(raw);
+    parsed.hash = '';
+    parsed.hostname = parsed.hostname.toLowerCase();
+
+    if (parsed.pathname.length > 1) {
+      parsed.pathname = parsed.pathname.replace(/\/+$/, '');
+    }
+
+    return parsed.toString();
+  } catch {
+    return raw.replace(/#.*$/, '').replace(/\/+$/, '') || raw;
+  }
+}
+
+function averageNumbers(values) {
+  const valid = values.filter((value) => typeof value === 'number' && Number.isFinite(value));
+  if (!valid.length) {
+    return null;
+  }
+
+  const total = valid.reduce((sum, value) => sum + value, 0);
+  return total / valid.length;
+}
+
 function toReportRecord(report, fallbackUrl, reportKey, linksByReport) {
   const categories = report.categories || {};
   const audits = report.audits || {};
@@ -158,6 +189,98 @@ function toReportRecord(report, fallbackUrl, reportKey, linksByReport) {
     audits,
     reportCell: getReportCell(linksByReport[reportKey])
   };
+}
+
+function consolidateReportsByUrl(reports) {
+  const groups = new Map();
+
+  for (const report of reports) {
+    const groupKey = canonicalizeUrl(report.url);
+    if (!groups.has(groupKey)) {
+      groups.set(groupKey, {
+        key: groupKey,
+        url: report.url,
+        reports: [],
+        reportCell: 'local only'
+      });
+    }
+
+    const group = groups.get(groupKey);
+    group.reports.push(report);
+
+    if (group.reportCell === 'local only' && report.reportCell !== 'local only') {
+      group.reportCell = report.reportCell;
+    }
+  }
+
+  const consolidated = [];
+
+  for (const group of groups.values()) {
+    const categoryScores = {};
+    for (const category of CATEGORY_IDS) {
+      categoryScores[category.id] = averageNumbers(
+        group.reports.map((report) => report.categories[category.id] && report.categories[category.id].score)
+      );
+    }
+
+    const auditBuckets = new Map();
+    for (const report of group.reports) {
+      for (const [auditId, audit] of Object.entries(report.audits || {})) {
+        if (!auditBuckets.has(auditId)) {
+          auditBuckets.set(auditId, []);
+        }
+        auditBuckets.get(auditId).push(audit);
+      }
+    }
+
+    const mergedAudits = {};
+    for (const [auditId, bucket] of auditBuckets.entries()) {
+      const title = bucket.find((audit) => typeof audit.title === 'string' && audit.title.trim())?.title || auditId;
+      const displayValue = bucket.find((audit) => typeof audit.displayValue === 'string' && audit.displayValue.trim())?.displayValue || 'n/a';
+      const scoreDisplayMode = bucket.find((audit) => typeof audit.scoreDisplayMode === 'string')?.scoreDisplayMode;
+      const avgScore = averageNumbers(bucket.map((audit) => audit.score));
+      const avgNumericValue = averageNumbers(bucket.map((audit) => audit.numericValue));
+      const avgSavings = averageNumbers(
+        bucket.map((audit) => audit.details && audit.details.type === 'opportunity' ? audit.details.overallSavingsMs : null)
+      );
+
+      const mergedAudit = {
+        title,
+        displayValue,
+        score: avgScore,
+        numericValue: avgNumericValue,
+        scoreDisplayMode
+      };
+
+      if (avgSavings !== null) {
+        mergedAudit.details = {
+          type: 'opportunity',
+          overallSavingsMs: avgSavings
+        };
+      }
+
+      mergedAudits[auditId] = mergedAudit;
+    }
+
+    const categories = {};
+    for (const category of CATEGORY_IDS) {
+      categories[category.id] = {
+        score: categoryScores[category.id]
+      };
+    }
+
+    consolidated.push({
+      key: group.key,
+      url: group.url,
+      categories,
+      audits: mergedAudits,
+      reportCell: group.reportCell,
+      retryCount: group.reports.length
+    });
+  }
+
+  consolidated.sort((a, b) => a.url.localeCompare(b.url));
+  return consolidated;
 }
 
 function extractNumericAudit(audits, id) {
@@ -345,11 +468,11 @@ function collectReportsFromScan(lhciDir, linksByReport) {
 
 function renderOverviewSection(reports) {
   let markdown = '### Overview\n\n';
-  markdown += '| URL | Performance | Accessibility | Best Practices | SEO | Report |\n';
-  markdown += '| --- | ---: | ---: | ---: | ---: | --- |\n';
+  markdown += '| URL | Retries | Performance | Accessibility | Best Practices | SEO | Report |\n';
+  markdown += '| --- | ---: | ---: | ---: | ---: | ---: | --- |\n';
 
   for (const report of reports) {
-    markdown += `| ${escapeTableCell(report.url)} | ${formatCategoryScore(report.categories.performance && report.categories.performance.score)} | ${formatCategoryScore(report.categories.accessibility && report.categories.accessibility.score)} | ${formatCategoryScore(report.categories['best-practices'] && report.categories['best-practices'].score)} | ${formatCategoryScore(report.categories.seo && report.categories.seo.score)} | ${report.reportCell} |\n`;
+    markdown += `| ${escapeTableCell(report.url)} | ${report.retryCount || 1} | ${formatCategoryScore(report.categories.performance && report.categories.performance.score)} | ${formatCategoryScore(report.categories.accessibility && report.categories.accessibility.score)} | ${formatCategoryScore(report.categories['best-practices'] && report.categories['best-practices'].score)} | ${formatCategoryScore(report.categories.seo && report.categories.seo.score)} | ${report.reportCell} |\n`;
   }
 
   markdown += '\n';
@@ -360,7 +483,7 @@ function renderCategoryBreakdownSection(reports, categoryPassThreshold) {
   let markdown = `### Category Breakdown (pass threshold: ${Math.round(categoryPassThreshold * 100)})\n\n`;
 
   for (const report of reports) {
-    markdown += `#### ${escapeTableCell(report.url)}\n\n`;
+    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
     markdown += '| Category | Score | Raw | Status |\n';
     markdown += '| --- | ---: | ---: | --- |\n';
 
@@ -376,12 +499,12 @@ function renderCategoryBreakdownSection(reports, categoryPassThreshold) {
 
 function renderVitalsSection(reports) {
   let markdown = '### Core Web Vitals\n\n';
-  markdown += '| URL | LCP | CLS | INP/FID | TTFB |\n';
-  markdown += '| --- | --- | --- | --- | --- |\n';
+  markdown += '| URL | Retries | LCP | CLS | INP/FID | TTFB |\n';
+  markdown += '| --- | ---: | --- | --- | --- | --- |\n';
 
   for (const report of reports) {
     const vitals = summarizeVitals(report.audits);
-    markdown += `| ${escapeTableCell(report.url)} | ${escapeTableCell(`${vitals.lcp.text} (${vitals.lcp.status})`)} | ${escapeTableCell(`${vitals.cls.text} (${vitals.cls.status})`)} | ${escapeTableCell(`${vitals.inpOrFid.name}: ${vitals.inpOrFid.text} (${vitals.inpOrFid.status})`)} | ${escapeTableCell(`${vitals.ttfb.text} (${vitals.ttfb.status})`)} |\n`;
+    markdown += `| ${escapeTableCell(report.url)} | ${report.retryCount || 1} | ${escapeTableCell(`${vitals.lcp.text} (${vitals.lcp.status})`)} | ${escapeTableCell(`${vitals.cls.text} (${vitals.cls.status})`)} | ${escapeTableCell(`${vitals.inpOrFid.name}: ${vitals.inpOrFid.text} (${vitals.inpOrFid.status})`)} | ${escapeTableCell(`${vitals.ttfb.text} (${vitals.ttfb.status})`)} |\n`;
   }
 
   markdown += '\n';
@@ -394,7 +517,7 @@ function renderOpportunitiesSection(reports, maxItems) {
   for (const report of reports) {
     const opportunities = collectOpportunities(report.audits, maxItems);
 
-    markdown += `#### ${escapeTableCell(report.url)}\n\n`;
+    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
     if (!opportunities.length) {
       markdown += 'No opportunity audits were found.\n\n';
       continue;
@@ -419,7 +542,7 @@ function renderFailedAuditsSection(reports, maxItems) {
   for (const report of reports) {
     const failed = collectFailedAudits(report.audits, maxItems);
 
-    markdown += `#### ${escapeTableCell(report.url)}\n\n`;
+    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
     if (!failed.length) {
       markdown += 'No failed audits were found.\n\n';
       continue;
@@ -503,12 +626,14 @@ function run() {
     return;
   }
 
-  markdown += `Parsed reports: ${reports.length}.\n\n`;
-  markdown += renderOverviewSection(reports);
-  markdown += renderCategoryBreakdownSection(reports, categoryPassThreshold);
-  markdown += renderVitalsSection(reports);
-  markdown += renderOpportunitiesSection(reports, maxOpportunities);
-  markdown += renderFailedAuditsSection(reports, maxFailedAudits);
+  const consolidatedReports = consolidateReportsByUrl(reports);
+
+  markdown += `Parsed reports: ${reports.length}. Consolidated URLs: ${consolidatedReports.length}.\n\n`;
+  markdown += renderOverviewSection(consolidatedReports);
+  markdown += renderCategoryBreakdownSection(consolidatedReports, categoryPassThreshold);
+  markdown += renderVitalsSection(consolidatedReports);
+  markdown += renderOpportunitiesSection(consolidatedReports, maxOpportunities);
+  markdown += renderFailedAuditsSection(consolidatedReports, maxFailedAudits);
 
   printSummary(markdown);
 }
