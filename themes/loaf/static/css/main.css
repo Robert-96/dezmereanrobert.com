@@ -31,7 +31,7 @@
   body {
     @apply text-base leading-[1.55];
     font-family: var(--font-reading);
-    @apply text-slate-700 dark:text-slate-300;
+    @apply text-slate-700 dark:text-gray-300;
   }
 
   ::selection {
@@ -67,8 +67,8 @@
 
   .dark .site-bg-pattern {
     background-image:
-      radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.08) 1px, transparent 0),
-      linear-gradient(180deg, rgba(15, 23, 42, 0.25), rgba(15, 23, 42, 0));
+      radial-gradient(circle at 1px 1px, rgba(156, 163, 175, 0.08) 1px, transparent 0),
+      linear-gradient(180deg, rgba(3, 7, 18, 0.38), rgba(3, 7, 18, 0));
   }
 
   .site-brand {
@@ -85,16 +85,16 @@
   }
 
   .site-frame {
-    @apply border border-slate-300 bg-slate-50/70 shadow-[0_10px_30px_rgba(15,23,42,0.08)] dark:border-slate-700 dark:bg-slate-900/70;
+    @apply border border-slate-300 bg-slate-50/70 shadow-[0_10px_30px_rgba(15,23,42,0.08)] dark:border-gray-800 dark:bg-gray-950/75;
   }
 
   .site-chrome {
-    @apply flex items-center gap-2 border-b border-slate-300 bg-slate-100/70 px-4 py-2 text-[11px] uppercase tracking-[0.1em] text-slate-500 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-400;
+    @apply flex items-center gap-2 border-b border-slate-300 bg-slate-100/70 px-4 py-2 text-[11px] uppercase tracking-[0.1em] text-slate-500 dark:border-gray-800 dark:bg-gray-900/75 dark:text-gray-400;
     font-family: var(--font-terminal);
   }
 
   .site-chrome-dot {
-    @apply inline-block size-2 rounded-full bg-slate-300 dark:bg-slate-600;
+    @apply inline-block size-2 rounded-full bg-slate-300 dark:bg-gray-700;
   }
 
   .site-chrome-dot-active {
@@ -114,7 +114,7 @@
   }
 
   .site-home-section {
-    @apply border-t border-slate-200 py-6 dark:border-slate-200/5;
+    @apply border-t border-slate-200 py-6 dark:border-gray-800/70;
   }
 
   .site-home-section-head {
@@ -127,11 +127,11 @@
   }
 
   .site-home-section-copy {
-    @apply mt-3 max-w-2xl text-[0.95rem] leading-7 text-slate-600 dark:text-slate-300;
+    @apply mt-3 max-w-2xl text-[0.95rem] leading-7 text-slate-600 dark:text-gray-300;
   }
 
   .site-home-panel {
-    @apply relative overflow-hidden border border-slate-300/90 bg-white/65 px-5 py-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] dark:border-slate-700 dark:bg-slate-900/65;
+    @apply relative overflow-hidden border border-slate-300/90 bg-white/65 px-5 py-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] dark:border-gray-800 dark:bg-gray-950/70;
     backdrop-filter: blur(10px);
   }
 
@@ -141,7 +141,7 @@
   }
 
   .site-home-panel-stat {
-    @apply text-base font-semibold text-slate-700 dark:text-slate-200;
+    @apply text-base font-semibold text-slate-700 dark:text-gray-200;
     font-family: var(--font-terminal);
   }
 
@@ -161,29 +161,29 @@
   }
 
   .site-subtitle {
-    @apply text-base leading-7 text-slate-600 dark:text-slate-300;
+    @apply text-base leading-7 text-slate-600 dark:text-gray-300;
   }
 
   .site-body-muted {
-    @apply text-[0.97rem] leading-7 text-slate-600 dark:text-slate-300;
+    @apply text-[0.97rem] leading-7 text-slate-600 dark:text-gray-300;
   }
 
   .site-meta {
-    @apply text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400;
+    @apply text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-gray-400;
     font-family: var(--font-terminal);
   }
 
   .site-nav-link {
-    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100;
+    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-gray-100;
     font-family: var(--font-terminal);
   }
 
   .site-nav-link-active {
-    @apply text-slate-900 shadow-[inset_0_-2px_0_0_#16a34a] dark:text-slate-100 dark:shadow-[inset_0_-2px_0_0_#4ade80];
+    @apply text-slate-900 shadow-[inset_0_-2px_0_0_#16a34a] dark:text-gray-100 dark:shadow-[inset_0_-2px_0_0_#4ade80];
   }
 
   .site-social-link {
-    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300;
+    @apply text-[12px] font-semibold tracking-[0.08em] text-slate-500 hover:text-blue-700 dark:text-gray-400 dark:hover:text-blue-300;
     font-family: var(--font-terminal);
   }
 
@@ -198,12 +198,12 @@
   }
 
   .site-tech-chip {
-    @apply text-base font-semibold lowercase text-slate-500 dark:text-slate-400;
+    @apply text-base font-semibold lowercase text-slate-500 dark:text-gray-400;
     font-family: var(--font-terminal);
   }
 
   .site-support-copy {
-    @apply text-sm leading-7 text-gray-600 dark:text-slate-200;
+    @apply text-sm leading-7 text-gray-600 dark:text-gray-200;
   }
 
   .site-feed-row {
@@ -215,7 +215,7 @@
 .prose a:not(:where(
   [aria-label="Anchor"]
 )) {
-  @apply underline! decoration-1! underline-offset-3! decoration-green-700! text-slate-900! dark:text-slate-100! dark:decoration-green-300! hover:decoration-2!;
+  @apply underline! decoration-1! underline-offset-3! decoration-green-700! text-slate-900! dark:text-gray-100! dark:decoration-green-300! hover:decoration-2!;
 }
 
 /* Style external links. */
@@ -270,19 +270,19 @@
 
 /* Style Code Highlights */
 .prose pre {
-  @apply border! border-slate-200! dark:border-slate-200/5!;
+  @apply border! border-slate-200! dark:border-gray-800/80!;
 }
 
 .prose .highlight pre {
-  @apply dark:bg-slate-800/50! bg-slate-800!;
+  @apply dark:bg-gray-900/80! bg-slate-800!;
 }
 
 .prose figure {
-  @apply dark:bg-slate-800/50! bg-slate-100/50! border! rounded-md! border-slate-200! dark:border-slate-200/5!;
+  @apply dark:bg-gray-900/70! bg-slate-100/50! border! rounded-md! border-slate-200! dark:border-gray-800/80!;
 }
 
 .prose figure figcaption {
-  @apply ml-5 text-sm text-gray-600 dark:text-slate-400;
+  @apply ml-5 text-sm text-gray-600 dark:text-gray-400;
 }
 
 .prose {
