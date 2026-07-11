@@ -121,6 +121,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      checks: write
+      statuses: write
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v7
         with:
@@ -146,6 +152,8 @@ jobs:
           path: 'public/'
 
       - name: Run Lighthouse
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           lhci autorun
 
