@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss";  /* stylelint-disable-line import-notation */
+
 
 @plugin '@tailwindcss/typography';
 
