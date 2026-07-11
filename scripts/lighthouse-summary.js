@@ -479,84 +479,89 @@ function renderOverviewSection(reports) {
   return markdown;
 }
 
+function wrapInDetails(summary, content) {
+  let markdown = '<details>\n\n';
+  markdown += `<summary>${summary}</summary>\n\n`;
+  markdown += `${content.trim()}\n\n`;
+  markdown += '</details>\n\n';
+  return markdown;
+}
+
 function renderCategoryBreakdownSection(reports, categoryPassThreshold) {
-  let markdown = `### Category Breakdown (pass threshold: ${Math.round(categoryPassThreshold * 100)})\n\n`;
+  let section = '| URL | Category | Score | Raw | Status |\n';
+  section += '| --- | --- | ---: | ---: | --- |\n';
 
   for (const report of reports) {
-    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
-    markdown += '| Category | Score | Raw | Status |\n';
-    markdown += '| --- | ---: | ---: | --- |\n';
-
     for (const category of CATEGORY_IDS) {
       const score = report.categories[category.id] && report.categories[category.id].score;
-      markdown += `| ${category.label} | ${formatCategoryScore(score)} | ${formatRawScore(score)} | ${categoryStatus(score, categoryPassThreshold)} |\n`;
+      section += `| ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1}) | ${category.label} | ${formatCategoryScore(score)} | ${formatRawScore(score)} | ${categoryStatus(score, categoryPassThreshold)} |\n`;
     }
-    markdown += '\n';
   }
 
-  return markdown;
+  return wrapInDetails(
+    `Category Breakdown (pass threshold: ${Math.round(categoryPassThreshold * 100)})`,
+    section
+  );
 }
 
 function renderVitalsSection(reports) {
-  let markdown = '### Core Web Vitals\n\n';
-  markdown += '| URL | Retries | LCP | CLS | INP/FID | TTFB |\n';
-  markdown += '| --- | ---: | --- | --- | --- | --- |\n';
+  let section = '| URL | Retries | LCP | CLS | INP/FID | TTFB |\n';
+  section += '| --- | ---: | --- | --- | --- | --- |\n';
 
   for (const report of reports) {
     const vitals = summarizeVitals(report.audits);
-    markdown += `| ${escapeTableCell(report.url)} | ${report.retryCount || 1} | ${escapeTableCell(`${vitals.lcp.text} (${vitals.lcp.status})`)} | ${escapeTableCell(`${vitals.cls.text} (${vitals.cls.status})`)} | ${escapeTableCell(`${vitals.inpOrFid.name}: ${vitals.inpOrFid.text} (${vitals.inpOrFid.status})`)} | ${escapeTableCell(`${vitals.ttfb.text} (${vitals.ttfb.status})`)} |\n`;
+    section += `| ${escapeTableCell(report.url)} | ${report.retryCount || 1} | ${escapeTableCell(`${vitals.lcp.text} (${vitals.lcp.status})`)} | ${escapeTableCell(`${vitals.cls.text} (${vitals.cls.status})`)} | ${escapeTableCell(`${vitals.inpOrFid.name}: ${vitals.inpOrFid.text} (${vitals.inpOrFid.status})`)} | ${escapeTableCell(`${vitals.ttfb.text} (${vitals.ttfb.status})`)} |\n`;
   }
 
-  markdown += '\n';
-  return markdown;
+  return wrapInDetails('Core Web Vitals', section);
 }
 
 function renderOpportunitiesSection(reports, maxItems) {
-  let markdown = `### Top Opportunities (top ${maxItems} per URL)\n\n`;
+  let section = '';
 
   for (const report of reports) {
     const opportunities = collectOpportunities(report.audits, maxItems);
 
-    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
+    section += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
     if (!opportunities.length) {
-      markdown += 'No opportunity audits were found.\n\n';
+      section += 'No opportunity audits were found.\n\n';
       continue;
     }
 
-    markdown += '| Audit | Score | Savings | Display |\n';
-    markdown += '| --- | ---: | ---: | --- |\n';
+    section += '| Audit | Score | Savings | Display |\n';
+    section += '| --- | ---: | ---: | --- |\n';
     for (const opp of opportunities) {
       const savings = typeof opp.savingsMs === 'number' ? `${Math.round(opp.savingsMs)} ms` : 'n/a';
       const score = typeof opp.score === 'number' ? opp.score.toFixed(2) : 'n/a';
-      markdown += `| ${escapeTableCell(opp.title)} | ${score} | ${savings} | ${escapeTableCell(opp.displayValue)} |\n`;
+      section += `| ${escapeTableCell(opp.title)} | ${score} | ${savings} | ${escapeTableCell(opp.displayValue)} |\n`;
     }
-    markdown += '\n';
+    section += '\n';
   }
 
-  return markdown;
+  return wrapInDetails(`Top Opportunities (top ${maxItems} per URL)`, section || 'No opportunity audits were found.');
 }
 
 function renderFailedAuditsSection(reports, maxItems) {
-  let markdown = `### Top Failed Audits (top ${maxItems} per URL)\n\n`;
+  let section = '';
 
   for (const report of reports) {
     const failed = collectFailedAudits(report.audits, maxItems);
 
-    markdown += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
+    section += `#### ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1})\n\n`;
     if (!failed.length) {
-      markdown += 'No failed audits were found.\n\n';
+      section += 'No failed audits were found.\n\n';
       continue;
     }
 
-    markdown += '| Audit | Score | Display |\n';
-    markdown += '| --- | ---: | --- |\n';
+    section += '| Audit | Score | Display |\n';
+    section += '| --- | ---: | --- |\n';
     for (const audit of failed) {
-      markdown += `| ${escapeTableCell(audit.title)} | ${audit.score.toFixed(2)} | ${escapeTableCell(audit.displayValue)} |\n`;
+      section += `| ${escapeTableCell(audit.title)} | ${audit.score.toFixed(2)} | ${escapeTableCell(audit.displayValue)} |\n`;
     }
-    markdown += '\n';
+    section += '\n';
   }
 
-  return markdown;
+  return wrapInDetails(`Top Failed Audits (top ${maxItems} per URL)`, section || 'No failed audits were found.');
 }
 
 function run() {
