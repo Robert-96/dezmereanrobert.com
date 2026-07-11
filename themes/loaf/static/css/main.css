@@ -75,6 +75,15 @@
     font-family: var(--font-terminal);
   }
 
+  .site-brand-link {
+    @apply inline-flex text-gray-900 no-underline dark:text-white;
+  }
+
+  .site-brand-wordmark {
+    @apply text-[1.3rem] font-bold leading-none tracking-[-0.045em] text-gray-900 dark:text-white sm:text-[1.55rem] md:text-[2rem];
+    font-family: var(--font-terminal);
+  }
+
   .site-frame {
     @apply border border-slate-300 bg-slate-50/70 shadow-[0_10px_30px_rgba(15,23,42,0.08)] dark:border-slate-700 dark:bg-slate-900/70;
   }
