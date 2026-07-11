@@ -1,9 +1,51 @@
 #!/usr/bin/env node
 
+/**
+ * @file Lighthouse CI summary generator.
+ *
+ * Reads Lighthouse reports from `.lighthouseci`, consolidates retries by URL,
+ * and prints a markdown summary intended for GitHub Actions step summaries.
+ */
+
 const fs = require('fs');
 const path = require('path');
 
-const CATEGORY_IDS = [
+/**
+ * @typedef {Object} CategoryDefinition
+ * @property {string} id
+ * @property {string} label
+ */
+
+/**
+ * @typedef {Object} ReportRecord
+ * @property {string} key
+ * @property {string} url
+ * @property {Object<string, {score: (number|null|undefined)}>} categories
+ * @property {Object<string, Object>} audits
+ * @property {string} reportCell
+ * @property {number} [retryCount]
+ */
+
+/**
+ * @typedef {Object} RuntimeConfig
+ * @property {string} lhciDir
+ * @property {number} maxOpportunities
+ * @property {number} maxFailedAudits
+ * @property {number} categoryPassThreshold
+ * @property {CategoryDefinition[]} categoryDefinitions
+ */
+
+/**
+ * @typedef {Object} Deps
+ * @property {{ existsSync: Function, readFileSync: Function, readdirSync: Function }} fsApi
+ * @property {{ join: Function, basename: Function }} pathApi
+ * @property {Object<string, string|undefined>} env
+ * @property {{ write: Function }} stdout
+ * @property {() => string} cwd
+ * @property {typeof URL} URLCtor
+ */
+
+const DEFAULT_CATEGORY_DEFINITIONS = [
   { id: 'performance', label: 'Performance' },
   { id: 'accessibility', label: 'Accessibility' },
   { id: 'best-practices', label: 'Best Practices' },
@@ -26,19 +68,48 @@ const VITAL_THRESHOLDS = {
   ttfb: { good: 800, ni: 1800 }
 };
 
-function fileExists(filePath) {
+const DEFAULT_DEPS = {
+  fsApi: fs,
+  pathApi: path,
+  env: process.env,
+  stdout: process.stdout,
+  cwd: () => process.cwd(),
+  URLCtor: URL
+};
+
+/**
+ * Safely checks whether a file path exists.
+ *
+ * @param {string} filePath
+ * @param {{ existsSync: Function }} fsApi
+ * @returns {boolean}
+ */
+function fileExists(filePath, fsApi) {
   try {
-    return fs.existsSync(filePath);
+    return fsApi.existsSync(filePath);
   } catch {
     return false;
   }
 }
 
-function readJson(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+/**
+ * Reads and parses a JSON file.
+ *
+ * @param {string} filePath
+ * @param {{ readFileSync: Function }} fsApi
+ * @returns {any}
+ */
+function readJson(filePath, fsApi) {
+  const content = fsApi.readFileSync(filePath, 'utf8');
   return JSON.parse(content);
 }
 
+/**
+ * Escapes markdown table control characters in a cell value.
+ *
+ * @param {unknown} value
+ * @returns {string}
+ */
 function escapeTableCell(value) {
   return String(value)
     .replace(/\n/g, ' ')
@@ -46,8 +117,16 @@ function escapeTableCell(value) {
     .replace(/\|/g, '\\|');
 }
 
-function parsePositiveIntEnv(name, fallback) {
-  const raw = process.env[name];
+/**
+ * Reads a positive integer from environment-like object with fallback.
+ *
+ * @param {Object<string, string|undefined>} env
+ * @param {string} name
+ * @param {number} fallback
+ * @returns {number}
+ */
+function parsePositiveIntEnv(env, name, fallback) {
+  const raw = env[name];
   if (!raw) {
     return fallback;
   }
@@ -58,8 +137,16 @@ function parsePositiveIntEnv(name, fallback) {
   return parsed;
 }
 
-function parseThresholdEnv(name, fallback) {
-  const raw = process.env[name];
+/**
+ * Reads a decimal threshold in [0, 1] from environment-like object with fallback.
+ *
+ * @param {Object<string, string|undefined>} env
+ * @param {string} name
+ * @param {number} fallback
+ * @returns {number}
+ */
+function parseThresholdEnv(env, name, fallback) {
+  const raw = env[name];
   if (!raw) {
     return fallback;
   }
@@ -70,6 +157,12 @@ function parseThresholdEnv(name, fallback) {
   return parsed;
 }
 
+/**
+ * Formats Lighthouse category score to a percentage integer string.
+ *
+ * @param {number|null|undefined} score
+ * @returns {string}
+ */
 function formatCategoryScore(score) {
   if (typeof score !== 'number') {
     return 'n/a';
@@ -77,6 +170,12 @@ function formatCategoryScore(score) {
   return String(Math.round(score * 100));
 }
 
+/**
+ * Formats a raw decimal score to two fraction digits.
+ *
+ * @param {number|null|undefined} score
+ * @returns {string}
+ */
 function formatRawScore(score) {
   if (typeof score !== 'number') {
     return 'n/a';
@@ -84,6 +183,13 @@ function formatRawScore(score) {
   return score.toFixed(2);
 }
 
+/**
+ * Evaluates category pass/fail against configured threshold.
+ *
+ * @param {number|null|undefined} score
+ * @param {number} threshold
+ * @returns {'pass'|'fail'|'n/a'}
+ */
 function categoryStatus(score, threshold) {
   if (typeof score !== 'number') {
     return 'n/a';
@@ -91,24 +197,39 @@ function categoryStatus(score, threshold) {
   return score >= threshold ? 'pass' : 'fail';
 }
 
-function printSummary(markdown) {
-  process.stdout.write(markdown);
+/**
+ * Writes summary markdown to the supplied writer.
+ *
+ * @param {string} markdown
+ * @param {{ write: Function }} [writer=process.stdout]
+ * @returns {void}
+ */
+function printSummary(markdown, writer = process.stdout) {
+  writer.write(markdown);
 }
 
-function listJsonFilesRecursively(dirPath) {
+/**
+ * Recursively collects JSON file paths from a directory.
+ *
+ * @param {string} dirPath
+ * @param {{ readdirSync: Function }} fsApi
+ * @param {{ join: Function }} pathApi
+ * @returns {string[]}
+ */
+function listJsonFilesRecursively(dirPath, fsApi, pathApi) {
   const results = [];
 
   let entries;
   try {
-    entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    entries = fsApi.readdirSync(dirPath, { withFileTypes: true });
   } catch {
     return results;
   }
 
   for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name);
+    const fullPath = pathApi.join(dirPath, entry.name);
     if (entry.isDirectory()) {
-      results.push(...listJsonFilesRecursively(fullPath));
+      results.push(...listJsonFilesRecursively(fullPath, fsApi, pathApi));
       continue;
     }
 
@@ -120,6 +241,12 @@ function listJsonFilesRecursively(dirPath) {
   return results;
 }
 
+/**
+ * Checks whether a parsed JSON object looks like a Lighthouse report.
+ *
+ * @param {any} report
+ * @returns {boolean}
+ */
 function isLighthouseReport(report) {
   return !!(
     report &&
@@ -132,6 +259,12 @@ function isLighthouseReport(report) {
   );
 }
 
+/**
+ * Formats report-link data into a markdown-safe cell value.
+ *
+ * @param {{url?: string}|undefined} linkData
+ * @returns {string}
+ */
 function getReportCell(linkData) {
   if (!linkData || typeof linkData.url !== 'string' || !linkData.url.trim()) {
     return 'local only';
@@ -146,14 +279,21 @@ function getReportCell(linkData) {
   return `<${safeUrl}>`;
 }
 
-function canonicalizeUrl(input) {
+/**
+ * Canonicalizes a URL string for grouping retry reports.
+ *
+ * @param {unknown} input
+ * @param {typeof URL} URLCtor
+ * @returns {string}
+ */
+function canonicalizeUrl(input, URLCtor) {
   const raw = String(input || '').trim();
   if (!raw) {
     return 'unknown';
   }
 
   try {
-    const parsed = new URL(raw);
+    const parsed = new URLCtor(raw);
     parsed.hash = '';
     parsed.hostname = parsed.hostname.toLowerCase();
 
@@ -167,6 +307,12 @@ function canonicalizeUrl(input) {
   }
 }
 
+/**
+ * Computes average for finite numeric values.
+ *
+ * @param {Array<number|null|undefined>} values
+ * @returns {number|null}
+ */
 function averageNumbers(values) {
   const valid = values.filter((value) => typeof value === 'number' && Number.isFinite(value));
   if (!valid.length) {
@@ -177,6 +323,78 @@ function averageNumbers(values) {
   return total / valid.length;
 }
 
+/**
+ * Converts an identifier to title case label.
+ *
+ * @param {string} id
+ * @returns {string}
+ */
+function toTitleCaseLabel(id) {
+  return id
+    .split(/[-_\s]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+/**
+ * Resolves summary category definitions from environment.
+ *
+ * Supports `LIGHTHOUSE_SUMMARY_CATEGORIES` as:
+ * - `id1,id2`
+ * - `id1:Label 1,id2:Label 2`
+ *
+ * @param {Object<string, string|undefined>} env
+ * @returns {CategoryDefinition[]}
+ */
+function getCategoryDefinitions(env) {
+  const raw = env.LIGHTHOUSE_SUMMARY_CATEGORIES;
+  if (!raw || !raw.trim()) {
+    return DEFAULT_CATEGORY_DEFINITIONS;
+  }
+
+  const parsed = raw
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => {
+      const split = item.split(':');
+      const id = split[0].trim();
+      const label = split[1] ? split.slice(1).join(':').trim() : toTitleCaseLabel(id);
+      return { id, label };
+    })
+    .filter((category) => category.id);
+
+  return parsed.length ? parsed : DEFAULT_CATEGORY_DEFINITIONS;
+}
+
+/**
+ * Loads runtime configuration from dependencies and environment.
+ *
+ * @param {Deps} deps
+ * @returns {RuntimeConfig}
+ */
+function loadRuntimeConfig(deps) {
+  const { env, pathApi, cwd } = deps;
+
+  return {
+    lhciDir: pathApi.join(cwd(), '.lighthouseci'),
+    maxOpportunities: parsePositiveIntEnv(env, 'LIGHTHOUSE_SUMMARY_MAX_OPPORTUNITIES', 3),
+    maxFailedAudits: parsePositiveIntEnv(env, 'LIGHTHOUSE_SUMMARY_MAX_FAILED_AUDITS', 5),
+    categoryPassThreshold: parseThresholdEnv(env, 'LIGHTHOUSE_SUMMARY_CATEGORY_PASS_THRESHOLD', 0.9),
+    categoryDefinitions: getCategoryDefinitions(env)
+  };
+}
+
+/**
+ * Builds an internal report record from raw Lighthouse report payload.
+ *
+ * @param {any} report
+ * @param {string|null|undefined} fallbackUrl
+ * @param {string} reportKey
+ * @param {Object<string, {url?: string}>} linksByReport
+ * @returns {ReportRecord}
+ */
 function toReportRecord(report, fallbackUrl, reportKey, linksByReport) {
   const categories = report.categories || {};
   const audits = report.audits || {};
@@ -191,11 +409,19 @@ function toReportRecord(report, fallbackUrl, reportKey, linksByReport) {
   };
 }
 
-function consolidateReportsByUrl(reports) {
+/**
+ * Consolidates retry reports by canonical URL and averages metrics.
+ *
+ * @param {ReportRecord[]} reports
+ * @param {CategoryDefinition[]} categoryDefinitions
+ * @param {typeof URL} URLCtor
+ * @returns {ReportRecord[]}
+ */
+function consolidateReportsByUrl(reports, categoryDefinitions, URLCtor) {
   const groups = new Map();
 
   for (const report of reports) {
-    const groupKey = canonicalizeUrl(report.url);
+    const groupKey = canonicalizeUrl(report.url, URLCtor);
     if (!groups.has(groupKey)) {
       groups.set(groupKey, {
         key: groupKey,
@@ -217,7 +443,7 @@ function consolidateReportsByUrl(reports) {
 
   for (const group of groups.values()) {
     const categoryScores = {};
-    for (const category of CATEGORY_IDS) {
+    for (const category of categoryDefinitions) {
       categoryScores[category.id] = averageNumbers(
         group.reports.map((report) => report.categories[category.id] && report.categories[category.id].score)
       );
@@ -263,7 +489,7 @@ function consolidateReportsByUrl(reports) {
     }
 
     const categories = {};
-    for (const category of CATEGORY_IDS) {
+    for (const category of categoryDefinitions) {
       categories[category.id] = {
         score: categoryScores[category.id]
       };
@@ -283,6 +509,13 @@ function consolidateReportsByUrl(reports) {
   return consolidated;
 }
 
+/**
+ * Extracts numeric audit value and display string from audits collection.
+ *
+ * @param {Object<string, any>} audits
+ * @param {string} id
+ * @returns {{value: number|null, display: string|null}}
+ */
 function extractNumericAudit(audits, id) {
   const audit = audits[id];
   if (!audit || typeof audit.numericValue !== 'number') {
@@ -294,6 +527,13 @@ function extractNumericAudit(audits, id) {
   };
 }
 
+/**
+ * Classifies a metric value by threshold set.
+ *
+ * @param {number|null|undefined} value
+ * @param {{good: number, ni: number}} thresholds
+ * @returns {'good'|'needs-improvement'|'poor'|'n/a'}
+ */
 function metricStatus(value, thresholds) {
   if (typeof value !== 'number') {
     return 'n/a';
@@ -307,6 +547,12 @@ function metricStatus(value, thresholds) {
   return 'poor';
 }
 
+/**
+ * Formats millisecond-based metric values.
+ *
+ * @param {number|null|undefined} value
+ * @returns {string}
+ */
 function formatMs(value) {
   if (typeof value !== 'number') {
     return 'n/a';
@@ -314,6 +560,12 @@ function formatMs(value) {
   return `${Math.round(value)} ms`;
 }
 
+/**
+ * Formats CLS metric values.
+ *
+ * @param {number|null|undefined} value
+ * @returns {string}
+ */
 function formatCls(value) {
   if (typeof value !== 'number') {
     return 'n/a';
@@ -321,6 +573,17 @@ function formatCls(value) {
   return value.toFixed(3);
 }
 
+/**
+ * Produces formatted Core Web Vitals summary object for one report.
+ *
+ * @param {Object<string, any>} audits
+ * @returns {{
+ *   lcp: {text: string, status: string},
+ *   cls: {text: string, status: string},
+ *   inpOrFid: {name: string, text: string, status: string},
+ *   ttfb: {text: string, status: string}
+ * }}
+ */
 function summarizeVitals(audits) {
   const lcp = extractNumericAudit(audits, AUDIT_IDS.lcp);
   const cls = extractNumericAudit(audits, AUDIT_IDS.cls);
@@ -353,6 +616,13 @@ function summarizeVitals(audits) {
   };
 }
 
+/**
+ * Collects and ranks Lighthouse opportunity audits.
+ *
+ * @param {Object<string, any>} audits
+ * @param {number} maxItems
+ * @returns {Array<{id: string, title: string, score: number|null, savingsMs: number|null, displayValue: string}>}
+ */
 function collectOpportunities(audits, maxItems) {
   const opportunities = [];
   for (const [auditId, audit] of Object.entries(audits)) {
@@ -377,6 +647,13 @@ function collectOpportunities(audits, maxItems) {
   return opportunities.slice(0, maxItems);
 }
 
+/**
+ * Collects and ranks non-passing audits.
+ *
+ * @param {Object<string, any>} audits
+ * @param {number} maxItems
+ * @returns {Array<{id: string, title: string, score: number, displayValue: string}>}
+ */
 function collectFailedAudits(audits, maxItems) {
   const failed = [];
   for (const [auditId, audit] of Object.entries(audits)) {
@@ -408,7 +685,72 @@ function collectFailedAudits(audits, maxItems) {
   return failed.slice(0, maxItems);
 }
 
-function collectReportsFromManifest(manifest, lhciDir, linksByReport) {
+/**
+ * Loads `.lighthouseci/manifest.json` if available.
+ *
+ * @param {string} lhciDir
+ * @param {Deps} deps
+ * @returns {{manifest: any, usedManifest: boolean, error: Error|null}}
+ */
+function loadManifest(lhciDir, deps) {
+  const { fsApi, pathApi } = deps;
+  const manifestPath = pathApi.join(lhciDir, 'manifest.json');
+  let usedManifest = false;
+
+  if (!fileExists(manifestPath, fsApi)) {
+    return { manifest: null, usedManifest, error: null };
+  }
+
+  try {
+    const manifest = readJson(manifestPath, fsApi);
+    usedManifest = true;
+    return { manifest, usedManifest, error: null };
+  } catch (error) {
+    return { manifest: null, usedManifest, error };
+  }
+}
+
+/**
+ * Loads Lighthouse links mapping keyed by report basename.
+ *
+ * @param {string} lhciDir
+ * @param {Deps} deps
+ * @returns {Object<string, {url?: string}>}
+ */
+function loadLinksByReport(lhciDir, deps) {
+  const { fsApi, pathApi } = deps;
+  const linksPath = pathApi.join(lhciDir, 'links.json');
+  let linksByReport = {};
+
+  if (!fileExists(linksPath, fsApi)) {
+    return linksByReport;
+  }
+
+  try {
+    const links = readJson(linksPath, fsApi);
+    linksByReport = Object.fromEntries(
+      links
+        .filter((entry) => entry && entry.report)
+        .map((entry) => [pathApi.basename(entry.report), entry])
+    );
+  } catch {
+    linksByReport = {};
+  }
+
+  return linksByReport;
+}
+
+/**
+ * Collects Lighthouse reports from manifest entries.
+ *
+ * @param {any[]} manifest
+ * @param {string} lhciDir
+ * @param {Object<string, {url?: string}>} linksByReport
+ * @param {Deps} deps
+ * @returns {ReportRecord[]}
+ */
+function collectReportsFromManifest(manifest, lhciDir, linksByReport, deps) {
+  const { fsApi, pathApi } = deps;
   const reports = [];
 
   for (const item of manifest) {
@@ -416,14 +758,14 @@ function collectReportsFromManifest(manifest, lhciDir, linksByReport) {
       continue;
     }
 
-    const reportPath = path.join(lhciDir, item.jsonPath);
-    if (!fileExists(reportPath)) {
+    const reportPath = pathApi.join(lhciDir, item.jsonPath);
+    if (!fileExists(reportPath, fsApi)) {
       continue;
     }
 
     let report;
     try {
-      report = readJson(reportPath);
+      report = readJson(reportPath, fsApi);
     } catch {
       continue;
     }
@@ -432,26 +774,35 @@ function collectReportsFromManifest(manifest, lhciDir, linksByReport) {
       continue;
     }
 
-    const reportKey = path.basename(item.jsonPath);
+    const reportKey = pathApi.basename(item.jsonPath);
     reports.push(toReportRecord(report, item.url, reportKey, linksByReport));
   }
 
   return reports;
 }
 
-function collectReportsFromScan(lhciDir, linksByReport) {
+/**
+ * Collects Lighthouse reports by scanning `.lighthouseci` JSON files.
+ *
+ * @param {string} lhciDir
+ * @param {Object<string, {url?: string}>} linksByReport
+ * @param {Deps} deps
+ * @returns {ReportRecord[]}
+ */
+function collectReportsFromScan(lhciDir, linksByReport, deps) {
+  const { fsApi, pathApi } = deps;
   const reports = [];
-  const jsonFiles = listJsonFilesRecursively(lhciDir);
+  const jsonFiles = listJsonFilesRecursively(lhciDir, fsApi, pathApi);
 
   for (const reportPath of jsonFiles) {
-    const baseName = path.basename(reportPath);
+    const baseName = pathApi.basename(reportPath);
     if (baseName === 'links.json' || baseName === 'manifest.json') {
       continue;
     }
 
     let report;
     try {
-      report = readJson(reportPath);
+      report = readJson(reportPath, fsApi);
     } catch {
       continue;
     }
@@ -466,19 +817,67 @@ function collectReportsFromScan(lhciDir, linksByReport) {
   return reports;
 }
 
-function renderOverviewSection(reports) {
+/**
+ * Loads reports using manifest-first strategy with scan fallback.
+ *
+ * @param {any[]|null} manifest
+ * @param {string} lhciDir
+ * @param {Object<string, {url?: string}>} linksByReport
+ * @param {Deps} deps
+ * @returns {{reports: ReportRecord[], usedScanFallback: boolean}}
+ */
+function loadReports(manifest, lhciDir, linksByReport, deps) {
+  let reports = [];
+  let usedScanFallback = false;
+
+  if (manifest && Array.isArray(manifest)) {
+    reports = collectReportsFromManifest(manifest, lhciDir, linksByReport, deps);
+  }
+
+  if (!reports.length) {
+    reports = collectReportsFromScan(lhciDir, linksByReport, deps);
+    usedScanFallback = true;
+  }
+
+  return { reports, usedScanFallback };
+}
+
+/**
+ * Renders overview markdown section.
+ *
+ * @param {ReportRecord[]} reports
+ * @param {CategoryDefinition[]} categoryDefinitions
+ * @returns {string}
+ */
+function renderOverviewSection(reports, categoryDefinitions) {
   let markdown = '### Overview\n\n';
-  markdown += '| URL | Retries | Performance | Accessibility | Best Practices | SEO | Report |\n';
-  markdown += '| --- | ---: | ---: | ---: | ---: | ---: | --- |\n';
+  const headers = ['URL', 'Retries', ...categoryDefinitions.map((category) => category.label), 'Report'];
+  markdown += `| ${headers.join(' | ')} |\n`;
+
+  const separators = ['---', '---:', ...categoryDefinitions.map(() => '---:'), '---'];
+  markdown += `| ${separators.join(' | ')} |\n`;
 
   for (const report of reports) {
-    markdown += `| ${escapeTableCell(report.url)} | ${report.retryCount || 1} | ${formatCategoryScore(report.categories.performance && report.categories.performance.score)} | ${formatCategoryScore(report.categories.accessibility && report.categories.accessibility.score)} | ${formatCategoryScore(report.categories['best-practices'] && report.categories['best-practices'].score)} | ${formatCategoryScore(report.categories.seo && report.categories.seo.score)} | ${report.reportCell} |\n`;
+    const values = [
+      escapeTableCell(report.url),
+      String(report.retryCount || 1),
+      ...categoryDefinitions.map((category) => formatCategoryScore(report.categories[category.id] && report.categories[category.id].score)),
+      report.reportCell
+    ];
+    markdown += `| ${values.join(' | ')} |\n`;
   }
 
   markdown += '\n';
   return markdown;
 }
 
+/**
+ * Wraps markdown content in collapsible details block.
+ *
+ * @param {string} summary
+ * @param {string} content
+ * @returns {string}
+ */
 function wrapInDetails(summary, content) {
   let markdown = '<details>\n\n';
   markdown += `<summary>${summary}</summary>\n\n`;
@@ -487,12 +886,20 @@ function wrapInDetails(summary, content) {
   return markdown;
 }
 
-function renderCategoryBreakdownSection(reports, categoryPassThreshold) {
+/**
+ * Renders per-category score breakdown section.
+ *
+ * @param {ReportRecord[]} reports
+ * @param {number} categoryPassThreshold
+ * @param {CategoryDefinition[]} categoryDefinitions
+ * @returns {string}
+ */
+function renderCategoryBreakdownSection(reports, categoryPassThreshold, categoryDefinitions) {
   let section = '| URL | Category | Score | Raw | Status |\n';
   section += '| --- | --- | ---: | ---: | --- |\n';
 
   for (const report of reports) {
-    for (const category of CATEGORY_IDS) {
+    for (const category of categoryDefinitions) {
       const score = report.categories[category.id] && report.categories[category.id].score;
       section += `| ${escapeTableCell(report.url)} (retries: ${report.retryCount || 1}) | ${category.label} | ${formatCategoryScore(score)} | ${formatRawScore(score)} | ${categoryStatus(score, categoryPassThreshold)} |\n`;
     }
@@ -504,6 +911,12 @@ function renderCategoryBreakdownSection(reports, categoryPassThreshold) {
   );
 }
 
+/**
+ * Renders Core Web Vitals section.
+ *
+ * @param {ReportRecord[]} reports
+ * @returns {string}
+ */
 function renderVitalsSection(reports) {
   let section = '| URL | Retries | LCP | CLS | INP/FID | TTFB |\n';
   section += '| --- | ---: | --- | --- | --- | --- |\n';
@@ -516,6 +929,13 @@ function renderVitalsSection(reports) {
   return wrapInDetails('Core Web Vitals', section);
 }
 
+/**
+ * Renders ranked opportunities section.
+ *
+ * @param {ReportRecord[]} reports
+ * @param {number} maxItems
+ * @returns {string}
+ */
 function renderOpportunitiesSection(reports, maxItems) {
   let section = '';
 
@@ -541,6 +961,13 @@ function renderOpportunitiesSection(reports, maxItems) {
   return wrapInDetails(`Top Opportunities (top ${maxItems} per URL)`, section || 'No opportunity audits were found.');
 }
 
+/**
+ * Renders ranked failed-audits section.
+ *
+ * @param {ReportRecord[]} reports
+ * @param {number} maxItems
+ * @returns {string}
+ */
 function renderFailedAuditsSection(reports, maxItems) {
   let section = '';
 
@@ -564,59 +991,24 @@ function renderFailedAuditsSection(reports, maxItems) {
   return wrapInDetails(`Top Failed Audits (top ${maxItems} per URL)`, section || 'No failed audits were found.');
 }
 
-function run() {
-  const lhciDir = path.join(process.cwd(), '.lighthouseci');
-  const maxOpportunities = parsePositiveIntEnv('LIGHTHOUSE_SUMMARY_MAX_OPPORTUNITIES', 3);
-  const maxFailedAudits = parsePositiveIntEnv('LIGHTHOUSE_SUMMARY_MAX_FAILED_AUDITS', 5);
-  const categoryPassThreshold = parseThresholdEnv('LIGHTHOUSE_SUMMARY_CATEGORY_PASS_THRESHOLD', 0.9);
+const SECTION_RENDERERS = [
+  (context) => renderOverviewSection(context.reports, context.categoryDefinitions),
+  (context) => renderCategoryBreakdownSection(context.reports, context.categoryPassThreshold, context.categoryDefinitions),
+  (context) => renderVitalsSection(context.reports),
+  (context) => renderOpportunitiesSection(context.reports, context.maxOpportunities),
+  (context) => renderFailedAuditsSection(context.reports, context.maxFailedAudits)
+];
 
-  if (!fileExists(lhciDir)) {
-    printSummary('## Lighthouse\n\nNo Lighthouse results were found in `.lighthouseci`.\n');
-    return;
-  }
-
-  const manifestPath = path.join(lhciDir, 'manifest.json');
-  let manifest = null;
-  let usedManifest = false;
-
-  if (fileExists(manifestPath)) {
-    try {
-      manifest = readJson(manifestPath);
-      usedManifest = true;
-    } catch (error) {
-      printSummary(`## Lighthouse\n\nFailed to parse \.lighthouseci/manifest.json: ${error.message}\n`);
-      return;
-    }
-  }
-
-  const linksPath = path.join(lhciDir, 'links.json');
-  let linksByReport = {};
-
-  if (fileExists(linksPath)) {
-    try {
-      const links = readJson(linksPath);
-      linksByReport = Object.fromEntries(
-        links
-          .filter((entry) => entry && entry.report)
-          .map((entry) => [path.basename(entry.report), entry])
-      );
-    } catch {
-      linksByReport = {};
-    }
-  }
-
-  let reports = [];
-  let usedScanFallback = false;
-
-  if (manifest && Array.isArray(manifest)) {
-    reports = collectReportsFromManifest(manifest, lhciDir, linksByReport);
-  }
-
-  if (!reports.length) {
-    reports = collectReportsFromScan(lhciDir, linksByReport);
-    usedScanFallback = true;
-  }
-
+/**
+ * Builds top-of-summary metadata section.
+ *
+ * @param {boolean} usedManifest
+ * @param {boolean} usedScanFallback
+ * @param {number} reportCount
+ * @param {number} consolidatedCount
+ * @returns {string}
+ */
+function buildIntroMarkdown(usedManifest, usedScanFallback, reportCount, consolidatedCount) {
   let markdown = '## Lighthouse\n\n';
 
   if (!usedManifest) {
@@ -625,26 +1017,104 @@ function run() {
     markdown += '_`manifest.json` was present but did not yield usable reports; scanned `.lighthouseci` for Lighthouse JSON files._\n\n';
   }
 
-  if (!reports.length) {
-    markdown += 'No Lighthouse reports were parsed from `.lighthouseci`.\n';
-    printSummary(markdown);
+  markdown += `Parsed reports: ${reportCount}. Consolidated URLs: ${consolidatedCount}.\n\n`;
+  return markdown;
+}
+
+/**
+ * Builds full summary markdown from rendering context.
+ *
+ * @param {{
+ *   reports: ReportRecord[],
+ *   usedManifest: boolean,
+ *   usedScanFallback: boolean,
+ *   reportCount: number,
+ *   maxOpportunities: number,
+ *   maxFailedAudits: number,
+ *   categoryPassThreshold: number,
+ *   categoryDefinitions: CategoryDefinition[]
+ * }} context
+ * @returns {string}
+ */
+function buildSummaryMarkdown(context) {
+  let markdown = buildIntroMarkdown(
+    context.usedManifest,
+    context.usedScanFallback,
+    context.reportCount,
+    context.reports.length
+  );
+
+  for (const renderSection of SECTION_RENDERERS) {
+    markdown += renderSection(context);
+  }
+
+  return markdown;
+}
+
+/**
+ * Runtime entry point with injectable dependencies for testability.
+ *
+ * @param {Deps} [deps=DEFAULT_DEPS]
+ * @returns {void}
+ */
+function runWithDeps(deps = DEFAULT_DEPS) {
+  const runtimeConfig = loadRuntimeConfig(deps);
+  const {
+    lhciDir,
+    maxOpportunities,
+    maxFailedAudits,
+    categoryPassThreshold,
+    categoryDefinitions
+  } = runtimeConfig;
+
+  if (!fileExists(lhciDir, deps.fsApi)) {
+    printSummary('## Lighthouse\n\nNo Lighthouse results were found in `.lighthouseci`.\n', deps.stdout);
     return;
   }
 
-  const consolidatedReports = consolidateReportsByUrl(reports);
+  const { manifest, usedManifest, error: manifestError } = loadManifest(lhciDir, deps);
 
-  markdown += `Parsed reports: ${reports.length}. Consolidated URLs: ${consolidatedReports.length}.\n\n`;
-  markdown += renderOverviewSection(consolidatedReports);
-  markdown += renderCategoryBreakdownSection(consolidatedReports, categoryPassThreshold);
-  markdown += renderVitalsSection(consolidatedReports);
-  markdown += renderOpportunitiesSection(consolidatedReports, maxOpportunities);
-  markdown += renderFailedAuditsSection(consolidatedReports, maxFailedAudits);
+  if (manifestError) {
+    printSummary(`## Lighthouse\n\nFailed to parse \.lighthouseci/manifest.json: ${manifestError.message}\n`, deps.stdout);
+    return;
+  }
 
-  printSummary(markdown);
+  const linksByReport = loadLinksByReport(lhciDir, deps);
+  const { reports, usedScanFallback } = loadReports(manifest, lhciDir, linksByReport, deps);
+
+  if (!reports.length) {
+    const emptyMarkdown = '## Lighthouse\n\nNo Lighthouse reports were parsed from `.lighthouseci`.\n';
+    printSummary(emptyMarkdown, deps.stdout);
+    return;
+  }
+
+  const consolidatedReports = consolidateReportsByUrl(reports, categoryDefinitions, deps.URLCtor);
+
+  const markdown = buildSummaryMarkdown({
+    reports: consolidatedReports,
+    reportCount: reports.length,
+    usedManifest,
+    usedScanFallback,
+    maxOpportunities,
+    maxFailedAudits,
+    categoryPassThreshold,
+    categoryDefinitions
+  });
+
+  printSummary(markdown, deps.stdout);
+}
+
+/**
+ * Default runtime entry point.
+ *
+ * @returns {void}
+ */
+function run() {
+  runWithDeps(DEFAULT_DEPS);
 }
 
 try {
   run();
 } catch (error) {
-  printSummary(`## Lighthouse\n\nUnable to generate Lighthouse summary: ${error.message}\n`);
+  printSummary(`## Lighthouse\n\nUnable to generate Lighthouse summary: ${error.message}\n`, DEFAULT_DEPS.stdout);
 }
