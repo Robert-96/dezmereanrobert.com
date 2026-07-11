@@ -17,7 +17,9 @@ function readJson(filePath) {
 }
 
 function escapePipes(value) {
-  return String(value).replace(/\|/g, '\\|');
+  return String(value)
+    .replace(/\\/g, '\\\\')
+    .replace(/\|/g, '\\|');
 }
 
 function scoreFromCategories(categories, id) {
