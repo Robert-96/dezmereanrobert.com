@@ -148,3 +148,8 @@ jobs:
       - name: Run Lighthouse
         run: |
           lhci autorun
+
+      - name: Publish Lighthouse summary
+        if: always()
+        run: |
+          node scripts/lighthouse-summary.js | tee -a "$GITHUB_STEP_SUMMARY"
