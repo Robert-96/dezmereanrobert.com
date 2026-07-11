@@ -163,6 +163,7 @@ jobs:
         with:
           name: lighthouse-results
           path: '.lighthouseci/**'
+          include-hidden-files: true
           if-no-files-found: warn
           retention-days: 7
 
