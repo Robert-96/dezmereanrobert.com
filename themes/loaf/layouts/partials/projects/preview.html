@@ -1,17 +1,17 @@
-<article class="space-y-2">
+<article class="space-y-3">
   <div class="space-y-5">
-    <div class="space-y-6">
-      <div class="space-y-2">
+    <div class="space-y-4">
+      <div class="space-y-3">
         {{ partial "base/preview-title" . }}
 
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap gap-2">
           {{ range .Params.Tech }}
-            <span class="mr-3 font-medium text-green-700 dark:text-green-500">{{ . }}</span>
+            <span class="site-tech-chip">{{ . }}</span>
           {{ end }}
         </div>
       </div>
 
-      <div class="prose prose-green dark:prose-invert max-w-none">
+      <div class="prose prose-green dark:prose-invert max-w-none site-body-muted">
         {{ .Summary  }}
       </div>
     </div>

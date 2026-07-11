@@ -1,22 +1,22 @@
-<article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+<article class="space-y-3 xl:grid xl:grid-cols-4 xl:items-start xl:gap-x-6 xl:space-y-0">
   <dl>
     <dt class="sr-only">Published on</dt>
-    <dd class="text-base font-medium text-gray-500 dark:text-gray-400 mb-3">
+    <dd class="site-meta mb-2">
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
     </dd>
   </dl>
 
-  <div class="space-y-5 xl:col-span-3">
-    <div class="space-y-6">
-      <div class="space-y-2">
+  <div class="space-y-4 xl:col-span-3">
+    <div class="space-y-4">
+      <div class="space-y-3">
         {{ partial "base/preview-title" . }}
 
-        <div class="flex flex-wrap space-x-3">
+        <div class="flex flex-wrap gap-x-3 gap-y-1">
           {{ partial "base/tags" .Params.tags }}
         </div>
       </div>
 
-      <div class="prose prose-green dark:prose-invert max-w-none">
+      <div class="prose prose-green dark:prose-invert max-w-none site-body-muted">
         {{ .Summary  }}
       </div>
     </div>

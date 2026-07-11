@@ -1,21 +1,21 @@
 {{ define "main" }}
 <main class="divide-y divide-slate-200 dark:divide-slate-200/5">
-  <div class="mt-6 mb-12 flex flex-col items-center gap-x-12 xl:mb-6 xl:pb-18 xl:flex-row">
+  <div class="mt-8 mb-14 flex flex-col items-center gap-x-12 gap-y-10 lg:mb-10 xl:flex-row">
     <div>
-      <h1 class="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">Hi, I'm <span class="">Dezmerean Robert</span></h1>
+      <h1 class="pb-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl md:text-6xl md:leading-16">Hi, I'm Dezmerean Robert</h1>
 
-      <h2 class="prose prose-green dark:prose-invert text-xl text-gray-500 dark:text-slate-300">
+      <h2 class="prose prose-green dark:prose-invert max-w-2xl site-subtitle">
         Welcome to my blog - I’m a <strong>Software Developer</strong> with <strong>7+ years of experience</strong>, proficient in <strong>Python</strong> and <strong>JavaScript</strong>, specializing in <strong>Flask</strong> and <strong>Fast API</strong> for constructing high-performance applications.
         In my free time, I like developing <a href="{{ "/projects/" | relURL}}">side projects</a> and <a href="{{ "/posts/" | relURL}}">blogging</a> about them. Have a good read!
       </h2>
     </div>
 
-    <div id="art" class="relative mt-20 mb-12 xl:my-0">
+    <div id="art" class="relative my-4 sm:my-6 xl:my-0">
       <canvas id="art-canvas" class="w-full sm:size-96 cursor-pointer"></canvas>
 
       <div class="art-legend">
-        <p class="text-center mt-1 text-gray-500 dark:text-slate-300">&lt;!-- <strong>click this art</strong> to regenerate it <span id="art-tooltip" class="font-bold cursor-help">[<span class="text-green-500">?</span>]</span> --&gt;</p>
-        <div id="art-note" class="absolute w-64 top-16 left-16 p-3 border-4 border-black dark:border-white bg-white dark:bg-slate-900 hidden">
+        <p class="mt-2 text-center text-sm font-medium text-gray-500 dark:text-slate-300">&lt;!-- <strong>click this art</strong> to regenerate it <span id="art-tooltip" class="font-bold cursor-help">[<span class="text-green-500">?</span>]</span> --&gt;</p>
+        <div id="art-note" class="absolute z-10 w-64 top-16 left-1/2 -translate-x-1/2 p-3 border-4 border-black bg-white hidden md:left-16 md:translate-x-0 dark:border-white dark:bg-slate-900">
           <div class="prose prose-green text-base dark:prose-invert text-gray-500 dark:text-slate-300">
             <p>This art is inspired by <a href="https://en.wikipedia.org/wiki/Piet_Mondrian" target="_blank">Piet Mondrian’s art</a>. It is randomly generated every time you refresh the page. You can also regenerate it however many times you want by clicking on it. Every art is new!</p>
 
@@ -26,12 +26,12 @@
     </div>
   </div>
 
-  <div class="hidden pt-9 pb-12 space-y-2 md:space-y-5">
-    <h1 class="text-xl font-extrabold text-gray-900 dark:text-white racking-tight sm:text-4xl md:text-6xl">
+  <div class="hidden site-shell-section space-y-3 md:space-y-5">
+    <h1 class="site-section-heading">
       Featured Projects
     </h1>
 
-    <div class="text-lg text-gray-500 dark:text-slate-300 space-y-3">
+    <div class="site-subtitle space-y-3">
       <p>Here are some of my personal favourite projects I've worked on in the past.</p>
     </div>
   </div>
@@ -49,16 +49,16 @@
     </ul>
   </div>
 
-  <div class="hidden flex justify-end text-base font-medium leading-6 py-7">
-    <a class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/projects/" | relURL}}">All Projects →</a>
+  <div class="hidden flex justify-end py-8 text-base font-medium leading-6">
+    <a class="site-link-action" href="{{ "/projects/" | relURL}}">All Projects →</a>
   </div>
 
-  <div class="pt-9 pb-12 space-y-2 md:space-y-5">
-    <h1 class="text-xl font-extrabold text-gray-900 dark:text-white racking-tight sm:text-4xl md:text-6xl">
+  <div class="site-shell-section space-y-3 md:space-y-5">
+    <h1 class="site-section-heading">
       Featured Posts
     </h1>
 
-    <div class="text-lg text-gray-500 dark:text-slate-300 space-y-3">
+    <div class="site-subtitle space-y-3">
       <p>
         Over the years I’ve published a few dozen articles — some more noteworthy than others.
       </p>
@@ -80,7 +80,7 @@
   </div>
 </main>
 
-<div class="flex justify-end text-base font-medium leading-6 py-7">
-  <a class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/posts/" | relURL}}">All Posts →</a>
+<div class="flex justify-end py-8 text-base font-medium leading-6">
+  <a class="site-link-action" href="{{ "/posts/" | relURL}}">All Posts →</a>
 </div>
 {{ end }}

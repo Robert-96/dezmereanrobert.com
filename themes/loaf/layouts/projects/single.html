@@ -1,22 +1,22 @@
 {{ define "main" }}
 <article class="divide-y divide-slate-200 dark:divide-slate-200/5">
-  <header class="pt-3 pb-5">
-    <div class="space-y-3">
+  <header class="pt-4 pb-8">
+    <div class="space-y-4">
       {{ if .Params.Tech }}
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap gap-2">
           {{ range .Params.Tech }}
-            <span class="mr-3 font-medium text-green-700 dark:text-green-500">{{ . }}</span>
+            <span class="site-tech-chip">{{ . }}</span>
           {{ end }}
         </div>
       {{ end }}
 
       <div>
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl md:text-6xl">{{ .Title | markdownify }}</h1>
+        <h1 class="site-page-title">{{ .Title | markdownify }}</h1>
       </div>
 
       {{ if .Params.Subtitle }}
         <div>
-          <span class="text-xl text-gray-500 dark:text-slate-300">{{ .Params.Subtitle | markdownify }}</span>
+          <span class="site-subtitle">{{ .Params.Subtitle | markdownify }}</span>
         </div>
       {{ end }}
 
@@ -26,15 +26,15 @@
     </div>
   </header>
 
-  <div class="prose prose-green dark:prose-invert max-w-none pt-9 pb-24">
+  <div class="prose prose-green dark:prose-invert max-w-none pt-10 pb-24">
     {{ .Content }}
   </div>
 </article>
 
-<div class="text-sm text-gray-500 dark:text-slate-300 font-medium divide-slate-200 dark:divide-slate-200/5 xl:col-start-1 xl:row-start-2">
-  <div class="space-y-7 py-7">
+<div class="site-support-copy font-medium divide-slate-200 dark:divide-slate-200/5 xl:col-start-1 xl:row-start-2">
+  <div class="space-y-7 py-8">
     <p>
-      You can find the rest of my projects in the <a class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline" href="{{ "/projects/" | relURL}}">projects</a> section.
+      You can find the rest of my projects in the <a class="site-link-action" href="{{ "/projects/" | relURL}}">projects</a> section.
     </p>
   </div>
 </div>
