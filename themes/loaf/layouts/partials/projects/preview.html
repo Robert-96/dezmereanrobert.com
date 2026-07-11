@@ -1,25 +1,21 @@
-<article class="space-y-2">
-  <div class="space-y-5">
-    <div class="space-y-6">
-      <div class="space-y-2">
-        {{ partial "base/preview-title" . }}
+<article class="py-4">
+  <div class="space-y-3">
+    {{ partial "base/preview-title" . }}
 
-        <div class="flex flex-wrap">
-          {{ range .Params.Tech }}
-            <span class="mr-3 font-medium text-green-700 dark:text-green-500">{{ . }}</span>
-          {{ end }}
-        </div>
-      </div>
-
-      <div class="prose prose-green dark:prose-invert max-w-none">
-        {{ .Summary  }}
-      </div>
+    <div class="prose prose-green dark:prose-invert max-w-none site-body-muted">
+      {{ .Summary  }}
     </div>
 
-    <div class="space-y-3">
-      {{ partial "base/project-links" . }}
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+      {{ if .Params.Tech }}
+      <div class="flex flex-wrap gap-x-3 gap-y-1">
+        {{ range .Params.Tech }}
+          <span class="site-tech-chip">#{{ . }}</span>
+        {{ end }}
+      </div>
+      <span aria-hidden="true" class="text-slate-300 dark:text-slate-600">/</span>
+      {{ end }}
+      {{ partial "base/read-more" . }}
     </div>
-
-    {{ partial "base/read-more" . }}
   </div>
 </article>

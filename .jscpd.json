@@ -6,6 +6,7 @@
     "**/*.md",
     "**/*.yaml",
     "**/*.yml",
+    "**/*.html",
     "package-lock.json",
     "package.json"
   ],

@@ -1,18 +1,18 @@
 {{ define "main" }}
 <article class="divide-y divide-slate-200 dark:divide-slate-200/5">
-  <header class="pt-3 pb-9">
-    <div class="space-y-5">
+  <header class="pt-4 pb-8">
+    <div class="space-y-4">
       <div>
-        <dl class="space-y-9">
+        <dl>
           <div>
             <dt class="sr-only">Published on</dt>
-            <dd class="text-base leading-6 font-medium text-gray-500 dark:text-slate-300 mb-1.5">
+            <dd class="site-meta">
               <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
             </dd>
           </div>
         </dl>
 
-        <div class="space-y-9 space-x-3 font-medium">
+        <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
           {{ partial "base/tags" .Params.tags }}
         </div>
       </div>
@@ -30,7 +30,7 @@
     </div>
   </header>
 
-  <div class="prose prose-green dark:prose-invert max-w-none pt-6 pb-24">
+  <div class="prose prose-green dark:prose-invert max-w-none pt-10 pb-24">
     {{ .Content }}
   </div>
 </article>
@@ -38,8 +38,8 @@
 {{ $related := .Site.RegularPages.Related . | first 3 }}
 {{ with $related }}
 <div class="text-sm font-medium">
-  <div class="space-y-5 py-7">
-    <h2 class="text-sm leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">See also</h2>
+  <div class="space-y-5 py-8">
+    <h2 class="site-meta">See also</h2>
 
     <div class="divide-y divide-gray-100 dark:divide-slate-700">
       {{ range . }}
@@ -54,21 +54,21 @@
 
 {{ if or .NextInSection .PrevInSection }}
 <div class="text-sm font-medium divide-y divide-slate-200 dark:divide-slate-200/5 xl:col-start-1 xl:row-start-2">
-  <div class="flow-root space-y-7 md:space-y-0 py-7">
+  <div class="flow-root space-y-8 md:space-y-0 py-8">
     {{ if .NextInSection }}
       <div class="md:float-right md:text-right">
-        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Next Article</h2>
-        <div class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
-          <a href="{{ .NextInSection.Permalink | relURL }}">{{ .NextInSection.Title | markdownify }} →</a>
+        <h2 class="site-meta">Next Article</h2>
+        <div>
+          <a class="site-link-action" href="{{ .NextInSection.Permalink | relURL }}">{{ .NextInSection.Title | markdownify }} →</a>
         </div>
       </div>
     {{ end }}
 
     {{ if .PrevInSection }}
       <div class="md:float-left">
-        <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500 dark:text-slate-300">Previous Article</h2>
-        <div class="text-green-700 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 hover:underline">
-          <a href="{{ .PrevInSection.Permalink | relURL }}">← {{ .PrevInSection.Title | markdownify }}</a>
+        <h2 class="site-meta">Previous Article</h2>
+        <div>
+          <a class="site-link-action" href="{{ .PrevInSection.Permalink | relURL }}">← {{ .PrevInSection.Title | markdownify }}</a>
         </div>
       </div>
     {{ end }}
